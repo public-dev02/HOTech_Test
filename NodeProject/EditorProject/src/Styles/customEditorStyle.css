@@ -1,0 +1,4 @@
+/* 글 작성 부분 스타일 */
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+    border-radius: 0 !important;
+}

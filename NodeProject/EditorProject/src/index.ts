@@ -1,4 +1,5 @@
 import "@/Styles/style.css";
+import "@/Styles/customEditorStyle.css";
 
 import Editor from "./Faculty/Editor/Editor";
 import GlobalStatic from "./Global/GlobalStatic";
