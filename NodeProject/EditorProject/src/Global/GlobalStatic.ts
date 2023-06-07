@@ -8,4 +8,6 @@ export default class GlobalStatic
 
     /** 이 응용프로그램 */
     static App: AppModule | null;
+    /** 에디터 Instance */
+    static Editor: ClassicEditor | null;
 }

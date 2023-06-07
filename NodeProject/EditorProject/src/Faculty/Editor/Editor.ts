@@ -6,8 +6,6 @@ import EditorEvent from "../EditorEvent/EditorEvent";
 
 export default class Editor
 {
-    public Editor: ClassicEditor;
-
     private Config = new EditorConfig();
     private Event = new EditorEvent();
 
@@ -35,12 +33,12 @@ export default class Editor
         ClassicEditor.create(EditorElement, this.Config.GetConfig)
             .then(editor =>
             {
-                this.Editor = editor;
+                GlobalStatic.Editor = editor;
 
                 editor.model.document.on('change:data', () =>
                 {
                     const content = editor.getData();
-                    this.UpdatePreview();
+                    this.Event.UpdatePreview();
                 });
             });
 
@@ -61,7 +59,7 @@ export default class Editor
 
         const PreviewTitle = document.createElement("h1");
         PreviewTitle.classList.add('preview-title');
-        PreviewTitle.textContent = "Preview";
+        PreviewTitle.textContent = "미리보기";
 
         const PreviewIframe = document.createElement("iframe");
         PreviewIframe.classList.add('preview-iframe');
@@ -80,22 +78,16 @@ export default class Editor
         const PreviewButton = document.createElement("button");
         PreviewButton.classList.add('preview-button');
         PreviewButton.textContent = "미리보기";
-
         PreviewButton.addEventListener("click", this.Event.PreviewButtonEvent);
 
+        const WriteButton = document.createElement("button");
+        WriteButton.classList.add('write-button');
+        WriteButton.textContent = "글작성";
+        WriteButton.addEventListener("click", this.Event.WriteButtonEvent);
+
         ActionsBox.appendChild(PreviewButton);
+        ActionsBox.appendChild(WriteButton);
 
         return ActionsBox;
-    }
-
-    public UpdatePreview(): void
-    {
-        const PreviewIframe = document.querySelector(".preview-iframe") as HTMLIFrameElement;
-        const PreviewContent = this.Editor.getData();
-
-        const PreviewDocument = PreviewIframe.contentWindow.document;
-        PreviewDocument.open();
-        PreviewDocument.write(PreviewContent);
-        PreviewDocument.close();
     }
 }

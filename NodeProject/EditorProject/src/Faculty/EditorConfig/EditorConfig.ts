@@ -26,6 +26,7 @@ export default class EditorConfig
                     'redo',
                 ]
             },
+            placeholder: '내용을 입력해주세요...',
             language: 'ko',
         };
     }
