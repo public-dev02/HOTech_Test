@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CKEditorTranslationsPlugin } = require("@ckeditor/ckeditor5-dev-translations");
 
 //소스 위치
 const RootPath = path.resolve(__dirname);
@@ -64,17 +65,40 @@ module.exports = (env, argv) =>
                     exclude: /node_modules/,
                     use: ['ts-loader']
                 },
+                // CSS 로더 설정
                 {
-                    test: /\.(sa|sc|c)ss$/i,
+                    test: /\.css$/,
                     exclude: /node_modules/,
                     use:
                         [
-                            EnvPrductionIs ? MiniCssExtractPlugin.loader : { loader: 'style-loader' },
-                            { loader: 'css-loader' },
-                            { loader: 'sass-loader' },
-                            { loader: 'postcss-loader' },
+                            EnvPrductionIs ? MiniCssExtractPlugin.loader : 'style-loader',
+                            'css-loader',
+                            'postcss-loader',
                         ]
                 },
+                // CKEditor svg 로더 설정
+                {
+                    test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                    use: ['raw-loader']
+                },
+                {
+                    test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                    use: [
+                        {
+                            loader: 'style-loader',
+                            options: {
+                                injectType: 'singletonStyleTag',
+                                attributes: {
+                                    'data-cke': true
+                                }
+                            }
+                        },
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                        }
+                    ]
+                }
             ]
         },
         plugins: [
@@ -143,6 +167,12 @@ module.exports = (env, argv) =>
             // CSS 파일 분리
             new MiniCssExtractPlugin({
                 filename: "app.css",
+            }),
+
+            // CKEditor5 번역파일 복사
+            new CKEditorTranslationsPlugin({
+                language: 'ko',
+                additionalLanguages: 'all',
             })
         ],
 
