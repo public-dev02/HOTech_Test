@@ -7,7 +7,7 @@ import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Indent } from '@ckeditor/ckeditor5-indent';
 import { Link, LinkImage } from '@ckeditor/ckeditor5-link';
-import { List } from '@ckeditor/ckeditor5-list';
+import { List, TodoList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { Table } from '@ckeditor/ckeditor5-table';
@@ -16,6 +16,8 @@ import { Image, ImageCaption, ImageResize, ImageStyle, ImageToolbar, ImageUpload
 import { Markdown } from '@ckeditor/ckeditor5-markdown-gfm';
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
 import GlobalStatic from '@/Global/GlobalStatic';
+import { GeneralHtmlSupport } from '@ckeditor/ckeditor5-html-support';
+import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 
 export default class ClassicEditor extends ClassicEditorBase { }
 
@@ -47,6 +49,9 @@ ClassicEditor.builtinPlugins = [
     LinkImage,
     ImageUpload,
     Autoformat,
+    GeneralHtmlSupport,
+    HorizontalLine,
+    TodoList,
     Markdown
 ];
 
@@ -73,7 +78,7 @@ ClassicEditor.defaultConfig = {
         ]
     },
     language: 'ko',
-    placeholder: GlobalStatic.EditorPlaceholder
+    placeholder: GlobalStatic.EditorPlaceholder,
 };
 
 export function toggleMarkdownPlugin()

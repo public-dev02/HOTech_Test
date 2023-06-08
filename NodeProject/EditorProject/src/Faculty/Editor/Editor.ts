@@ -79,7 +79,7 @@ export default class Editor
 
         const MarkdownToggleButton = document.createElement("button");
         MarkdownToggleButton.classList.add('markdown-toggle-button');
-        MarkdownToggleButton.textContent = "Markdown";
+        MarkdownToggleButton.textContent = "에디터";
         MarkdownToggleButton.addEventListener("click", this.Event.MarkdownToggleButtonEvent);
 
         const PreviewButton = document.createElement("button");

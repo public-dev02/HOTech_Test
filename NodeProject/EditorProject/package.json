@@ -51,6 +51,8 @@
         "@ckeditor/ckeditor5-editor-classic": "^38.0.1",
         "@ckeditor/ckeditor5-essentials": "^38.0.1",
         "@ckeditor/ckeditor5-heading": "^38.0.1",
+        "@ckeditor/ckeditor5-horizontal-line": "^38.0.1",
+        "@ckeditor/ckeditor5-html-support": "^38.0.1",
         "@ckeditor/ckeditor5-image": "^38.0.1",
         "@ckeditor/ckeditor5-indent": "^38.0.1",
         "@ckeditor/ckeditor5-link": "^38.0.1",
@@ -60,6 +62,8 @@
         "@ckeditor/ckeditor5-paragraph": "^38.0.1",
         "@ckeditor/ckeditor5-table": "^38.0.1",
         "@ckeditor/ckeditor5-theme-lark": "^38.0.1",
-        "@ckeditor/ckeditor5-upload": "^38.0.1"
+        "@ckeditor/ckeditor5-upload": "^38.0.1",
+        "@types/marked": "^5.0.0",
+        "marked": "^5.0.5"
     }
 }
