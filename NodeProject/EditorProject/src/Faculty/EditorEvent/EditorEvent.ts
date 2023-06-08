@@ -27,4 +27,16 @@ export default class EditorEvent
         PreviewDocument.write(PreviewContent);
         PreviewDocument.close();
     }
+
+    public MarkdownToggleButtonEvent(): void
+    {
+        if (GlobalStatic.EditorMode === 'wysiwyg')
+        {
+            GlobalStatic.EditorMode = 'markdown';
+        }
+        else
+        {
+            GlobalStatic.EditorMode = 'wysiwyg';
+        }
+    }
 }

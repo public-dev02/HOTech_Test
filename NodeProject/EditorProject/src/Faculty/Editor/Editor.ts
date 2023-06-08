@@ -1,12 +1,9 @@
 import GlobalStatic from "@/Global/GlobalStatic";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Markdown } from "@ckeditor/ckeditor5-markdown-gfm";
-import EditorConfig from "../EditorConfig/EditorConfig";
 import EditorEvent from "../EditorEvent/EditorEvent";
+import ClassicEditor from "../ClassicEditor/ClassicEditor";
 
 export default class Editor
 {
-    private Config = new EditorConfig();
     private Event = new EditorEvent();
 
     constructor() { }
@@ -16,6 +13,9 @@ export default class Editor
         const EditorWrapper = document.createElement("div");
         EditorWrapper.classList.add('editor-wrapper');
 
+        const EditorBox = document.createElement("div");
+        EditorBox.classList.add('editor-box');
+
         const EditorTitle = document.createElement("h1");
         EditorTitle.classList.add('editor-title');
         EditorTitle.textContent = "Editor";
@@ -23,14 +23,10 @@ export default class Editor
         const EditorElement = document.createElement("div");
         EditorElement.classList.add('ckeditor-feature');
 
-        const EditorBox = document.createElement("div");
-        EditorBox.classList.add('editor-box');
-
         const ActionsBox = this.CreateActionsBoxElement();
-
         const PreviewElement = this.CreatePreviewElement();
 
-        ClassicEditor.create(EditorElement, this.Config.GetConfig)
+        ClassicEditor.create(EditorElement)
             .then(editor =>
             {
                 GlobalStatic.Editor = editor;
@@ -75,6 +71,17 @@ export default class Editor
         const ActionsBox = document.createElement("div");
         ActionsBox.classList.add('actions-box');
 
+        const LeftBox = document.createElement("div");
+        LeftBox.classList.add('left-box');
+
+        const RightBox = document.createElement("div");
+        RightBox.classList.add('right-box');
+
+        const MarkdownToggleButton = document.createElement("button");
+        MarkdownToggleButton.classList.add('markdown-toggle-button');
+        MarkdownToggleButton.textContent = "Markdown";
+        MarkdownToggleButton.addEventListener("click", this.Event.MarkdownToggleButtonEvent);
+
         const PreviewButton = document.createElement("button");
         PreviewButton.classList.add('preview-button');
         PreviewButton.textContent = "미리보기";
@@ -85,8 +92,12 @@ export default class Editor
         WriteButton.textContent = "글작성";
         WriteButton.addEventListener("click", this.Event.WriteButtonEvent);
 
-        ActionsBox.appendChild(PreviewButton);
-        ActionsBox.appendChild(WriteButton);
+        LeftBox.appendChild(MarkdownToggleButton);
+        RightBox.appendChild(PreviewButton);
+        RightBox.appendChild(WriteButton);
+
+        ActionsBox.appendChild(LeftBox);
+        ActionsBox.appendChild(RightBox);
 
         return ActionsBox;
     }

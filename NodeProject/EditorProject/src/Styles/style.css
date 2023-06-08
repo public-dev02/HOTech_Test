@@ -25,14 +25,19 @@ html, body {
 
 .editor-wrapper .editor-box .actions-box {
     display: flex;
-    justify-content: flex-end;
-    gap: 8px;
+    justify-content: space-between;
     margin-bottom: 10px;
     padding: 12px 16px;
     background-color: #f5f6f7;
     border-left: 1px solid #ccced1;
     border-right: 1px solid #ccced1;
     border-bottom: 1px solid #ccced1;
+}
+
+.editor-wrapper .editor-box .actions-box .right-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .editor-wrapper .preview-box {

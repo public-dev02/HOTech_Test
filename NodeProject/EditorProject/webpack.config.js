@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CKEditorTranslationsPlugin } = require("@ckeditor/ckeditor5-dev-translations");
+const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 //소스 위치
 const RootPath = path.resolve(__dirname);
@@ -47,7 +48,9 @@ module.exports = (env, argv) =>
         //devtool: "inline-source-map",
         resolve: {
             extensions: [".js", ".ts"],
-            alias: { "@": SrcPath }
+            alias: {
+                "@": SrcPath,
+            }
         },
         output: {// 최종적으로 만들어질 js
             /** 빌드 위치 */
@@ -96,6 +99,14 @@ module.exports = (env, argv) =>
                         'css-loader',
                         {
                             loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: styles.getPostCssConfig({
+                                    themeImporter: {
+                                        themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
+                                    },
+                                    minify: true
+                                })
+                            }
                         }
                     ]
                 }
