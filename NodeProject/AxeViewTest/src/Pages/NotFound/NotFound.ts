@@ -1,4 +1,5 @@
 import ContentComponent from "@/Faculty/Base/ContentComponent";
+import GlobalStatic from "@/Global/GlobalStatic";
 
 export default class NotFound extends ContentComponent
 {
@@ -15,7 +16,8 @@ export default class NotFound extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("404 렌더링");
+        const Router = GlobalStatic.app.Router;
+        Router.Rewrite('/404');
     }
 }
 

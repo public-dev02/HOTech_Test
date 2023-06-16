@@ -2,6 +2,7 @@ import Router from "./Faculty/Router/Router";
 import GlobalStatic from "./Global/GlobalStatic";
 import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
+import NotFound from "./Pages/NotFound/NotFound";
 import Page from "./Pages/Page";
 
 export default class StartUp
@@ -26,13 +27,13 @@ export default class StartUp
         };
     }
 
-    private ConfigureRoutes = () =>
+    private ConfigureRoutes()
     {
         this.Router
             .on("/", this.Router.Render(Home))
             .on("/about", this.Router.Render(About))
             .on("/about/:id", this.Router.Render(About))
-            .on("*", this.Router.NotFound)
+            .notFound(this.Router.Render(NotFound))
             .resolve();
 
         this.LinkRouteEvent();
@@ -48,10 +49,12 @@ export default class StartUp
                 event.preventDefault();
                 const href = target.getAttribute('href');
 
+                this.Router.PreviousRoute = window.location.pathname;
+
                 this.Router.navigate(href);
             }
         });
-    }
+    };
 };
 
 const app = new StartUp();

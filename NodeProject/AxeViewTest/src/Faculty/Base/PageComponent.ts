@@ -33,7 +33,6 @@ export default class PageComponent extends HeosabiComponent
         {
             const sHtml: string = data.htmlString;
             this.DomThis = GlobalStatic.createDOMElement(sHtml);
-
             this.LayoutRendering();
         });
     }
