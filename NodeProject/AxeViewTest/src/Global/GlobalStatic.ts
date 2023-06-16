@@ -25,11 +25,11 @@ export default class GlobalStatic
     static AxeView: AxeView = new AxeView();
 
     /** 이 응용프로그램*/
-    static app: StartUp | null;
+    static app: StartUp | null = null;
     /** 사용중인 페이지 개체*/
-    static PageLayout: Page | null;
+    static PageLayout: Page | null = null;
     /** 지금 보고 있는 페이지 개체*/
-    static PageNow: ContentComponent | null;
+    static PageNow: ContentComponent | null = null;
 
     /**
      * html 문자열을 인자로 받아서

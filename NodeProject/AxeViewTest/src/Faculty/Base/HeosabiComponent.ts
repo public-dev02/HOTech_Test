@@ -1,6 +1,7 @@
 import { Match } from 'navigo';
 import GlobalStatic from "@/Global/GlobalStatic";
 import AsyncHtmlLoader from "@/Utility/AsyncHTMLLoader/async-html-loader";
+import { NavigateMatchModel } from '../Router/NavigateMatchModel';
 
 /**
  * 모든 Component의 부모가 되는 Component이다.
@@ -12,7 +13,7 @@ export default class HeosabiComponent
     /** 비동기로 HTML 파일을 불러오는 라이브러리 */
     public AsyncHtmlLoader: AsyncHtmlLoader = new AsyncHtmlLoader();
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
-    public RouteThis: Match;
+    public RouteThis: NavigateMatchModel;
 
     constructor() { }
 

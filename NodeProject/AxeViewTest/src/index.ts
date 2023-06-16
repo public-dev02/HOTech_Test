@@ -1,4 +1,4 @@
-import Router from "./Faculty/Router/Router";
+import NavigoProvider from "./Faculty/Router/NavigoProvider";
 import GlobalStatic from "./Global/GlobalStatic";
 import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
@@ -12,11 +12,11 @@ import Page from "./Pages/Page";
 export default class StartUp
 {
     public DomThis: Element;
-    public Router: Router;
+    public Router: NavigoProvider;
 
     constructor()
     {
-        this.Router = new Router();
+        this.Router = new NavigoProvider();
 
         this.DomThis = document.querySelector("#root");
         GlobalStatic.app = this;
@@ -38,10 +38,10 @@ export default class StartUp
     private ConfigureRoutes(): void
     {
         this.Router
-            .on("/", this.Router.Render(Home))
-            .on("/about", this.Router.Render(About))
-            .on("/about/:id", this.Router.Render(About))
-            .notFound(this.Router.Render(NotFound))
+            .on("/", this.Router.ContentRender(Home))
+            .on("/about", this.Router.ContentRender(About))
+            .on("/about/:id", this.Router.ContentRender(About))
+            .notFound(this.Router.ContentRender(NotFound))
             .resolve();
 
         /** 모든 a 태그 이벤트를 SPA 성격에 맞게 이벤트를 건다. */
