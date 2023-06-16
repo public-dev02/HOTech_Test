@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/director": "^1.2.1",
     "@types/node": "^20.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -29,6 +30,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "director": "^1.2.8",
     "navigo": "^8.11.1"
   }
 }

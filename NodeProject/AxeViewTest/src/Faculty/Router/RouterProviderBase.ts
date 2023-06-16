@@ -1,7 +1,7 @@
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
-import { NavigateMatchModel, NavigateMatchDataModel } from "@/Faculty/Router/NavigateMatchModel";
+import { NavigateMatchModel, NavigateMatchDataModel } from "@/Faculty/Router/Providers/Navigo/Models/NavigateMatchModel";
 
 import GlobalStatic from "@/Global/GlobalStatic";
 

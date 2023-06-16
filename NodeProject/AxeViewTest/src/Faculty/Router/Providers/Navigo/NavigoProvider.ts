@@ -2,7 +2,7 @@ import Navigo, { Match } from "navigo";
 
 import RouterProviderBase from "@/Faculty/Router/RouterProviderBase";
 import RouterProviderInterface from "@/Faculty/Router/RouterProviderInterface";
-import { NavigateMatchModel } from "@/Faculty/Router/NavigateMatchModel";
+import { NavigateMatchModel } from "@/Faculty/Router/Providers/Navigo/Models/NavigateMatchModel";
 
 
 export default class NavigoProvider
@@ -39,7 +39,7 @@ export default class NavigoProvider
                     };
 
                     // 데이터가 없으면 빈 객체를 추가 후 바로 넘긴다.
-                    if (null === match.data || null === match.params)
+                    if (null === match.data && null === match.params)
                     {
                         newMatch.data.push({
                             key: ""

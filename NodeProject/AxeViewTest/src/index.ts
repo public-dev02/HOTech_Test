@@ -1,4 +1,4 @@
-import NavigoProvider from "./Faculty/Router/NavigoProvider";
+import NavigoProvider from "./Faculty/Router/Providers/Navigo/NavigoProvider";
 import GlobalStatic from "./Global/GlobalStatic";
 import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
@@ -13,6 +13,7 @@ export default class StartUp
 {
     public DomThis: Element;
     public Router: NavigoProvider;
+    public DirectorRouter: any;
 
     constructor()
     {

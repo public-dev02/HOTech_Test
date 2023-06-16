@@ -1,7 +1,7 @@
 import { Match } from 'navigo';
 import GlobalStatic from "@/Global/GlobalStatic";
 import AsyncHtmlLoader from "@/Utility/AsyncHTMLLoader/async-html-loader";
-import { NavigateMatchModel } from '../Router/NavigateMatchModel';
+import { NavigateMatchModel } from '../Router/Providers/Navigo/Models/NavigateMatchModel';
 
 /**
  * 모든 Component의 부모가 되는 Component이다.
