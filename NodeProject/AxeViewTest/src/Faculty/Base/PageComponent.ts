@@ -4,6 +4,9 @@ import Footer from '@/Pages/PageLayout/Footer/Footer';
 import GlobalStatic from '@/Global/GlobalStatic';
 import HeosabiComponent from './HeosabiComponent';
 
+/**
+ * Page 들의 부모가 되는 Base Component 이다.
+ */
 export default class PageComponent extends HeosabiComponent
 {
     /** 자식 class의 dom */
@@ -24,6 +27,11 @@ export default class PageComponent extends HeosabiComponent
         super();
     }
 
+    /**
+     * 인자로 html 파일 주소를 받아서
+     * html을 로드하고 렌더링을 시작한다.
+     * @param {string} HtmlPath 
+     */
     protected RenderingStart(HtmlPath: string)
     {
         this.AsyncHtmlLoader.addPath(HtmlPath);
@@ -62,10 +70,17 @@ export default class PageComponent extends HeosabiComponent
         };
     }
 
+    /** Header Component가 로드가 됬는지 확인하는 boolean 값 */
     private HeaderCompleteIs: boolean = false;
+    /** Footer Component가 로드가 됬는지 확인하는 boolean 값 */
     private FooterCompleteIs: boolean = false;
 
-    private CheckedCompleteContent()
+    /**
+     * Header와 Footer가 모두 정상적으로 로드가 됬는지 확인 후
+     * 렌더링을 완료하는 함수
+     * @returns {void}
+     */
+    private CheckedCompleteContent(): void
     {
         if (false === this.HeaderCompleteIs
             || false === this.FooterCompleteIs)

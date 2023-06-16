@@ -31,6 +31,12 @@ export default class GlobalStatic
     /** 지금 보고 있는 페이지 개체*/
     static PageNow: ContentComponent | null;
 
+    /**
+     * html 문자열을 인자로 받아서
+     * DOM으로 생성해서 Return 해주는 함수이다.
+     * @param {string} sHtml 
+     * @returns {Element}
+     */
     static createDOMElement(sHtml: string): Element
     {
         const Template = document.createElement('template');
