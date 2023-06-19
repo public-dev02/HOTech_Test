@@ -1,7 +1,7 @@
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
-import { NavigateMatchModel, NavigateMatchDataModel } from "@/Faculty/Router/Providers/Navigo/Models/NavigateMatchModel";
+import { NavigateMatchModel, NavigateMatchDataModel } from "@/Faculty/Router/Models/NavigateMatchModel";
 
 import GlobalStatic from "@/Global/GlobalStatic";
 
@@ -31,7 +31,6 @@ export default class RouterProviderBase
                     console.log(GlobalStatic.PageNow);
                 };
             }
-
 
         };
     }

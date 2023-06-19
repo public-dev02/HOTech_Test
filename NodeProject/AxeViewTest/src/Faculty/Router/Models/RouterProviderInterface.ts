@@ -1,6 +1,6 @@
-import { NavigateMatchModel } from "./Providers/Navigo/Models/NavigateMatchModel";
-import { ResolveOptions } from "./Providers/Navigo/Models/NavigateResolveModel";
-import { NavigateOptions } from "./Providers/Navigo/Models/NavigateOptionsModel";
+import { NavigateMatchModel } from "./NavigateMatchModel";
+import { ResolveOptions } from "./NavigateResolveModel";
+import { NavigateOptions } from "./NavigateOptionsModel";
 
 
 /** 라우터가 구현해야할 원형 */

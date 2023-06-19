@@ -1,8 +1,8 @@
 import Navigo, { Match } from "navigo";
 
 import RouterProviderBase from "@/Faculty/Router/RouterProviderBase";
-import RouterProviderInterface from "@/Faculty/Router/RouterProviderInterface";
-import { NavigateMatchModel } from "@/Faculty/Router/Providers/Navigo/Models/NavigateMatchModel";
+import RouterProviderInterface from "@/Faculty/Router/Models/RouterProviderInterface";
+import { NavigateMatchModel } from "@/Faculty/Router/Models/NavigateMatchModel";
 
 
 export default class NavigoProvider
@@ -84,7 +84,7 @@ export default class NavigoProvider
         return this;
     };
 
-    public notFound = (handler?: Function): RouterProviderInterface =>
+    public notFound = (handler?: (match: NavigateMatchModel) => void): RouterProviderInterface =>
     {
         if ("function" === typeof handler)
         {
