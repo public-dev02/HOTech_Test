@@ -24,7 +24,7 @@ export default class NotFound extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        const Router = GlobalStatic.app.HashRouter;
+        const Router = GlobalStatic.app.Router;
         Router.Rewrite('#/404');
     }
 }

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "director": "^1.2.8",
-    "navigo": "^8.11.1"
+    "navigo": "^8.11.1",
+    "rotero": "^1.1.0"
   }
 }

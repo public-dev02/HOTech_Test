@@ -59,6 +59,7 @@ export default class PageComponent extends HeosabiComponent
             this.CheckedCompleteContent();
         };
 
+        console.log(this.DomThis);
         this.Body = this.DomThis.querySelector('#divBody');
 
         this.Footer = new Footer();

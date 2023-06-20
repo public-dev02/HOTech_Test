@@ -1,12 +1,13 @@
-import rotero, { Router as RoteroRouter } from 'rotero';
+import rotero, { Router as RoteroRouter } from '@/Utility/Rotero/Rotero';
 import RouterProviderBase from "../../RouterProviderBase";
 import { NavigateMatchModel } from '../../Models/NavigateMatchModel';
 import RouterProviderInterface from '../../Models/RouterProviderInterface';
+import GlobalStatic from '@/Global/GlobalStatic';
 
 export default class RoteroProvider extends RouterProviderBase implements RouterProviderInterface
 {
     /** 로테로 라우터 개체 */
-    private Rotero: RoteroRouter = rotero();
+    private Rotero: RoteroRouter = new RoteroRouter('#root');
 
     constructor()
     {
@@ -25,10 +26,11 @@ export default class RoteroProvider extends RouterProviderBase implements Router
 
             this.Rotero.on(path, (req, res) =>
             {
+                console.log(GlobalStatic);
                 let newMatch: NavigateMatchModel = {
                     url: req.url
                     , queryString: ""
-                    , hashString: req.url
+                    , hashString: ""
                     , data: []
                 };
 
@@ -105,4 +107,17 @@ export default class RoteroProvider extends RouterProviderBase implements Router
 
         return this;
     };
+
+    public AddHashToURL()
+    {
+        if (!window.location.hash)
+        {
+            window.location.hash = '/';
+        }
+    }
+
+    public refresh()
+    {
+        this.Rotero.refresh();
+    }
 }

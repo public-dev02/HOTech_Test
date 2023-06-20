@@ -1,11 +1,11 @@
 import NavigoProvider from "./Faculty/Router/Providers/Navigo/NavigoProvider";
 import RoteroProvider from "./Faculty/Router/Providers/Rotero/RoteroProvider";
+import JxtaProvider from "./Faculty/Router/Providers/Jxta/JxtaProvider";
 import GlobalStatic from "./Global/GlobalStatic";
 import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
 import Page from "./Pages/Page";
-import rotero, { Router as RoteroHashRouter } from "rotero";
 
 /**
  * App을 시작하는 함수
@@ -14,14 +14,10 @@ import rotero, { Router as RoteroHashRouter } from "rotero";
 export default class StartUp
 {
     public DomThis: Element;
-    public Router: NavigoProvider;
-    public HashRouter: RoteroProvider;
+    public Router: JxtaProvider;
 
     constructor()
     {
-        // this.Router = new NavigoProvider();
-        this.HashRouter = new RoteroProvider();
-
         this.DomThis = document.querySelector("#root");
         GlobalStatic.app = this;
 
@@ -29,7 +25,10 @@ export default class StartUp
 
         GlobalStatic.PageLayout.DomThisComplete = () =>
         {
+            // this.Router = new NavigoProvider();
+            this.Router = new JxtaProvider();
             this.ConfigureRoutes();
+
             this.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
         };
     }
@@ -46,17 +45,22 @@ export default class StartUp
         //     .on("/about/:id", this.Router.ContentRender(About))
         //     .notFound(this.Router.ContentRender(NotFound))
         //     .resolve();
-        this.HashRouter.on("/", this.HashRouter.ContentRender(Home));
-        this.HashRouter.on("/about", this.HashRouter.ContentRender(About));
-        this.HashRouter.on("/about/:id", this.HashRouter.ContentRender(About));
-        this.HashRouter.notFound(this.HashRouter.ContentRender(NotFound));
-        this.HashRouter.resolve();
 
-        location.hash = "#/";
+        this.Router
+            .on("/", this.Router.ContentRender(Home))
+            .on("/about", this.Router.ContentRender(About))
+            .on("/about/:id", this.Router.ContentRender(About))
+            .notFound(this.Router.ContentRender(NotFound))
+            .resolve();
+
+        console.log("라우터 설정 완료!");
+
+        this.Router.refresh();
+        // this.Router.AddHashToURL();
 
         /** 모든 a 태그 이벤트를 SPA 성격에 맞게 이벤트를 건다. */
         this.LinkRouteEvent();
-    };
+    }
 
     /**
      * 모든 A 태그를 클릭했을 때 기존 이벤트를 제거하고
@@ -64,19 +68,19 @@ export default class StartUp
      */
     private LinkRouteEvent(): void
     {
-        this.DomThis.addEventListener('click', (event: MouseEvent) =>
+        this.DomThis.addEventListener("click", (event: MouseEvent) =>
         {
             const target = event.target as Element;
             if (target.tagName === "A")
             {
                 event.preventDefault();
-                const href = target.getAttribute('href');
+                const href = target.getAttribute("href");
 
-                this.HashRouter.navigate(href);
+                this.Router.navigate(href);
             }
         });
-    };
-};
+    }
+}
 
 /** 시작 */
 const app = new StartUp();
