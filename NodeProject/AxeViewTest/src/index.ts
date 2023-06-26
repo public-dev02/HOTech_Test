@@ -21,15 +21,18 @@ export default class StartUp
         this.DomThis = document.querySelector("#root");
         GlobalStatic.app = this;
 
+        this.Router = new JxtaProvider();
+        this.ConfigureRoutes();
+
         GlobalStatic.PageLayout = new Page();
 
         GlobalStatic.PageLayout.DomThisComplete = () =>
         {
             // this.Router = new NavigoProvider();
-            this.Router = new JxtaProvider();
-            this.ConfigureRoutes();
-
             this.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
+
+
+            this.Router.refresh();
         };
     }
 
@@ -54,8 +57,6 @@ export default class StartUp
             .resolve();
 
         console.log("라우터 설정 완료!");
-
-        this.Router.refresh();
         // this.Router.AddHashToURL();
 
         /** 모든 a 태그 이벤트를 SPA 성격에 맞게 이벤트를 건다. */

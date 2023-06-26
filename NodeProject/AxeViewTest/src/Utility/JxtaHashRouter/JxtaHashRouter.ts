@@ -9,23 +9,17 @@ export default class HashRouter
   /** 현재 사용자가 보고있는 라우트 */
   public current: Match | null = null;
 
-  constructor(appRoute?: string)
+  private loadEventOption: boolean;
+
+  constructor(loadEvent?: boolean)
   {
-    /** 기본 라우트 설정을 입력하지 않으면
-     * "/" 라우트로 설정
-     */
-    if (!appRoute)
+    if (loadEvent === undefined)
     {
-      console.warn(
-        '기본 라우트가 설정되지 않았습니다. "/" 라우트로 설정합니다.',
-      );
-      this.root = '/';
-    } else
+      this.loadEventOption = true;
+    }
+    else
     {
-      /** 기본 라우트 설정을 입력했다면
-       * 앞 뒤 슬래시를 제거해주고 this.root에 할당한다.
-       */
-      this.root = appRoute;
+      this.loadEventOption = loadEvent;
     }
 
     /** 라우트 배열을 초기화 한다. */
@@ -76,17 +70,18 @@ export default class HashRouter
    */
   public resolve(): void
   {
-    /** DOMContentLoaded (페이지 로드 시) 이벤트가 발생하면 라우트를 해석한다. */
-    window.addEventListener('DOMContentLoaded', (): void =>
+    if (this.loadEventOption === true)
     {
-      console.log('DOMContentLoaded');
-      this.routeManager();
-    });
+      /** DOMContentLoaded (페이지 로드 시) 이벤트가 발생하면 라우트를 해석한다. */
+      window.addEventListener('DOMContentLoaded', (): void =>
+      {
+        this.routeManager();
+      });
+    }
 
     /** hashchange (해시값 변경 시) 이벤트가 발생하면 라우트를 해석한다. */
     window.addEventListener('hashchange', (): void =>
     {
-      console.log('hashchange');
       this.routeManager();
     });
   }

@@ -21,9 +21,13 @@ export default class RouterProviderBase
             if (null === GlobalStatic.PageNow
                 || GlobalStatic.PageNow.constructor.name !== Component.name)
             {
+                if (undefined === GlobalStatic.PageLayout.Body) 
+                {
+                    return;
+                }
+
                 GlobalStatic.PageLayout.Body.innerHTML = "";
                 GlobalStatic.PageNow = new Component();
-
                 GlobalStatic.PageNow.DomThisComplete = () =>
                 {
                     GlobalStatic.PageLayout.Body.appendChild(GlobalStatic.PageNow.DomThis);

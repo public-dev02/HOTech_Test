@@ -8,7 +8,7 @@ import GlobalStatic from '@/Global/GlobalStatic';
 export default class JxtaProvider extends RouterProviderBase implements RouterProviderInterface
 {
     /** 로테로 라우터 개체 */
-    private Router: Router = new Router('/');
+    private Router: Router = new Router(false);
 
     constructor()
     {
