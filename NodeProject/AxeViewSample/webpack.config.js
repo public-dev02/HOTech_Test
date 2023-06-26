@@ -26,10 +26,12 @@ let OutputPath_relative = path.resolve("/", OutputFolder);
 /** 서비스 주소 - 테스트할때는 루트, 실서비스때는 해당 경로를 적는다. */
 let OutputPath_PublicPath = "/";
 
-module.exports = (env, argv) => {
+module.exports = (env, argv) =>
+{
     //릴리즈(프로덕션)인지 여부
     const EnvPrductionIs = argv.mode === "production";
-    if (true === EnvPrductionIs) {
+    if (true === EnvPrductionIs)
+    {
         //릴리즈 출력 폴더 변경
         OutputFolder = "production";
         OutputPath = path.resolve(WwwRootPath, OutputFolder);
@@ -89,11 +91,13 @@ module.exports = (env, argv) => {
                     {
                         //모든 html파일 복사
                         from: "./src/**/*.html",
-                        to({ context, absoluteFilename }) {
+                        to({ context, absoluteFilename })
+                        {
                             //'src/'를 제거
                             let sOutDir = path.relative(context, absoluteFilename).substring(4);
                             //index.html은 리액트가 생성해주므로 여기선 스킵한다.
-                            if ("index.html" === sOutDir) {
+                            if ("index.html" === sOutDir)
+                            {
                                 //sOutDir = "index_Temp.html";
                                 sOutDir = "";
                             }

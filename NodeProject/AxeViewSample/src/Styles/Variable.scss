@@ -1,0 +1,133 @@
+/* 베이스 색상 */
+$white-color: #ffffff;
+$black-color: #000000;
+
+/* 앱 색상 */
+
+// 프라이머리(primary)
+$primary-color: #5D87FF;
+$primary-border-color: #5D87FF;
+$primary-hover-text: #ffffff;
+$primary-hover-bg: #4f73d9;
+$primary-hover-border-color: #4a6ccc;
+$primary-focus-shadow-rgb: 117,153,255;
+$primary-active-text: #ffffff;
+$primary-active-bg: #4a6ccc;
+$primary-active-border-color: #4665bf;
+$primary-disabled-text: #ffffff;
+$primary-disabled-bg: #5D87FF;
+$primary-disabled-border-color: #5D87FF;
+
+// 세컨더리(secondary)
+$secondary-color: #49BEFF;
+$secondary-border-color: #49BEFF;
+$secondary-hover-text: #ffffff;
+$secondary-hover-bg: #3ea2d9;
+$secondary-hover-border-color: #3a98cc;
+$secondary-focus-shadow-rgb: 100,200,255;
+$secondary-active-text: #ffffff;
+$secondary-active-bg: #3a98cc;
+$secondary-active-border-color: #378fbf;
+$secondary-disabled-text: #ffffff;
+$secondary-disabled-bg: #49BEFF;
+$secondary-disabled-border-color: #49BEFF;
+
+
+// 성공(success)
+$success-color: #13DEB9;
+$success-border-color: #13DEB9;
+$success-hover-text: #ffffff;
+$success-hover-bg: #10bd9d;
+$success-hover-border-color: #0fb294;
+$success-focus-shadow-rgb: 54,227,196;
+$success-active-text: #ffffff;
+$success-active-bg: #0fb294;
+$success-active-border-color: #0ea78b;
+$success-disabled-text: #ffffff;
+$success-disabled-bg: #13DEB9;
+$success-disabled-border-color: #13DEB9;
+
+// 위험(danger)
+$danger-color: #FA896B;
+$danger-border-color: #FA896B;
+$danger-hover-text: #ffffff;
+$danger-hover-bg: #d5745b;
+$danger-hover-border-color: #c86e56;
+$danger-color-focus-shadow-rgb: 251,155,129;
+$danger-active-text: #ffffff;
+$danger-active-bg: #c86e56;
+$danger-active-border-color: #bc6750;
+$danger-disabled-text: #ffffff;
+$danger-disabled-bg: #FA896B;
+$danger-disabled-border-color: #FA896B;
+
+// 경고(warning)
+$warning-color: #FFAE1F;
+$warning-border-color: #FFAE1F;
+$warning-hover-text: #ffffff;
+$warning-hover-bg: #d9941a;
+$warning-hover-border-color: #cc8b19;
+$warning-color-focus-shadow-rgb: 255,186,65;
+$warning-active-text: #ffffff;
+$warning-active-bg: #cc8b19;
+$warning-active-border-color: #bf8317;
+$warning-disabled-text: #ffffff;
+$warning-disabled-bg: #FFAE1F;
+$warning-disabled-border-color: #FFAE1F;
+
+// 정보(info)
+$info-color: #539BFF;
+$info-border-color: #539BFF;
+$info-hover-text: #ffffff;
+$info-hover-bg: #4784d9;
+$info-hover-border-color: #427ccc;
+$info-color-focus-shadow-rgb: 109,170,255;
+$info-active-text: #ffffff;
+$info-active-bg: #427ccc;
+$info-active-border-color: #3e74bf;
+$info-disabled-text: #ffffff;
+$info-disabled-bg: #539BFF;
+$info-disabled-border-color: #539BFF;
+
+// 밝은(light)
+$light-color: #F6F9FC;
+$light-border-color: #F6F9FC;
+$light-hover-text: #000000;
+$light-hover-bg: #d1d4d6;
+$light-hover-border-color: #c5c7ca;
+$light-color-focus-shadow-rgb: 209,212,214;
+$light-active-text: #000000;
+$light-active-bg: #c5c7ca;
+$light-active-border-color: #b9bbbd;
+$light-disabled-text: #000000;
+$light-disabled-bg: #F6F9FC;
+$light-disabled-border-color: #F6F9FC;
+
+// 어두운(dark)
+$dark-color: #2A3547;
+$dark-border-color: #2A3547;
+$dark-hover-text: #ffffff;
+$dark-hover-bg: #4a5363;
+$dark-hover-border-color: #3f4959;
+$dark-color-focus-shadow-rgb: 74,83,99;
+$dark-active-text: #ffffff;
+$dark-active-bg: #555d6c;
+$dark-active-border-color: #3f4959;
+$dark-disabled-text: #ffffff;
+$dark-disabled-bg: #2A3547;
+$dark-disabled-border-color: #2A3547;
+
+/* 버튼 공통 */
+$btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+$btn-padding-x: 1rem;
+$btn-padding-y: 0.375rem;
+$btn-font-size: 1rem;
+$btn-line-height: 1.5;
+$btn-border-radius: 0.375rem;
+$btn-box-shadow: unset;
+$btn-disabled-opacity: 0.65;
+$btn-focus-box-shadow: 0 0 0 0.25rem rgba(74, 83, 99, .5);
+$btn-font-weight: 500;
+$btn-border-width: 1px;
+$btn-border-color: transparent;
+$btn-active-border-color: #2A3547;

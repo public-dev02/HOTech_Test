@@ -1,0 +1,24 @@
+@import './Variable.scss';
+
+/* 버튼 공통 */
+.btn {
+    display: inline-block;
+    padding: $btn-padding-y $btn-padding-x;
+    font-size: $btn-font-size;
+    font-weight: $btn-font-weight;
+    line-height: $btn-line-height;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: $btn-border-width solid $btn-border-color;
+    border-radius: $btn-border-radius;
+    transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
+    -webkit-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
+    outline: 0;
+
+    &:focus {
+        border: $btn-border-width solid $btn-active-border-color;
+    }
+}
