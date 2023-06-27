@@ -1,6 +1,7 @@
+import "./NotFound.scss";
+
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 import GlobalStatic from "@/Global/GlobalStatic";
-import Page from "../Page";
 
 /**
  * NotFound Component를 생성하는 Class

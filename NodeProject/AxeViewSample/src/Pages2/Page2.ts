@@ -2,6 +2,7 @@ import Footer from './PageLayout/Footer/Footer';
 import Header from './PageLayout/Header/Header';
 import "./Page2.scss";
 import PageComponent from "@/Faculty/Base/PageComponent";
+import Aside from './PageLayout/Aside/Aside';
 
 /**
  * Page Component를 생성하는 Class
@@ -14,10 +15,11 @@ export default class Page2 extends PageComponent
     constructor()
     {
         /** 베이스가 되는 부모 Class인 PageComponent 상속 */
-        super({
-            Header: new Header(),
-            Footer: new Footer(),
-        });
+        super([
+            { position: 'divHeader', component: new Header() },
+            { position: 'divFooter', component: new Footer() },
+            { position: 'divAside', component: new Aside() }
+        ]);
         /** this.PagePath를 통해서 렌더링 시작 */
         super.RenderingStart(this.PagePath);
     }

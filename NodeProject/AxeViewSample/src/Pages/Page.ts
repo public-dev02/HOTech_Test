@@ -14,10 +14,10 @@ export default class Page extends PageComponent
     constructor()
     {
         /** 베이스가 되는 부모 Class인 PageComponent 상속 */
-        super({
-            Header: new Header(),
-            Footer: new Footer(),
-        });
+        super([
+            { position: 'divHeader', component: new Header() },
+            { position: 'divFooter', component: new Footer() }
+        ]);
         /** this.PagePath를 통해서 렌더링 시작 */
         super.RenderingStart(this.PagePath);
     }
