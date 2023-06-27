@@ -1,3 +1,5 @@
+import "@/Styles/Default.scss";
+
 import NavigoProvider from "./Faculty/Router/Providers/Navigo/NavigoProvider";
 import GlobalStatic from "./Global/GlobalStatic";
 import About from "./Pages/About/About";

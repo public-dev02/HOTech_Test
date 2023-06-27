@@ -1,0 +1,44 @@
+@import '@/Styles/Variable.scss';
+
+.top {
+    color: $white-color;
+    background-color: $primary-color;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header {
+    height: 86px;
+}
+
+.navbar {
+    .navbar-logo {
+        color: $primary-color;
+        line-height: 1.5;
+        font-weight: 500;
+        font-size: 2rem;
+        i {
+            font-style: normal;
+            font-size: 2.5rem;
+        }
+    }
+
+    .nav {
+        gap: 2.5rem;
+
+        .nav-item {
+            line-height: 1.5;
+            font-size: 1.25rem;
+        }
+
+        a {
+            color: $dark-color;
+            transition: color 0.15s ease-in-out;
+            
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}

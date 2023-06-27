@@ -1,4 +1,3 @@
-import "@/Styles/Default.scss";
 import "./Page.scss";
 import PageComponent from "@/Faculty/Base/PageComponent";
 import Header from "./PageLayout/Header/Header";

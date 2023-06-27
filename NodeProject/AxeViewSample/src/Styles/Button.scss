@@ -1,6 +1,7 @@
 @import './Variable.scss';
+@import './Mixin.scss';
 
-/* 버튼 공통 */
+/* 버튼 기본 */
 .btn {
     display: inline-block;
     padding: $btn-padding-y $btn-padding-x;
@@ -8,6 +9,7 @@
     font-weight: $btn-font-weight;
     line-height: $btn-line-height;
     color: #000;
+    background-color: transparent;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -20,5 +22,282 @@
 
     &:focus {
         border: $btn-border-width solid $btn-active-border-color;
+    }
+}
+
+/* 버튼 - 프라이머리(primary) */
+.btn-primary {
+    @include button-style(
+        $white-color, 
+        $primary-color,
+        $primary-border-color,
+        $primary-focus-shadow,
+        $primary-hover-bg, 
+        $primary-hover-border-color,
+        $primary-active-bg, 
+        $primary-active-border-color, 
+        $primary-disabled-bg, 
+        $primary-disabled-border-color
+    );
+}
+
+/* 버튼 - 세컨더리(secondary) */
+.btn-secondary {
+    @include button-style(
+        $white-color, 
+        $secondary-color,
+        $secondary-border-color,
+        $secondary-focus-shadow,
+        $secondary-hover-bg, 
+        $secondary-hover-border-color,
+        $secondary-active-bg, 
+        $secondary-active-border-color, 
+        $secondary-disabled-bg, 
+        $secondary-disabled-border-color
+    );
+}
+
+/* 버튼 - 성공(success) */
+.btn-success {
+    @include button-style(
+        $white-color, 
+        $success-color,
+        $success-border-color,
+        $success-focus-shadow,
+        $success-hover-bg, 
+        $success-hover-border-color,
+        $success-active-bg, 
+        $success-active-border-color, 
+        $success-disabled-bg, 
+        $success-disabled-border-color
+    );
+}
+
+/* 버튼 - 위험(danger) */
+.btn-danger {
+    @include button-style(
+        $white-color, 
+        $danger-color,
+        $danger-border-color,
+        $danger-focus-shadow,
+        $danger-hover-bg, 
+        $danger-hover-border-color,
+        $danger-active-bg, 
+        $danger-active-border-color, 
+        $danger-disabled-bg, 
+        $danger-disabled-border-color
+    );
+}
+
+/* 버튼 - 경고(warning) */
+.btn-warning {
+    @include button-style(
+        $white-color, 
+        $warning-color,
+        $warning-border-color,
+        $warning-focus-shadow,
+        $warning-hover-bg, 
+        $warning-hover-border-color,
+        $warning-active-bg, 
+        $warning-active-border-color, 
+        $warning-disabled-bg, 
+        $warning-disabled-border-color
+    );
+}
+
+/* 버튼 - 정보(info) */
+.btn-info {
+    @include button-style(
+        $white-color, 
+        $info-color,
+        $info-border-color,
+        $info-focus-shadow,
+        $info-hover-bg, 
+        $info-hover-border-color,
+        $info-active-bg, 
+        $info-active-border-color, 
+        $info-disabled-bg, 
+        $info-disabled-border-color
+    );
+}
+
+/* 버튼 - 밝은(light) */
+.btn-light {
+    @include button-style(
+        $dark-color, 
+        $light-color,
+        $light-border-color,
+        $light-focus-shadow,
+        $light-hover-bg, 
+        $light-hover-border-color,
+        $light-active-bg, 
+        $light-active-border-color, 
+        $light-disabled-bg, 
+        $light-disabled-border-color
+    );
+}
+
+/* 버튼 - 어두운(dark) */
+.btn-dark {
+    @include button-style(
+        $white-color, 
+        $dark-color,
+        $dark-border-color,
+        $dark-focus-shadow,
+        $dark-hover-bg, 
+        $dark-hover-border-color,
+        $dark-active-bg, 
+        $dark-active-border-color, 
+        $dark-disabled-bg, 
+        $dark-disabled-border-color
+    );
+}
+
+/* 버튼 - 링크(link) */
+.btn-link {
+    color: $link-color;
+    background-color: transparent;
+    border: $btn-border-width solid $link-border-color;
+    text-decoration: underline;
+
+    &:hover {
+        color: $link-color;
+        background-color: $link-hover-bg;
+        border: $btn-border-width solid $link-hover-border-color;
+    }
+
+    &:focus {
+        border: $btn-border-width solid transparent;
+    }
+
+    &:active {
+        color: $link-color;
+        background-color: transparent;
+        border: $btn-border-width solid $link-active-border-color;
+    }
+
+    &:disabled {
+        color: $link-color;
+        background-color: $link-disabled-bg;
+        border: $btn-border-width solid $link-disabled-border-color;
+    }
+}
+
+/* 버튼 - 아웃라인 스타일 */
+
+/* 버튼 아웃라인 - 프라이머리(primary) */
+.btn-outline-primary {
+    @include button-outline-style(
+        $white-color, 
+        $primary-color,
+        $primary-border-color,
+        $primary-disabled-bg, 
+        $primary-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 세컨더리(secondary) */
+.btn-outline-secondary {
+    @include button-outline-style(
+        $white-color, 
+        $secondary-color,
+        $secondary-border-color,
+        $secondary-disabled-bg, 
+        $secondary-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 성공(success) */
+.btn-outline-success {
+    @include button-outline-style(
+        $white-color, 
+        $success-color,
+        $success-border-color,
+        $success-disabled-bg, 
+        $success-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 위험(danger) */
+.btn-outline-danger {
+    @include button-outline-style(
+        $white-color, 
+        $danger-color,
+        $danger-border-color,
+        $danger-disabled-bg, 
+        $danger-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 경고(warning) */
+.btn-outline-warning {
+    @include button-outline-style(
+        $white-color, 
+        $warning-color,
+        $warning-border-color,
+        $warning-disabled-bg, 
+        $warning-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 정보(info) */
+.btn-outline-info {
+    @include button-outline-style(
+        $white-color, 
+        $info-color,
+        $info-border-color,
+        $info-disabled-bg, 
+        $info-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 밝은(light) */
+.btn-outline-light {
+    @include button-outline-style(
+        $dark-color, 
+        $light-color,
+        $light-border-color,
+        $light-disabled-bg, 
+        $light-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 어두운(dark) */
+.btn-outline-dark {
+    @include button-outline-style(
+        $white-color, 
+        $dark-color,
+        $dark-border-color,
+        $dark-disabled-bg, 
+        $dark-disabled-border-color
+    )
+}
+
+/* 버튼 아웃라인 - 링크(link) */
+.btn-outline-link {
+    color: $dark-color;
+    background-color: transparent;
+    border: $btn-border-width solid $link-border-color;
+
+    &:hover {
+        color: $dark-color;
+        background-color: $link-hover-bg;
+        border: $btn-border-width solid $link-hover-border-color;
+    }
+
+    &:focus {
+        border: $btn-border-width solid transparent;
+    }
+
+    &:active {
+        color: $dark-color;
+        background-color: transparent;
+        border: $btn-border-width solid $dark-border-color;
+    }
+
+    &:disabled {
+        color: $dark-color;
+        background-color: $link-disabled-bg;
+        border: $btn-border-width solid $link-disabled-border-color;
     }
 }

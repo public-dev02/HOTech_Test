@@ -1,0 +1,20 @@
+@import '@/Styles/Variable.scss';
+
+.footer {
+    background-color: $primary-color;
+
+    .logo {
+        color: $white-color;
+    }
+
+    a {
+        color: $white-color;
+        font-weight: 300;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.725rem;
+    }
+}
