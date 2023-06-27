@@ -1,0 +1,11 @@
+#divAside {
+    position: fixed;
+    top: 0;
+    width: 270px;
+    background-color: #ffffff;
+    height: 100%;
+    z-index: 11;
+    transition: all 0.2 ease-in;
+    border-right: 1px solid rgb(229, 234, 239);
+    overflow-y: auto;
+}

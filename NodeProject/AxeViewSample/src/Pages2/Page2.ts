@@ -16,8 +16,6 @@ export default class Page2 extends PageComponent
     {
         /** 베이스가 되는 부모 Class인 PageComponent 상속 */
         super([
-            { position: 'divHeader', component: new Header() },
-            { position: 'divFooter', component: new Footer() },
             { position: 'divAside', component: new Aside() }
         ]);
         /** this.PagePath를 통해서 렌더링 시작 */

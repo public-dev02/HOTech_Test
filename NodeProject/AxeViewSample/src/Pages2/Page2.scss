@@ -1,0 +1,16 @@
+html, body, #root, #divPage {
+    height: 100%;
+}
+
+#divPage {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+#divBody {
+    flex: 1;
+    @media (min-width: 1200px) {
+        margin-left: 270px;
+    }
+}
