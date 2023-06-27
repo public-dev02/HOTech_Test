@@ -35,6 +35,7 @@ export default class RouterProviderBase
 
                 GlobalStatic.PageLayout.DomThisComplete = () =>
                 {
+                    this.CurrentPageDom = null;
                     GlobalStatic.app.DomThis.innerHTML = "";
                     GlobalStatic.app.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
                     // GlobalStatic.app.Router.resolve();
@@ -60,6 +61,7 @@ export default class RouterProviderBase
             {
                 return;
             }
+            console.log('123');
 
             GlobalStatic.PageNow = new Component();
 

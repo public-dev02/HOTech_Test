@@ -14,8 +14,6 @@ export default class Header extends ContentComponent
     {
         /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
         super();
-        /** this.PagePath를 통해서 렌더링 시작 */
-        // super.RenderingStart(this.PagePath);
     }
 
     public get GetPagePath(): string
@@ -29,6 +27,24 @@ export default class Header extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("헤더 렌더링");
+        const ToggleButton = this.DomThis.querySelector(".navbar-toggler") as HTMLButtonElement;
+        const Target = ToggleButton.dataset.target as string;
+        const TargetDom = this.DomThis.querySelector(Target) as HTMLElement;
+
+        ToggleButton.addEventListener("click", () =>
+        {
+            TargetDom.classList.toggle("show");
+
+            if (ToggleButton.getAttribute('aria-expanded') === "true")
+            {
+                ToggleButton.classList.add("collapsed");
+            }
+            else
+            {
+                ToggleButton.classList.remove("collapsed");
+            }
+
+            ToggleButton.setAttribute('aria-expanded', TargetDom.classList.contains("show") ? "true" : "false");
+        });
     }
 }

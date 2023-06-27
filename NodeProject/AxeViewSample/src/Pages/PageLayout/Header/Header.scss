@@ -2,18 +2,25 @@
 
 .top {
     color: $white;
-    height: 32px;
+    min-height: 32px;
     font-size: 14px;
     font-weight: 400;
-}
-
-.header {
-    height: 86px;
 }
 
 .navbar {
     a {
         text-decoration: none;
+    }
+
+    .nav-mobile-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @media (min-width: 992px) {
+            width: auto;
+        }
     }
 
     .navbar-logo {
@@ -27,7 +34,6 @@
     }
 
     .nav {
-        gap: 2.5rem;
 
         .nav-item {
             line-height: 1.5;
@@ -38,6 +44,33 @@
             &:hover {
                 color: $success;
             }
+        }
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        @media (min-width: 992px) {
+            display: inline-block
+        }
+    }
+
+    .actions-box {
+        padding-bottom: 1rem;
+        @media (min-width: 992px) {
+            padding-bottom: 0.5rem;
+        }
+    }
+
+    @media (min-width: 992px) {
+        #navbarToggleExternalContent .navbar-nav {
+            max-width: 550px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #navbarToggleExternalContent .navbar-nav {
+            max-width: 450px;
         }
     }
 }
