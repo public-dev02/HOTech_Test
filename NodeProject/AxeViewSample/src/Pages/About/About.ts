@@ -1,5 +1,5 @@
+import "./About.scss";
 import ContentComponent from "@/Faculty/Base/ContentComponent";
-import Page from "../Page";
 
 /**
  * About Component를 생성하는 Class

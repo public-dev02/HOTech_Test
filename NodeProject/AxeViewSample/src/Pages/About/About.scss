@@ -1,0 +1,25 @@
+@import '../../../node_modules/bootstrap/scss/variables';
+
+.carousel-item {
+    img {
+        filter: grayscale(80%);
+        opacity: 0.5;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    }
+}
+
+.ctrl-btn {
+    a {
+        color: $gray-500;
+        transition: color 0.3s ease-in-out;
+
+        &:hover {
+            color: $gray-800;
+        }
+    }
+}

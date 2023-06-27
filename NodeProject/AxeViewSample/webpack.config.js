@@ -45,7 +45,7 @@ module.exports = (env, argv) =>
         //devtool: "inline-source-map",
         resolve: {
             extensions: [".js", ".ts"],
-            alias: { "@": SrcPath },
+            alias: { "@": SrcPath, "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap/scss") },
         },
         output: {
             // 최종적으로 만들어질 js
@@ -105,18 +105,18 @@ module.exports = (env, argv) =>
                             return `${sOutDir}`;
                         },
                     },
-                    // {//모든 이미지 파일
-                    //     from: "./src/Assets/**/*.(png|jpg|gif|svg|webp)"
-                    //     , to({ context, absoluteFilename })
-                    //     {
-                    //         //'src/'를 제거
-                    //         let sOutDir = path.relative(context, absoluteFilename);
-                    //         sOutDir = sOutDir.substring(4);
+                    {//모든 이미지 파일
+                        from: "./src/Assets/**/*.(png|jpg|gif|svg|webp)"
+                        , to({ context, absoluteFilename })
+                        {
+                            //'src/'를 제거
+                            let sOutDir = path.relative(context, absoluteFilename);
+                            sOutDir = sOutDir.substring(4);
 
-                    //         console.log("sOutDir : " + sOutDir);
-                    //         return `${sOutDir}`;
-                    //     },
-                    // },
+                            console.log("sOutDir : " + sOutDir);
+                            return `${sOutDir}`;
+                        },
+                    },
                     //{//모든 json 파일
                     //    from: "./src/**/*.json"
                     //    , to({ context, absoluteFilename })

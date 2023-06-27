@@ -9,7 +9,8 @@
         "allowJs": true,
         "moduleResolution": "node",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "@bootstrap/*": ["node_modules/bootstrap/scss/*"],
         },
         "allowSyntheticDefaultImports": true
     },
