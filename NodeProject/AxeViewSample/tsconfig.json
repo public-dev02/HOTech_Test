@@ -10,7 +10,7 @@
         "moduleResolution": "node",
         "paths": {
             "@/*": ["src/*"],
-            "@bootstrap/*": ["node_modules/bootstrap/scss/*"],
+            "@bootstrap/*": ["node_modules/bootstrap/*"],
         },
         "allowSyntheticDefaultImports": true
     },

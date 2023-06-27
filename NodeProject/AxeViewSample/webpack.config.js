@@ -45,7 +45,10 @@ module.exports = (env, argv) =>
         //devtool: "inline-source-map",
         resolve: {
             extensions: [".js", ".ts"],
-            alias: { "@": SrcPath, "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap/scss") },
+            alias: {
+                "@": SrcPath,
+                "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap")
+            },
         },
         output: {
             // 최종적으로 만들어질 js

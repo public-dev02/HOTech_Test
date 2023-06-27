@@ -8,6 +8,7 @@ import PageComponent from "../Base/PageComponent";
 export default class RouterProviderBase
 {
     private DefaultPage: new () => PageComponent;
+    private CurrentPageDom: Element | null = null;
 
     constructor(defaultPage: new () => PageComponent)
     {
@@ -60,13 +61,22 @@ export default class RouterProviderBase
                 return;
             }
 
-            GlobalStatic.PageLayout.Body.innerHTML = "";
             GlobalStatic.PageNow = new Component();
 
             GlobalStatic.PageNow.DomThisComplete = () =>
             {
-                GlobalStatic.PageLayout.Body.appendChild(GlobalStatic.PageNow.DomThis);
+                if (null == this.CurrentPageDom)
+                {
+                    GlobalStatic.PageLayout.Body.appendChild(GlobalStatic.PageNow.DomThis);
+                }
+                else
+                {
+                    console.log(GlobalStatic.PageNow.DomThis, this.CurrentPageDom);
+                    GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom);
+                }
+                // GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom!);
                 GlobalStatic.PageNow.RouteThis = match;
+                this.CurrentPageDom = GlobalStatic.PageNow.DomThis;
             };
         }
     };

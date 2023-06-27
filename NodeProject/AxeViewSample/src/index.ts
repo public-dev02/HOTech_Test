@@ -8,6 +8,8 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Page from "./Pages/Page";
 import Admin from "./Pages2/Admin/Admin";
 import Page2 from "./Pages2/Page2";
+import Shop from "./Pages/Shop/Shop";
+import Contact from "./Pages/Contact/Contact";
 
 /**
  * App을 시작하는 함수
@@ -53,9 +55,13 @@ export default class StartUp
                 Page: Page,
                 Component: About
             }))
-            .on("/about/:id", this.Router.ContentRender({
+            .on("/shop", this.Router.ContentRender({
                 Page: Page,
-                Component: About
+                Component: Shop
+            }))
+            .on("/contact", this.Router.ContentRender({
+                Page: Page,
+                Component: Contact
             }))
             .on("/admin", this.Router.ContentRender({
                 Page: Page2,
