@@ -9,6 +9,7 @@ export default class RouterProviderBase
 {
     private DefaultPage: new () => PageComponent;
     private CurrentPageDom: Element | null = null;
+    private CurrentPageLayoutDom: Element | null = null;
 
     constructor(defaultPage: new () => PageComponent)
     {
@@ -36,10 +37,17 @@ export default class RouterProviderBase
                 GlobalStatic.PageLayout.DomThisComplete = () =>
                 {
                     this.CurrentPageDom = null;
-                    GlobalStatic.app.DomThis.innerHTML = "";
-                    GlobalStatic.app.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
-                    // GlobalStatic.app.Router.resolve();
 
+                    if (null == this.CurrentPageLayoutDom)
+                    {
+                        GlobalStatic.app.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
+                    }
+                    else
+                    {
+                        GlobalStatic.app.DomThis.replaceChild(GlobalStatic.PageLayout.DomThis, this.CurrentPageLayoutDom);
+                    }
+
+                    this.CurrentPageLayoutDom = GlobalStatic.PageLayout.DomThis;
                     this.CreatePage(Component, match);
                 };
             }
@@ -61,7 +69,6 @@ export default class RouterProviderBase
             {
                 return;
             }
-            console.log('123');
 
             GlobalStatic.PageNow = new Component();
 
@@ -73,7 +80,6 @@ export default class RouterProviderBase
                 }
                 else
                 {
-                    console.log(GlobalStatic.PageNow.DomThis, this.CurrentPageDom);
                     GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom);
                 }
                 // GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom!);
