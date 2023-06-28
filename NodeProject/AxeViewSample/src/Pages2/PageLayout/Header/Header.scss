@@ -1,0 +1,45 @@
+@import '@/Styles/Default.scss';
+
+#divPage2 {
+    .navbar {
+        flex-wrap: nowrap;
+        min-height: 70px;
+        padding: 0;
+
+        @media (min-width: 992px) {
+            &.navbar-expand-lg {
+                -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                justify-content: flex-start;
+            }
+        }
+
+        .navbar-nav {
+            display: flex;
+
+            .nav-link {
+                line-height: 70px;
+                display: flex;
+                align-items: center;
+                z-index: 2;
+                position: relative;
+                border-radius: 50%;
+
+                &:hover {
+                    background-color: $gray-100;
+                    color: $primary;
+                }
+
+                .dot {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+}

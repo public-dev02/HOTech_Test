@@ -1,76 +1,78 @@
-@import '@bootstrap/scss/variables';
+@import '@/Styles/Default.scss';
 
-.top {
-    color: $white;
-    min-height: 32px;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.navbar {
-    a {
-        text-decoration: none;
+#divPage {
+    .top {
+        color: $white;
+        min-height: 32px;
+        font-size: 14px;
+        font-weight: 400;
     }
-
-    .nav-mobile-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-
-        @media (min-width: 992px) {
-            width: auto;
-        }
-    }
-
-    .navbar-logo {
-        line-height: 1.5;
-        font-weight: 500;
-        font-size: 2rem;
-        i {
-            font-style: normal;
-            font-size: 2.5rem;
-        }
-    }
-
-    .nav {
-
-        .nav-item {
-            line-height: 1.5;
-            font-size: 1.25rem;
-        }
-
+    
+    .navbar {
         a {
-            &:hover {
-                color: $success;
+            text-decoration: none;
+        }
+    
+        .nav-mobile-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+    
+            @media (min-width: 992px) {
+                width: auto;
             }
         }
-    }
-
-    .btn {
-        display: block;
-        width: 100%;
+    
+        .navbar-logo {
+            line-height: 1.5;
+            font-weight: 500;
+            font-size: 2rem;
+            i {
+                font-style: normal;
+                font-size: 2.5rem;
+            }
+        }
+    
+        .nav {
+    
+            .nav-item {
+                line-height: 1.5;
+                font-size: 1.25rem;
+            }
+    
+            a {
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    
+        .btn {
+            display: block;
+            width: 100%;
+            @media (min-width: 992px) {
+                display: inline-block
+            }
+        }
+    
+        .actions-box {
+            padding-bottom: 1rem;
+            @media (min-width: 992px) {
+                padding-bottom: 0.5rem;
+            }
+        }
+    
         @media (min-width: 992px) {
-            display: inline-block
+            #navbarToggleExternalContent .navbar-nav {
+                max-width: 550px;
+            }
         }
-    }
-
-    .actions-box {
-        padding-bottom: 1rem;
-        @media (min-width: 992px) {
-            padding-bottom: 0.5rem;
-        }
-    }
-
-    @media (min-width: 992px) {
-        #navbarToggleExternalContent .navbar-nav {
-            max-width: 550px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        #navbarToggleExternalContent .navbar-nav {
-            max-width: 450px;
+    
+        @media (min-width: 768px) {
+            #navbarToggleExternalContent .navbar-nav {
+                max-width: 450px;
+            }
         }
     }
 }

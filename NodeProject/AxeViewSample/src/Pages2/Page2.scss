@@ -2,6 +2,12 @@
     position: relative;
     height: 100vh;
 
+    #divHeader {
+        width: 100%;
+        background-color: #FFFFFF;
+        padding: 0 24px;
+    }
+
     #divBody {
         flex: 1;
         @media (min-width: 1200px) {
