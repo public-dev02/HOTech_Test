@@ -1,5 +1,7 @@
 import ContentComponent from "@/Faculty/Base/ContentComponent";
+import SimpleBar from "simplebar";
 import "./Aside.scss";
+import GlobalStatic from "@/Global/GlobalStatic";
 
 /**
  * Header Component를 생성하는 Class
@@ -13,8 +15,6 @@ export default class Aside extends ContentComponent
     {
         /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
         super();
-        /** this.PagePath를 통해서 렌더링 시작 */
-        // super.RenderingStart(this.PagePath);
     }
 
     public get GetPagePath(): string
@@ -28,6 +28,40 @@ export default class Aside extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("사이드 렌더링");
+        this.InitializeSimpleBar();
+        this.SetActiveMenuEvent();
+    }
+
+    private InitializeSimpleBar(): void
+    {
+        const ScrollTarget = this.DomThis.querySelector('nav.sidebar-nav') as HTMLElement;
+        const simplebar = new SimpleBar(ScrollTarget);
+    }
+
+    private SetActiveMenuEvent(): void
+    {
+        this.LoadActiveMenu();
+
+        const MenuList = this.DomThis.querySelectorAll('nav.sidebar-nav ul li a') as NodeListOf<HTMLElement>;
+        MenuList.forEach((menu) =>
+        {
+            menu.addEventListener('click', () =>
+            {
+                MenuList.forEach((menu) =>
+                {
+                    menu.classList.remove('active');
+                });
+
+                menu.classList.add('active');
+            });
+        });
+    }
+
+    private LoadActiveMenu(): void
+    {
+        const CurrentUrl = GlobalStatic.app.Router.getCurrentLocation().url;
+        const CurrentMenu = this.DomThis.querySelector(`a[href="/${CurrentUrl}"]`) as HTMLElement;
+
+        CurrentMenu.classList.add('active');
     }
 }

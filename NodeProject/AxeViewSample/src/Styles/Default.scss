@@ -1,3 +1,26 @@
 @import './variables';
 @import '@bootstrap/scss/bootstrap';
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+
+/* 폰트 초기화 */
+body, input, textarea, select, button, table 
+{
+  font-family: 'Pretendard', sans-serif;
+}
+
+
+/* 여백 초기화 */
+body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,
+table,th,td,tr,textarea,button,form,figure,figcaption{margin:0;padding:0;}
+
+/* a 링크 초기화 */
+a {text-decoration: none;}
+a:hover {text-decoration: none;}
+
+/* 블릿기호 초기화 */
+ul,li,ol {list-style: none;}
+
+/* 반응형 이미지 */
+img, video{width:100%;}
+img {width: 100%; vertical-align: top;}
+img {border:0;}

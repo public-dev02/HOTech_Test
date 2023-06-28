@@ -1,6 +1,4 @@
 import AsyncHtmlLoader from '@/Utility/AsyncHTMLLoader/async-html-loader';
-import Header from '@/Pages/PageLayout/Header/Header';
-import Footer from '@/Pages/PageLayout/Footer/Footer';
 import GlobalStatic from '@/Global/GlobalStatic';
 import HeosabiComponent from './HeosabiComponent';
 import ContentComponent from './ContentComponent';

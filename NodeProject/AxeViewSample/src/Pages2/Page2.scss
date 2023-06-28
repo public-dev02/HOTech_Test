@@ -1,10 +1,6 @@
-html, body, #root, #divPage2 {
-    height: 100%;
-}
-
 #divPage2 {
     position: relative;
-    display: flex;
+    height: 100vh;
 
     #divBody {
         flex: 1;

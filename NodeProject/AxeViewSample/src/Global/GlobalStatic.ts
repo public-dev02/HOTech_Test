@@ -1,8 +1,6 @@
-import ContentComponent from "@/Faculty/Base/ContentComponent";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
 import PageComponent from "@/Faculty/Base/PageComponent";
 import StartUp from "@/index";
-import Page from "@/Pages/Page";
 
 //사이트 공통
 import AxeView from "@/Utility/AxeView/AxeView";
@@ -30,9 +28,10 @@ export default class GlobalStatic
     static app: StartUp | null = null;
     /** 사용중인 페이지 개체*/
     static PageLayout: PageComponent | null = null;
-
     /** 지금 보고 있는 페이지 개체*/
     static PageNow: HeosabiComponent | null = null;
+    /** 지금 보고 있는 페이지 주소 */
+    static PageNowUrl: string = "";
 
     /**
      * html 문자열을 인자로 받아서

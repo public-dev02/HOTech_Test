@@ -77,6 +77,13 @@ module.exports = (env, argv) =>
                         { loader: "postcss-loader" },
                     ],
                 },
+                {
+                    test: /simplebar\.css$/,
+                    use: [
+                        { loader: "style-loader" },
+                        { loader: "css-loader" },
+                    ]
+                }
             ],
         },
         plugins: [

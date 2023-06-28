@@ -76,14 +76,14 @@ export default class RouterProviderBase
             {
                 if (null == this.CurrentPageDom)
                 {
+                    GlobalStatic.PageNow.RouteThis = match;
                     GlobalStatic.PageLayout.Body.appendChild(GlobalStatic.PageNow.DomThis);
                 }
                 else
                 {
+                    GlobalStatic.PageNow.RouteThis = match;
                     GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom);
                 }
-                // GlobalStatic.PageLayout.Body.replaceChild(GlobalStatic.PageNow.DomThis, this.CurrentPageDom!);
-                GlobalStatic.PageNow.RouteThis = match;
                 this.CurrentPageDom = GlobalStatic.PageNow.DomThis;
             };
         }

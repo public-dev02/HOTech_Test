@@ -49,7 +49,6 @@ export default class NavigoProvider
                             , param: ""
                         });
 
-                        console.log(newMatch);
                         handlerTemp(newMatch);
                         return;
                     };
@@ -72,7 +71,6 @@ export default class NavigoProvider
                         });
                     }
 
-                    console.log(newMatch);
                     handlerTemp(newMatch);
                 });
         }
@@ -109,5 +107,10 @@ export default class NavigoProvider
         this.Navigo.navigate(to, options);
 
         return this;
+    };
+
+    public getCurrentLocation = (): Match =>
+    {
+        return this.Navigo.getCurrentLocation();
     };
 }

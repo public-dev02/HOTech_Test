@@ -1,6 +1,10 @@
-import Footer from './PageLayout/Footer/Footer';
-import Header from './PageLayout/Header/Header';
+import "simplebar";
+import "simplebar/dist/simplebar.css";
 import "./Page2.scss";
+import "@/Styles/FullHeight.scss";
+
+import ResizeObserver from "resize-observer-polyfill";
+import Header from './PageLayout/Header/Header';
 import PageComponent from "@/Faculty/Base/PageComponent";
 import Aside from './PageLayout/Aside/Aside';
 
@@ -21,6 +25,7 @@ export default class Page2 extends PageComponent
         ]);
         /** this.PagePath를 통해서 렌더링 시작 */
         super.RenderingStart(this.PagePath);
+        window.ResizeObserver = ResizeObserver;
     }
 
     /**

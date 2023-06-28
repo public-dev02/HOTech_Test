@@ -10,6 +10,11 @@ import Admin from "./Pages2/Admin/Admin";
 import Page2 from "./Pages2/Page2";
 import Shop from "./Pages/Shop/Shop";
 import Contact from "./Pages/Contact/Contact";
+import Buttons from "./Pages2/Buttons/Buttons";
+import Alerts from "./Pages2/Alerts/Alerts";
+import Card from "./Pages2/Card/Card";
+import Forms from "./Pages2/Forms/Forms";
+import Typography from "./Pages2/Typography/Typography";
 
 /**
  * App을 시작하는 함수
@@ -27,16 +32,6 @@ export default class StartUp
 
         this.Router = new NavigoProvider(Page);
         this.ConfigureRoutes();
-
-        // GlobalStatic.PageLayout = new Page();
-
-        // GlobalStatic.PageLayout.DomThisComplete = () =>
-        // {
-        //     // this.Router = new NavigoProvider();
-        //     this.DomThis.appendChild(GlobalStatic.PageLayout.DomThis);
-        //     console.log(this.DomThis);
-        //     this.Router.resolve();
-        // };
 
     }
 
@@ -67,6 +62,26 @@ export default class StartUp
                 Page: Page2,
                 Component: Admin
             }))
+            .on("/admin/buttons", this.Router.ContentRender({
+                Page: Page2,
+                Component: Buttons
+            }))
+            .on("/admin/alerts", this.Router.ContentRender({
+                Page: Page2,
+                Component: Alerts
+            }))
+            .on("/admin/card", this.Router.ContentRender({
+                Page: Page2,
+                Component: Card
+            }))
+            .on("/admin/forms", this.Router.ContentRender({
+                Page: Page2,
+                Component: Forms
+            }))
+            .on("/admin/typography", this.Router.ContentRender({
+                Page: Page2,
+                Component: Typography
+            }))
             .notFound(this.Router.ContentRender({
                 Page: Page,
                 Component: NotFound
@@ -75,7 +90,6 @@ export default class StartUp
         this.Router.resolve();
 
         console.log("라우터 설정 완료!");
-        // this.Router.AddHashToURL();
 
         /** 모든 a 태그 이벤트를 SPA 성격에 맞게 이벤트를 건다. */
         this.LinkRouteEvent();
@@ -90,11 +104,27 @@ export default class StartUp
         this.DomThis.addEventListener("click", (event: MouseEvent) =>
         {
             const target = event.target as Element;
-            if (target.tagName === "A")
-            {
-                event.preventDefault();
-                const href = target.getAttribute("href");
+            const targetParent = target.parentElement as Element;
+            const href = target.getAttribute("href") || targetParent.getAttribute("href");
+            const unset = target.getAttribute("data-unset") || targetParent.getAttribute("data-unset");
+            const CurrentUrl = this.Router.getCurrentLocation().url;
 
+            // 만약 data unset이 true라면 원래 a 태그의 기능을 사용한다.
+            if (unset === "true")
+            {
+                return;
+            }
+
+            if (target.tagName === "A" || targetParent.tagName === "A")
+            {
+                // 현재 페이지와 같은 페이지라면 이동하지 않는다.
+                if (href === CurrentUrl)
+                {
+                    return;
+                }
+
+                event.preventDefault();
+                GlobalStatic.PageNowUrl = href;
                 this.Router.navigate(href);
             }
         });
