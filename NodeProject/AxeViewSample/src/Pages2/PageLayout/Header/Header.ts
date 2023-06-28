@@ -1,5 +1,6 @@
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 import "./Header.scss";
+import GlobalStatic from "@/Global/GlobalStatic";
 
 /**
  * Header Component를 생성하는 Class
@@ -28,6 +29,16 @@ export default class Header extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("헤더 렌더링");
+        this.SetSideBarToggleEvent();
+    }
+
+    private SetSideBarToggleEvent(): void
+    {
+        const ToggleButton: HTMLButtonElement = this.DomThis.querySelector(".sidebar-toggle-btn") as HTMLButtonElement;
+        ToggleButton.addEventListener("click", () =>
+        {
+            const SideBar: HTMLDivElement = GlobalStatic.PageLayout.DomThis.querySelector("#divAside") as HTMLDivElement;
+            SideBar.classList.toggle("show");
+        });
     }
 }

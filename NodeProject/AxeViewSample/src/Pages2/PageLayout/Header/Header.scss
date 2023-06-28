@@ -6,24 +6,20 @@
         min-height: 70px;
         padding: 0;
 
-        @media (min-width: 992px) {
-            &.navbar-expand-lg {
-                -webkit-box-pack: start;
-                -ms-flex-pack: start;
-                justify-content: flex-start;
-            }
-        }
-
         .navbar-nav {
             display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
 
-            .nav-link {
+            .nav-action-btn {
+                padding: 8px;
                 line-height: 70px;
                 display: flex;
                 align-items: center;
                 z-index: 2;
                 position: relative;
                 border-radius: 50%;
+                color: $dark;
 
                 &:hover {
                     background-color: $gray-100;

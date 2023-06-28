@@ -30,6 +30,7 @@ export default class Aside extends ContentComponent
     {
         this.InitializeSimpleBar();
         this.SetActiveMenuEvent();
+        this.SetSideBarToggleEvent();
     }
 
     private InitializeSimpleBar(): void
@@ -63,5 +64,24 @@ export default class Aside extends ContentComponent
         const CurrentMenu = this.DomThis.querySelector(`a[href="/${CurrentUrl}"]`) as HTMLElement;
 
         CurrentMenu.classList.add('active');
+    }
+
+    private SetSideBarToggleEvent(): void
+    {
+        this.DomThis.addEventListener("click", (event) =>
+        {
+            const Target = event.target as HTMLElement;
+            const TargetParent = Target.parentElement as HTMLElement;
+            const IsButtonAndAnchor =
+                (Target.tagName === "BUTTON" || Target.tagName === "A")
+                || (TargetParent.tagName === "A" || TargetParent.tagName === "BUTTON");
+
+            if (IsButtonAndAnchor)
+            {
+                const SideBar: HTMLDivElement = GlobalStatic.PageLayout.DomThis.querySelector("#divAside") as HTMLDivElement;
+                SideBar.classList.toggle("show");
+            }
+        });
+
     }
 }

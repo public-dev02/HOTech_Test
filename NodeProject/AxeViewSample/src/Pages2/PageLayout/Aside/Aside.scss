@@ -10,6 +10,11 @@
     z-index: 11;
     transition: all 0.2 ease-in;
     border-right: 1px solid rgb(229, 234, 239);
+    transition: all 0.2s ease-in-out;
+
+    &.show {
+        left: 0;
+    }
 
     @media (min-width: 1200px) {
         left: 0
@@ -31,6 +36,12 @@
         .logo-img {
             width: 32px;
             height: 32px;
+        }
+
+        .close-btn {
+            color: $gray-500;
+            padding: 8px;
+            margin-right: -8px;
         }
     }
 

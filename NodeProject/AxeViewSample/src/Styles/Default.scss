@@ -24,3 +24,10 @@ ul,li,ol {list-style: none;}
 img, video{width:100%;}
 img {width: 100%; vertical-align: top;}
 img {border:0;}
+
+/* 버튼 초기화 */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
