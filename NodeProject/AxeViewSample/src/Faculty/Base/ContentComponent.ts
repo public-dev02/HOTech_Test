@@ -14,7 +14,6 @@ export default class ContentComponent extends HeosabiComponent
 
     public AsyncRenderingStart()
     {
-        console.log('AsyncRendringstart');
         super.RenderingStart(this.GetPagePath);
     }
 

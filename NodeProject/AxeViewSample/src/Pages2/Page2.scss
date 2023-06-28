@@ -1,11 +1,10 @@
-html, body, #root, #divPage {
+html, body, #root, #divPage2 {
     height: 100%;
 }
 
 #divPage2 {
     position: relative;
     display: flex;
-    flex-direction: row;
 
     #divBody {
         flex: 1;
