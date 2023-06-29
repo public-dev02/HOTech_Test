@@ -39,11 +39,11 @@ export default class GlobalStatic
      * @param {string} sHtml 
      * @returns {Element}
      */
-    static createDOMElement(sHtml: string): Element
+    static createDOMElement(sHtml: string): HTMLElement
     {
         const Template = document.createElement('template');
         Template.innerHTML = sHtml;
 
-        return Template.content.children[0];
+        return Template.content.children[0] as HTMLElement;
     }
 }

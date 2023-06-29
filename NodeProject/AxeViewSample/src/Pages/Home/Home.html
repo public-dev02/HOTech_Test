@@ -3,15 +3,85 @@
         <div class="container">
             <div class="row align-items-center py-5">
                 <div class="col-md-8 text-white">
-                    <h1 class="text-white mb-4">Welcome to, Axe Shop</h1>
+                    <h1 class="text-white mb-4">{{welcomeText}}</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.
                     </p>
                 </div>
                 <div class="col-md-4">
                     <img src="/Assets/Image/about-hero.svg" alt="About Hero">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="test-section bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3 ">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1 mb-2">{{testSectionTitle}}</h1>
+                    <p>
+                        AxeView의 기본 기능을 확인해보세요
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="test-title">Color Change</h2>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="test-current-color-title {{testCurrentColorClass}} mb-2">현재 색상: <i>{{testCurrentColorName}}</i></p>
+                                        <div class="test-current-color {{testCurrentColorClass}}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 actions-box">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-primary" id="primary" onClick="{{onClickColorChange}}">Primary</button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-secondary" id="secondary" onClick="{{onClickColorChange}}">Secondary</button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-success" id="success" onClick="{{onClickColorChange}}">Success</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-danger" id="danger" onClick="{{onClickColorChange}}">Danger</button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-warning" id="warning" onClick="{{onClickColorChange}}">Warning</button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-info" id="info" onClick="{{onClickColorChange}}">Info</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-light" id="light" onClick="{{onClickColorChange}}">Light</button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button class="btn btn-dark" id="dark" onClick="{{onClickColorChange}}">Dark</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="test-title">Component</h2>
+                        <div class="row">
+                            {{cardComponent}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

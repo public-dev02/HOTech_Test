@@ -11,7 +11,7 @@ interface LayoutComponent { position: string; component: ContentComponent; }
 export default class PageComponent extends HeosabiComponent
 {
     /** 자식 class의 dom */
-    public DomThis: Element;
+    public DomThis: HTMLElement;
 
     /** 바디 */
     public Body: HTMLElement | null = null;

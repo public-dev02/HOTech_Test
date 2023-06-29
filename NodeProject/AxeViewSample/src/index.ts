@@ -1,3 +1,4 @@
+import AxeView from '@/Utility/AxeView/AxeView';
 import "@/Styles/Default.scss";
 
 import NavigoProvider from "./Faculty/Router/Providers/Navigo/NavigoProvider";
@@ -25,14 +26,16 @@ export default class StartUp
     public DomThis: Element;
     public Router: NavigoProvider;
 
+    public AxeView: AxeView;
+
     constructor()
     {
         this.DomThis = document.querySelector("#root");
         GlobalStatic.app = this;
 
+        this.AxeView = new AxeView();
         this.Router = new NavigoProvider(Page);
         this.ConfigureRoutes();
-
     }
 
     /**

@@ -1,5 +1,128 @@
-#divHome {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+@import "@/Styles/Default.scss";
+
+#divPage {
+    #divHome {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .test-section {
+            .card {
+                margin-bottom: 32px;
+            }
+
+            .test-title {
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+    
+            .test-current-color-title {
+                i {
+                    font-style: normal;
+                    border-radius: 6px;
+                    margin-left: 4px;
+                    color: $white;
+                    padding: 2px 6px;
+                }
+    
+                &.primary {
+                    i {
+                        background-color: $primary;
+                    }
+                }
+    
+                &.secondary {
+                    i {
+                        background-color: $secondary;
+                    }
+                }
+    
+                &.success {
+                    i {
+                        background-color: $success;
+                    }
+                }
+    
+                &.danger {
+                    i {
+                        background-color: $danger;
+                    }
+                }
+    
+                &.warning {
+                    i {
+                        background-color: $warning;
+                    }
+                }
+    
+                &.info {
+                    i {
+                        background-color: $info;
+                    }
+                }
+    
+                &.light {
+                    i {
+                        background-color: $light;
+                    }
+                }
+    
+                &.dark {
+                    i {
+                        background-color: $dark;
+                    }
+                }
+                
+            }
+    
+            .test-current-color {
+                min-height: 200px;
+                border-radius: 6px;
+                box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+    
+                &.primary {
+                    background-color: $primary;
+                }
+    
+                &.secondary {
+                    background-color: $secondary;
+                }
+    
+                &.success {
+                    background-color: $success;
+                }
+    
+                &.danger {
+                    background-color: $danger;
+                }
+    
+                &.warning {
+                    background-color: $warning;
+                }
+    
+                &.info {
+                    background-color: $info;
+                }
+    
+                &.light {
+                    background-color: $light;
+                }
+    
+                &.dark {
+                    background-color: $dark;
+                }
+            }
+
+            .actions-box {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                button {
+                    width: 100%;
+                    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
+
+    }
 }
