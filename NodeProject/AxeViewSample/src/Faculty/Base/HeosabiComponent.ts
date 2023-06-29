@@ -5,6 +5,12 @@ import { NavigateMatchModel } from '../Router/Models/NavigateMatchModel';
 import { Overwatch } from '@/Utility/AxeView/Overwatch';
 import { OverwatchInterface } from '@/Utility/AxeView/OverwatchInterface';
 
+interface ChildComponentInterface
+{
+    overwatchName: string;
+    component: HeosabiComponent;
+}
+
 /**
  * 모든 Component의 부모가 되는 Component이다.
  */
@@ -16,6 +22,8 @@ export default class HeosabiComponent
     public AsyncHtmlLoader: AsyncHtmlLoader = new AsyncHtmlLoader();
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
     public RouteThis: NavigateMatchModel;
+
+    public ChildComponents: ChildComponentInterface[] = [];
 
     // public OnAxe: function = (objThis) => { };
     // public OnAxeBC: function = (objThis) => { };
@@ -44,6 +52,12 @@ export default class HeosabiComponent
 
             this.DomThis = GlobalStatic.createDOMElement(sHtml);
 
+            if (this.ChildComponents.length > 0)
+            {
+                this.InitializeChildComponents();
+                console.log(this.AxeList);
+            }
+
             GlobalStatic.app.AxeView.BindOverwatch(this.DomThis, this.AxeList);
 
             this.DomThisComplete();
@@ -69,6 +83,22 @@ export default class HeosabiComponent
      * @returns {void}
      */
     public DomThisComplete(): void { }
+
+    protected AddChildComponent(components: ChildComponentInterface[]): void
+    {
+        this.ChildComponents.push(...components);
+    }
+
+    private InitializeChildComponents(): void
+    {
+        this.ChildComponents.forEach((child) =>
+        {
+            const outerHtml: string = child.component.AsyncHtmlLoader.getHTML[0].htmlString;
+            const overwatch: Overwatch = this.AxeList.find((axe) => axe.Name === child.overwatchName);
+
+            overwatch.data = outerHtml;
+        });
+    }
 
     // //#region 액스뷰 리스트 처리
     public AxeList: Array<Overwatch> = new Array<Overwatch>();

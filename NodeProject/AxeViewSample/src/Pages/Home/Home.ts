@@ -1,3 +1,4 @@
+import { HtmlContent } from './../../../../AxeViewTest/src/Utility/AsyncHTMLLoader/async-html-loader.type';
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 import "./Home.scss";
 import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/OverwatchingType";
@@ -13,7 +14,6 @@ export default class Home extends ContentComponent
 {
     /** Home Component의 html 파일 주소 */
     private readonly PagePath: string = "Pages/Home/Home.html";
-    private Card: HeosabiComponent = new Card();
 
     constructor()
     {
@@ -21,6 +21,9 @@ export default class Home extends ContentComponent
         super();
         this.AddOverwatchState();
         /** this.PagePath를 통해서 렌더링 시작 */
+        this.AddChildComponent([
+            { overwatchName: "cardComponent", component: new Card() }
+        ]);
         super.RenderingStart(this.PagePath);
     }
 
@@ -65,6 +68,13 @@ export default class Home extends ContentComponent
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: false,
         });
+        this.UseOverwatch({
+            Name: "cardComponent",
+            FirstData: "<div></div>",
+            OverwatchingOutputType: OverwatchingOutputType.Html,
+            OverwatchingType: OverwatchingType.Monitoring,
+            OverwatchingOneIs: false,
+        });
     }
 
     /**
@@ -74,7 +84,7 @@ export default class Home extends ContentComponent
     public RenderingComplete(): void
     {
         const welcomeText = this.AxeSelectorByName('welcomeText');
-        console.log(this.Card);
+
     }
 
     private OnClickColorChange = (
