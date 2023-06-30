@@ -6,6 +6,7 @@ import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import Card from "../Components/Card/Card";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
 import Button from '../Components/Button/Button';
+import Form from '../Components/Form/Form';
 
 /**
  * Home Component를 생성하는 Class
@@ -24,7 +25,8 @@ export default class Home extends ContentComponent
         /** this.PagePath를 통해서 렌더링 시작 */
         this.AddChildComponent([
             { overwatchName: "cardComponent", component: new Card() },
-            { overwatchName: "buttonComponent", component: new Button() }
+            { overwatchName: "buttonComponent", component: new Button() },
+            { overwatchName: "formComponent", component: new Form() },
         ]);
         super.RenderingStart(this.PagePath);
     }
@@ -79,6 +81,13 @@ export default class Home extends ContentComponent
         });
         this.UseOverwatch({
             Name: "buttonComponent",
+            FirstData: "<div></div>",
+            OverwatchingOutputType: OverwatchingOutputType.Html,
+            OverwatchingType: OverwatchingType.Monitoring,
+            OverwatchingOneIs: false,
+        });
+        this.UseOverwatch({
+            Name: "formComponent",
             FirstData: "<div></div>",
             OverwatchingOutputType: OverwatchingOutputType.Html,
             OverwatchingType: OverwatchingType.Monitoring,
