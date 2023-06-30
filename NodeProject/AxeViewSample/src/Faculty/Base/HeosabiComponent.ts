@@ -23,8 +23,6 @@ export default class HeosabiComponent
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
     public RouteThis: NavigateMatchModel;
 
-    public ChildComponents: ChildComponentInterface[] = [];
-
     // public OnAxe: function = (objThis) => { };
     // public OnAxeBC: function = (objThis) => { };
 
@@ -52,10 +50,11 @@ export default class HeosabiComponent
 
             this.DomThis = GlobalStatic.createDOMElement(sHtml);
 
+            // 컴포넌트가 존재한다면
             if (this.ChildComponents.length > 0)
             {
+                // AxeView를 바인드하기 전에 컴포넌트를 등록한다.
                 this.InitializeChildComponents();
-                console.log(this.AxeList);
             }
 
             GlobalStatic.app.AxeView.BindOverwatch(this.DomThis, this.AxeList);
@@ -84,6 +83,9 @@ export default class HeosabiComponent
      */
     public DomThisComplete(): void { }
 
+    //#region 컴포넌트 레이아웃 처리
+    public ChildComponents: ChildComponentInterface[] = [];
+
     protected AddChildComponent(components: ChildComponentInterface[]): void
     {
         this.ChildComponents.push(...components);
@@ -99,8 +101,9 @@ export default class HeosabiComponent
             overwatch.data = outerHtml;
         });
     }
+    //#endregion
 
-    // //#region 액스뷰 리스트 처리
+    //#region 액스뷰 리스트 처리
     public AxeList: Array<Overwatch> = new Array<Overwatch>();
 
     protected UseOverwatch({
@@ -134,16 +137,5 @@ export default class HeosabiComponent
 
         return findOverwatch;
     }
-
-    // public AxeGet(sId: string): Overwatch
-    // {
-    //     this.AxeList.filter((axe: Overwatch) => axe.Dom[0].id === sId)[0];
-
-    //     this.AxeList.filter((axe: Overwatch) => axe.Name === sId)[0];
-
-    // }
-
-    // public AxeGet_Name(sId: string): Overwatch;
-
     // //#endregion
 }

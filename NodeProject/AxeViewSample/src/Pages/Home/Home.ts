@@ -5,6 +5,7 @@ import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/Over
 import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import Card from "../Components/Card/Card";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
+import Button from '../Components/Button/Button';
 
 /**
  * Home Component를 생성하는 Class
@@ -22,7 +23,8 @@ export default class Home extends ContentComponent
         this.AddOverwatchState();
         /** this.PagePath를 통해서 렌더링 시작 */
         this.AddChildComponent([
-            { overwatchName: "cardComponent", component: new Card() }
+            { overwatchName: "cardComponent", component: new Card() },
+            { overwatchName: "buttonComponent", component: new Button() }
         ]);
         super.RenderingStart(this.PagePath);
     }
@@ -70,6 +72,13 @@ export default class Home extends ContentComponent
         });
         this.UseOverwatch({
             Name: "cardComponent",
+            FirstData: "<div></div>",
+            OverwatchingOutputType: OverwatchingOutputType.Html,
+            OverwatchingType: OverwatchingType.Monitoring,
+            OverwatchingOneIs: false,
+        });
+        this.UseOverwatch({
+            Name: "buttonComponent",
             FirstData: "<div></div>",
             OverwatchingOutputType: OverwatchingOutputType.Html,
             OverwatchingType: OverwatchingType.Monitoring,
@@ -123,6 +132,7 @@ export default class Home extends ContentComponent
                 this.ChangeColorAndName("dark");
                 break;
             default:
+                break;
         }
     };
 
