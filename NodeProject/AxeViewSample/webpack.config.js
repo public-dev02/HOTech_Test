@@ -47,7 +47,7 @@ module.exports = (env, argv) =>
             extensions: [".js", ".ts"],
             alias: {
                 "@": SrcPath,
-                "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap")
+                "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap"),
             },
         },
         output: {
@@ -81,9 +81,9 @@ module.exports = (env, argv) =>
                     test: /simplebar\.css$/,
                     use: [
                         { loader: "style-loader" },
-                        { loader: "css-loader" },
-                    ]
-                }
+                        { loader: "css-loader" }
+                    ],
+                },
             ],
         },
         plugins: [
@@ -115,9 +115,10 @@ module.exports = (env, argv) =>
                             return `${sOutDir}`;
                         },
                     },
-                    {//모든 이미지 파일
-                        from: "./src/Assets/**/*.(png|jpg|gif|svg|webp)"
-                        , to({ context, absoluteFilename })
+                    {
+                        //모든 이미지 파일
+                        from: "./src/Assets/**/*.(png|jpg|gif|svg|webp)",
+                        to({ context, absoluteFilename })
                         {
                             //'src/'를 제거
                             let sOutDir = path.relative(context, absoluteFilename);
