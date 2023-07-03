@@ -1,5 +1,5 @@
 <div id="divHome">
-	<section class="bg-primary py-5">
+    <section class="bg-primary py-5">
         <div class="container">
             <div class="row align-items-center py-5">
                 <div class="col-md-8 text-white">
@@ -10,19 +10,17 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <img src="/Assets/Image/about-hero.svg" alt="About Hero">
+                    <img src="/Assets/Image/about-hero.svg" alt="About Hero" />
                 </div>
             </div>
         </div>
     </section>
     <section class="test-section bg-light">
         <div class="container py-5">
-            <div class="row text-center py-3 ">
+            <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1 mb-2">{{testSectionTitle}}</h1>
-                    <p>
-                        AxeView의 기본 기능을 확인해보세요
-                    </p>
+                    <p>AxeView의 기본 기능을 확인해보세요</p>
                 </div>
             </div>
             <div class="row">
@@ -33,40 +31,94 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="test-current-color-title {{testCurrentColorClass}} mb-2">현재 색상: <i>{{testCurrentColorName}}</i></p>
-                                        <div class="test-current-color {{testCurrentColorClass}}"></div>
+                                        <p
+                                            class="test-current-color-title {{testCurrentColorClass}} mb-2"
+                                        >
+                                            현재 색상: <i>{{testCurrentColorName}}</i>
+                                        </p>
+                                        <div
+                                            class="test-current-color {{testCurrentColorClass}}"
+                                        ></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 actions-box">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <button class="btn btn-primary" id="primary" onClick="{{onClickColorChange}}">Primary</button>
+                                        <button
+                                            class="btn btn-primary"
+                                            id="primary"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Primary
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-secondary" id="secondary" onClick="{{onClickColorChange}}">Secondary</button>
+                                        <button
+                                            class="btn btn-secondary"
+                                            id="secondary"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Secondary
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-success" id="success" onClick="{{onClickColorChange}}">Success</button>
+                                        <button
+                                            class="btn btn-success"
+                                            id="success"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Success
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <button class="btn btn-danger" id="danger" onClick="{{onClickColorChange}}">Danger</button>
+                                        <button
+                                            class="btn btn-danger"
+                                            id="danger"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Danger
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-warning" id="warning" onClick="{{onClickColorChange}}">Warning</button>
+                                        <button
+                                            class="btn btn-warning"
+                                            id="warning"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Warning
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-info" id="info" onClick="{{onClickColorChange}}">Info</button>
+                                        <button
+                                            class="btn btn-info"
+                                            id="info"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Info
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <button class="btn btn-light" id="light" onClick="{{onClickColorChange}}">Light</button>
+                                        <button
+                                            class="btn btn-light"
+                                            id="light"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Light
+                                        </button>
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-dark" id="dark" onClick="{{onClickColorChange}}">Dark</button>
+                                        <button
+                                            class="btn btn-dark"
+                                            id="dark"
+                                            onClick="{{onClickColorChange}}"
+                                        >
+                                            Dark
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -77,20 +129,42 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
+                        <h2 class="test-title">Input Test</h2>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="mb-2">input</p>
+                                <div class="input-group">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        value="{{outputValue}}"
+                                        oninput="{{onChangeOutputValue}}"
+                                        placeholder="내용을 입력해보세요"
+                                        {{readonly}}
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="mb-2">output</p>
+                                <div>{{outputValue}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
                         <h2 class="test-title">Component</h2>
                         <div class="row">
-                            <div class="col-lg-12">
-                                {{cardComponent}}
-                            </div>
+                            <div class="col-lg-12">{{cardComponent}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
-                                {{buttonComponent}}
-                            </div>
+                            <div class="col-lg-12">{{buttonComponent}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
-                                {{formComponent}}
+                            <div class="col-lg-12" {{test}}>
+                                {{formComponent}}, {{buttonComponent}}
                             </div>
                         </div>
                     </div>
@@ -98,7 +172,7 @@
             </div>
         </div>
     </section>
-	<section class="container py-5">
+    <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">Categories of The Month</h1>
@@ -110,30 +184,42 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/"><img src="/Assets/Image/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="/"
+                    ><img
+                        src="/Assets/Image/category_img_01.jpg"
+                        class="rounded-circle img-fluid border"
+                /></a>
                 <h5 class="text-center mt-3 mb-3">Watches</h5>
                 <p class="text-center"><a class="btn btn-primary" href="/">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/"><img src="/Assets/Image/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="/"
+                    ><img
+                        src="/Assets/Image/category_img_02.jpg"
+                        class="rounded-circle img-fluid border"
+                /></a>
                 <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
                 <p class="text-center"><a class="btn btn-primary" href="/">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/"><img src="/Assets/Image/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="/"
+                    ><img
+                        src="/Assets/Image/category_img_03.jpg"
+                        class="rounded-circle img-fluid border"
+                /></a>
                 <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
                 <p class="text-center"><a class="btn btn-primary" href="/">Go Shop</a></p>
             </div>
         </div>
     </section>
-	<section class="bg-light">
+    <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">Featured Product</h1>
                     <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
+                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident.
                     </p>
                 </div>
             </div>
@@ -141,7 +227,11 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="/">
-                            <img src="/Assets/Image/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img
+                                src="/Assets/Image/feature_prod_01.jpg"
+                                class="card-img-top"
+                                alt="..."
+                            />
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -156,7 +246,8 @@
                             </ul>
                             <a href="/" class="h2 text-decoration-none text-dark">Gym Weight</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in
+                                culpa qui officia deserunt.
                             </p>
                             <p class="text-muted">Reviews (24)</p>
                         </div>
@@ -165,7 +256,11 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="/">
-                            <img src="/Assets/Image/feature_prod_02.jpg" class="card-img-top" alt="...">
+                            <img
+                                src="/Assets/Image/feature_prod_02.jpg"
+                                class="card-img-top"
+                                alt="..."
+                            />
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -178,9 +273,12 @@
                                 </li>
                                 <li class="text-muted text-right">$480.00</li>
                             </ul>
-                            <a href="s/" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                            <a href="s/" class="h2 text-decoration-none text-dark"
+                                >Cloud Nike Shoes</a
+                            >
                             <p class="card-text">
-                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
+                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae
+                                pharetra sed, commodo ullamcorper.
                             </p>
                             <p class="text-muted">Reviews (48)</p>
                         </div>
@@ -189,7 +287,11 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="/">
-                            <img src="/Assets/Image/feature_prod_03.jpg" class="card-img-top" alt="...">
+                            <img
+                                src="/Assets/Image/feature_prod_03.jpg"
+                                class="card-img-top"
+                                alt="..."
+                            />
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -202,9 +304,12 @@
                                 </li>
                                 <li class="text-muted text-right">$360.00</li>
                             </ul>
-                            <a href="/" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                            <a href="/" class="h2 text-decoration-none text-dark"
+                                >Summer Addides Shoes</a
+                            >
                             <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar
+                                sagittis diam, et scelerisque ipsum lobortis nec.
                             </p>
                             <p class="text-muted">Reviews (74)</p>
                         </div>

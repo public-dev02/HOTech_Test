@@ -24,7 +24,7 @@ export default class About extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("어바웃 렌더링");
+        console.log(this.AxeList);
     }
 }
 

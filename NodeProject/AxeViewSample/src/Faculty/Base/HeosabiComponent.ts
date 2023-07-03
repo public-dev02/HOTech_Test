@@ -1,12 +1,11 @@
-import { Match } from 'navigo';
+import { Match } from "navigo";
 import GlobalStatic from "@/Global/GlobalStatic";
 import AsyncHtmlLoader from "@/Utility/AsyncHTMLLoader/async-html-loader";
-import { NavigateMatchModel } from '../Router/Models/NavigateMatchModel';
-import { Overwatch } from '@/Utility/AxeView/Overwatch';
-import { OverwatchInterface } from '@/Utility/AxeView/OverwatchInterface';
+import { NavigateMatchModel } from "../Router/Models/NavigateMatchModel";
+import { Overwatch } from "@/Utility/AxeView/Overwatch";
+import { OverwatchInterface } from "@/Utility/AxeView/OverwatchInterface";
 
-interface ChildComponentInterface
-{
+interface ChildComponentInterface {
     overwatchName: string;
     component: HeosabiComponent;
 }
@@ -14,8 +13,7 @@ interface ChildComponentInterface
 /**
  * 모든 Component의 부모가 되는 Component이다.
  */
-export default class HeosabiComponent
-{
+export default class HeosabiComponent {
     /** 자식 class의 dom */
     public DomThis: HTMLElement;
     /** 비동기로 HTML 파일을 불러오는 라이브러리 */
@@ -26,14 +24,13 @@ export default class HeosabiComponent
     // public OnAxe: function = (objThis) => { };
     // public OnAxeBC: function = (objThis) => { };
 
-    constructor() { }
+    constructor() {}
 
     /**
      * constructor에 전달받은 HtmlPath를 통해서 비동기로 HTML을 다운로드 하는 함수
      * @param {string} HtmlPath
      */
-    protected RenderingStart(HtmlPath: string): void
-    {
+    protected RenderingStart(HtmlPath: string): void {
         // this.AxeList = AxeList;
 
         this.AsyncHtmlLoader.addPath(HtmlPath);
@@ -44,17 +41,17 @@ export default class HeosabiComponent
 
         // this.OnAxe(this);
 
-        this.AsyncHtmlLoader.asyncGetHTMLByUrl(HtmlPath, (data) =>
-        {
+        this.AsyncHtmlLoader.asyncGetHTMLByUrl(HtmlPath, (data) => {
             const sHtml: string = data.htmlString;
 
             this.DomThis = GlobalStatic.createDOMElement(sHtml);
 
             // 컴포넌트가 존재한다면
-            if (this.ChildComponents.length > 0)
-            {
+            if (this.ChildComponents.length > 0) {
                 // AxeView를 바인드하기 전에 컴포넌트를 등록한다.
+
                 this.InitializeChildComponents();
+                console.log("컴포넌트 등록");
             }
 
             GlobalStatic.app.AxeView.BindOverwatch(this.DomThis, this.AxeList);
@@ -69,9 +66,8 @@ export default class HeosabiComponent
      * 자식 Class에서 함수를 Overriding 해서 사용한다.
      * @returns {void}
      */
-    protected RenderingComplete(): void
-    {
-        console.log('Rendering Completed!');
+    protected RenderingComplete(): void {
+        console.log("Rendering Completed!");
     }
 
     /**
@@ -81,27 +77,7 @@ export default class HeosabiComponent
      * 자식 Class에서 함수를 Overriding해서 사용한다.
      * @returns {void}
      */
-    public DomThisComplete(): void { }
-
-    //#region 컴포넌트 레이아웃 처리
-    public ChildComponents: ChildComponentInterface[] = [];
-
-    protected AddChildComponent(components: ChildComponentInterface[]): void
-    {
-        this.ChildComponents.push(...components);
-    }
-
-    private InitializeChildComponents(): void
-    {
-        this.ChildComponents.forEach((child) =>
-        {
-            const outerHtml: string = child.component.AsyncHtmlLoader.getHTML[0].htmlString;
-            const overwatch: Overwatch = this.AxeList.find((axe) => axe.Name === child.overwatchName);
-
-            overwatch.data = outerHtml;
-        });
-    }
-    //#endregion
+    public DomThisComplete(): void {}
 
     //#region 액스뷰 리스트 처리
     public AxeList: Array<Overwatch> = new Array<Overwatch>();
@@ -111,31 +87,48 @@ export default class HeosabiComponent
         FirstData,
         OverwatchingOutputType,
         OverwatchingType,
-        OverwatchingOneIs
-    }: OverwatchInterface): void
-    {
+        OverwatchingOneIs,
+    }: OverwatchInterface): void {
         const model: Overwatch = new Overwatch({
             Name,
             FirstData,
             OverwatchingOutputType,
             OverwatchingType,
-            OverwatchingOneIs
+            OverwatchingOneIs,
         });
 
         this.AxeList.push(model);
     }
 
-    protected AxeSelectorByName(sName: string): Overwatch | undefined
-    {
-        const findOverwatch: Overwatch | undefined =
-            this.AxeList.find((overwatch: Overwatch) => overwatch.Name === sName);
+    protected AxeSelectorByName(sName: string): Overwatch | undefined {
+        const findOverwatch: Overwatch | undefined = this.AxeList.find(
+            (overwatch: Overwatch) => overwatch.Name === sName
+        );
 
-        if (undefined === findOverwatch)
-        {
+        if (undefined === findOverwatch) {
             console.log(`AxeSelector Error: ${sName} is not found!`);
         }
 
         return findOverwatch;
     }
     // //#endregion
+
+    //#region 컴포넌트 레이아웃 처리
+    public ChildComponents: ChildComponentInterface[] = [];
+
+    protected AddChildComponent(components: ChildComponentInterface[]): void {
+        this.ChildComponents.push(...components);
+    }
+
+    private InitializeChildComponents(): void {
+        this.ChildComponents.forEach((child) => {
+            const outerHtml: string = child.component.AsyncHtmlLoader.getHTML[0].htmlString;
+            const overwatch: Overwatch = this.AxeList.find(
+                (axe) => axe.Name === child.overwatchName
+            );
+
+            overwatch.data = outerHtml;
+        });
+    }
+    //#endregion
 }

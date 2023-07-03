@@ -1,12 +1,12 @@
-import { HtmlContent } from './../../../../AxeViewTest/src/Utility/AsyncHTMLLoader/async-html-loader.type';
+import { HtmlContent } from "./../../../../AxeViewTest/src/Utility/AsyncHTMLLoader/async-html-loader.type";
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 import "./Home.scss";
 import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/OverwatchingType";
 import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import Card from "../Components/Card/Card";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
-import Button from '../Components/Button/Button';
-import Form from '../Components/Form/Form';
+import Button from "../Components/Button/Button";
+import Form from "../Components/Form/Form";
 
 /**
  * Home Component를 생성하는 Class
@@ -73,6 +73,20 @@ export default class Home extends ContentComponent
             OverwatchingOneIs: false,
         });
         this.UseOverwatch({
+            Name: "outputValue",
+            FirstData: '',
+            OverwatchingOutputType: OverwatchingOutputType.String,
+            OverwatchingType: OverwatchingType.Monitoring,
+            OverwatchingOneIs: false,
+        });
+        this.UseOverwatch({
+            Name: "onChangeOutputValue",
+            FirstData: this.onChangeOutputValue,
+            OverwatchingOutputType: OverwatchingOutputType.Function_NameRemoveOn,
+            OverwatchingType: OverwatchingType.Monitoring,
+            OverwatchingOneIs: true,
+        });
+        this.UseOverwatch({
             Name: "cardComponent",
             FirstData: "<div></div>",
             OverwatchingOutputType: OverwatchingOutputType.Html,
@@ -95,21 +109,29 @@ export default class Home extends ContentComponent
         });
     }
 
+    public onChangeOutputValue = (
+        event: Event,
+        sender: ChildNode,
+        objThis: Overwatch
+    ): void =>
+    {
+        const Target = event.target as HTMLInputElement;
+        const Value = Target.value;
+        const OutputValue = this.AxeSelectorByName("outputValue");
+        OutputValue.data = Value;
+    };
+
     /**
      * Dom이 생성되고 나서 실행되는 함수
      * @returns {void}
      */
     public RenderingComplete(): void
     {
-        const welcomeText = this.AxeSelectorByName('welcomeText');
-
+        const welcomeText = this.AxeSelectorByName("welcomeText");
+        console.log(this.AxeList);
     }
 
-    private OnClickColorChange = (
-        event: Event,
-        sender: ChildNode,
-        objThis: Overwatch
-    ) =>
+    private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
     {
         const Target = sender as HTMLElement;
         const ColorName = Target.id;
@@ -147,9 +169,8 @@ export default class Home extends ContentComponent
 
     private ChangeColorAndName = (ColorName: string) =>
     {
-        let UpperCaseColorName = ColorName.replace(/^[a-z]/, char => char.toUpperCase());
+        let UpperCaseColorName = ColorName.replace(/^[a-z]/, (char) => char.toUpperCase());
         this.AxeSelectorByName("testCurrentColorClass").data = ColorName;
         this.AxeSelectorByName("testCurrentColorName").data = UpperCaseColorName;
     };
 }
-
