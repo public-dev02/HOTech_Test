@@ -107,6 +107,13 @@ export default class Home extends ContentComponent
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: false,
         });
+        this.UseOverwatch({
+            Name: "section1",
+            FirstData: "",
+            OverwatchingOutputType: OverwatchingOutputType.Dom,
+            OverwatchingType: OverwatchingType.OutputFirst,
+            OverwatchingOneIs: true,
+        });
     }
 
     public onChangeOutputValue = (
@@ -128,7 +135,7 @@ export default class Home extends ContentComponent
     public RenderingComplete(): void
     {
         const welcomeText = this.AxeSelectorByName("welcomeText");
-        console.log(this.AxeList);
+        this.AxeSelectorById('section1');
     }
 
     private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
