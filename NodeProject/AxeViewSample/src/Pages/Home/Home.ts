@@ -12,13 +12,11 @@ import Form from "../Components/Form/Form";
  * Home Component를 생성하는 Class
  * Index가 되는 페이지이다.
  */
-export default class Home extends ContentComponent
-{
+export default class Home extends ContentComponent {
     /** Home Component의 html 파일 주소 */
     private readonly PagePath: string = "Pages/Home/Home.html";
 
-    constructor()
-    {
+    constructor() {
         /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
         super();
         this.AddOverwatchState();
@@ -31,8 +29,7 @@ export default class Home extends ContentComponent
         super.RenderingStart(this.PagePath);
     }
 
-    private AddOverwatchState(): void
-    {
+    private AddOverwatchState(): void {
         this.UseOverwatch({
             Name: "welcomeText",
             FirstData: "Welcome to, Axe Shop",
@@ -74,7 +71,7 @@ export default class Home extends ContentComponent
         });
         this.UseOverwatch({
             Name: "outputValue",
-            FirstData: '',
+            FirstData: "",
             OverwatchingOutputType: OverwatchingOutputType.String,
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: false,
@@ -88,40 +85,28 @@ export default class Home extends ContentComponent
         });
         this.UseOverwatch({
             Name: "cardComponent",
-            FirstData: "<div></div>",
-            OverwatchingOutputType: OverwatchingOutputType.Html,
-            OverwatchingType: OverwatchingType.Monitoring,
-            OverwatchingOneIs: false,
+            FirstData: document.createElement("div"),
+            OverwatchingOutputType: OverwatchingOutputType.Dom,
+            OverwatchingType: OverwatchingType.OutputFirst,
+            OverwatchingOneIs: true,
         });
         this.UseOverwatch({
             Name: "buttonComponent",
-            FirstData: "<div></div>",
-            OverwatchingOutputType: OverwatchingOutputType.Html,
-            OverwatchingType: OverwatchingType.Monitoring,
-            OverwatchingOneIs: false,
+            FirstData: document.createElement("div"),
+            OverwatchingOutputType: OverwatchingOutputType.Dom,
+            OverwatchingType: OverwatchingType.OutputFirst,
+            OverwatchingOneIs: true,
         });
         this.UseOverwatch({
             Name: "formComponent",
-            FirstData: "<div></div>",
-            OverwatchingOutputType: OverwatchingOutputType.Html,
-            OverwatchingType: OverwatchingType.Monitoring,
-            OverwatchingOneIs: false,
-        });
-        this.UseOverwatch({
-            Name: "section1",
-            FirstData: "",
+            FirstData: document.createElement("div"),
             OverwatchingOutputType: OverwatchingOutputType.Dom,
             OverwatchingType: OverwatchingType.OutputFirst,
             OverwatchingOneIs: true,
         });
     }
 
-    public onChangeOutputValue = (
-        event: Event,
-        sender: ChildNode,
-        objThis: Overwatch
-    ): void =>
-    {
+    public onChangeOutputValue = (event: Event, sender: ChildNode, objThis: Overwatch): void => {
         const Target = event.target as HTMLInputElement;
         const Value = Target.value;
         const OutputValue = this.AxeSelectorByName("outputValue");
@@ -132,19 +117,16 @@ export default class Home extends ContentComponent
      * Dom이 생성되고 나서 실행되는 함수
      * @returns {void}
      */
-    public RenderingComplete(): void
-    {
+    public RenderingComplete(): void {
         const welcomeText = this.AxeSelectorByName("welcomeText");
-        this.AxeSelectorById('section1');
+        console.log("홈 렌더링 완료");
     }
 
-    private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
-    {
+    private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) => {
         const Target = sender as HTMLElement;
         const ColorName = Target.id;
 
-        switch (ColorName)
-        {
+        switch (ColorName) {
             case "primary":
                 this.ChangeColorAndName("primary");
                 break;
@@ -174,8 +156,7 @@ export default class Home extends ContentComponent
         }
     };
 
-    private ChangeColorAndName = (ColorName: string) =>
-    {
+    private ChangeColorAndName = (ColorName: string) => {
         let UpperCaseColorName = ColorName.replace(/^[a-z]/, (char) => char.toUpperCase());
         this.AxeSelectorByName("testCurrentColorClass").data = ColorName;
         this.AxeSelectorByName("testCurrentColorName").data = UpperCaseColorName;

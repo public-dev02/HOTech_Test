@@ -18,9 +18,32 @@
     <section class="test-section bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
-                <div id="section1" class="col-lg-6 m-auto" {{section1}}>
+                <div class="col-lg-6 m-auto">
                     <h1 class="h1 mb-2">{{testSectionTitle}}</h1>
                     <p>AxeView의 기본 기능을 확인해보세요</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="test-title">Component</h2>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div {{cardComponent}}></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div {{buttonComponent}}></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div {{formComponent}}></div>
+                                <!-- <div {{buttonComponent}}></div> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -147,24 +170,6 @@
                             <div class="col-lg-6">
                                 <p class="mb-2">output</p>
                                 <div>{{outputValue}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="test-title">Component</h2>
-                        <div class="row">
-                            <div class="col-lg-12">{{cardComponent}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">{{buttonComponent}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12" {{test}}>
-                                {{formComponent}}, {{buttonComponent}}
                             </div>
                         </div>
                     </div>
