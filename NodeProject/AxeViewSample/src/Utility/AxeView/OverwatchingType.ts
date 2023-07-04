@@ -43,8 +43,7 @@ export const enum OverwatchingOutputType
 	/**
 	 * 돔 개체 - 속성에만 사용가능
 	 * 속해있는 돔 개체(HTMLElement)를 가지고 있는다.
-	 * 돔 개체이므로 Set개념은 없다.(무시됨)
-	 * 이 개채는 바인딩될 때 개체를 저장해 두므로 OverwatchingType.OutputFirst와 동일한 동작을 한다.
+	 * Set을하면 replaceChild으로 처리된다.
 	 */
 	Dom,
 }

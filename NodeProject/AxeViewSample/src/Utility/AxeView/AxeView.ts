@@ -51,9 +51,6 @@ export default class AxeView
 	 * 
 	 * 기존 내용물을 남기고 부분교체하는 방법을 찾아보았지만 정답이 없어서
 	 * 그냥 새로그리는 방법을 사용하기로 결정하였다.
-	 * 단, 텍스트 노드가 없
-	 * 
-	 * 텍스트 노드가 아닌 대상을 감시할때는 
 	 * @param domParent 검색할 부모 dom
 	 * @param arrTarget 감시자 리스트
 	 */
@@ -131,7 +128,6 @@ export default class AxeView
 			//고유번호 지정
 			item.MyNumber = this.BindCount;
 		});
-
 
 		//새로운 로드를 생성해서 가지고 있을 노드 리스트
 		let newParent: ChildNode[] = [];
@@ -304,7 +300,7 @@ export default class AxeView
 	/**
 	 * 일반 노드(재귀를 한다)
 	 * 내용물을 분석하여 감시자가 연결된 부모노드(HTMLElement)를 새로 생성한다.
-	 * 텍스트 노드만 있을때까지 재귀하게 된다.
+	 * 텍스트 노드만 있을 때까지 재귀하게 된다.
 	 * 텍스트 노드는 감시자와 비교하여 잘라내고, 
 	 * 감시자를 연결하고 새로 생성된 HTMLElement을 리턴한다.
 	 * @param nodeParent
@@ -637,13 +633,13 @@ export default class AxeView
 
 						if (OverwatchingOutputType.Dom === itemOW.OverwatchingOutputType)
 						{//돔 개체
-
+							
 							//소속된 개체를 저장한다.
 							let elemTemp: HTMLElement = nodeParent as HTMLElement;
 							//기존 이름 제거
 							elemTemp.removeAttribute(attrItem.name);
-
 							//돔방식은 개체를 리턴해주므로 별도의 모니터링을 하지 않는다.
+							//2023-07-04 : 돔 교체를 지원하기 위해 모니터링에 추가함
 							itemOW.Dom_Push_Dom(elemTemp);
 
 						}

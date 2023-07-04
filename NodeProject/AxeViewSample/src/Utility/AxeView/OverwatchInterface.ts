@@ -17,7 +17,7 @@ export interface OverwatchInterface
 	 * event : 이벤트 발생에 사용된 이벤트 개체(이벤트에 따라 다른 개체가 넘어옴)
 	 * sender : 연결된 엘리먼트 개체
 	 * owThis : 이 함수에 연결된 감시자 개체(Overwatch) */
-	FirstData: string | Function,
+	FirstData: string | Function | HTMLElement,
 
 	/** 감시 타입 */
 	OverwatchingOutputType: OverwatchingOutputType,

@@ -1,6 +1,7 @@
 ﻿import { OverwatchInterface } from "./OverwatchInterface";
 import { AxeViewDomInterface, AxeViewDomType } from "./AxeViewDomInterface";
 import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType"
+import { debug } from "util";
 
 /** 감시 대상  */
 export class Overwatch
@@ -68,7 +69,7 @@ export class Overwatch
 
 		//새값 저장
 		this.DataNow = data;
-
+		
 		if (null !== this._Dom
 			&& 0 < this._Dom.length)
 		{//돔이 있으면 실행
@@ -85,7 +86,16 @@ export class Overwatch
 				else if (AxeViewDomType.Dom === item.AxeViewDomType)
 				{//돔인 경우
 
-					//돔 개체는 셋 동작을 하지 않는다.
+					//돔은 교체만 허용한다.
+					if (true === (this.DataNow instanceof HTMLElement))
+					{//들어온 값이 HTMLElement다.
+
+						//돔의 경우 이전 개체(OldData)의 부모를 찾아
+						//.replaceChild를 해야 한다.
+						(OldData.parentElement as HTMLElement)
+							.replaceChild(this.DataNow, OldData);
+					}
+					
 				}
 				else if (AxeViewDomType.Attr_OneValue === item.AxeViewDomType
 					|| AxeViewDomType.Attr_ValueMonitoring === item.AxeViewDomType				)
@@ -244,15 +254,37 @@ export class Overwatch
 	}
 
 	/**
-	 * 연결된 돔 추가 - Node
-	 * 돔 개체 형식의 경우 부모는 무조건 하나이고,
-	 * Set 동작은 하지 안으므로 DataNow에 개체를 넣고 배열에는 추가하지 않는다.
+	 * 연결된 돔 추가 - Dom
+	 * 돔 개체 형식의 경우 부모는 무조건 하나다.
+	 * 
+	 * 2023-07-04 : 돔 교체를 지원하기 위해 모니터링에 추가함
 	 * @param domPushData
 	 */
 	public Dom_Push_Dom(domPushData: HTMLElement)
 	{
 		this.DataNow = domPushData;
+
+		//if ("" === this.DataNow)
+		//{//첫 데이터가 비어 있다.
+		//	this.DataNow = domPushData;
+		//}
+		//else if (true === (this.DataNow instanceof HTMLElement))
+		//{//첫 돔이 있다.
+
+		//	//돔의 경우 이전 개체(OldData)의 부모를 찾아
+		//	//.replaceChild를 해야 한다.
+		//	//(domPushData.parentElement as HTMLElement)
+		//	//	.replaceChild(this.DataNow as HTMLElement, domPushData);
+		//	//domPushData = this.DataNow as HTMLElement;
+		//}
+		
 		this.DomIs = true;
+
+		this._Dom.push({
+			AxeViewDomType: AxeViewDomType.Dom
+			, Dom: domPushData
+			, EventName: null
+		});
 	}
 
 	/**
@@ -447,6 +479,7 @@ export class Overwatch
 				//데이터가 html인경우 빈값을 넣으면 안되고 보이지 않는 요소라라도 하나 넣어야 한다.
 				//(<div></div>)
 				//안그러면 text 노드가 생성되서 에러가 난다.
+				//그래서 여기서 넣어준다.
 				this.DataNow = "<div></div>";
 			}
 		}
