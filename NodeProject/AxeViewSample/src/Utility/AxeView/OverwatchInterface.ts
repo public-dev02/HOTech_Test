@@ -1,4 +1,4 @@
-﻿import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType"
+﻿import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType";
 
 /** 감시자 인터페이스 */
 export interface OverwatchInterface

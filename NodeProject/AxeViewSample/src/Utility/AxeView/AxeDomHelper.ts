@@ -1,6 +1,7 @@
 ﻿
-import { debug } from "util";
-import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface"
+import { Overwatch } from "./Overwatch";
+
+import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface";
 
 
 /**
@@ -10,18 +11,18 @@ export class AxeDomHelper
 {
 	/** 바인딩에 사용할 옵션이 지정되지 않았을때 사용할 기본 옵션 */
 	private DomHelperOptionDefult: AxeDomHelperOptionInterface = {
-		OptionUse: false
+		OptionUseIs: false
 		, AtagClickEventCancel: false
 		, AtagClickEventCallback: null
 	};
 
 	/** 바인딩에 사용할 저장된 옵션 */
 	public DomHelperOption: AxeDomHelperOptionInterface = {
-		OptionUse: false
+		OptionUseIs: false
 		, AtagClickEventCancel: false
 		, AtagClickEventCallback: null
-		};
-	
+	};
+
 	/**
 	 * 문자열을 변환하는 개체를 생성한다.
 	 * @param jsonDomHelperOption
@@ -55,8 +56,8 @@ export class AxeDomHelper
 	 */
 	public DomHelping(
 		domTarget: HTMLElement
-		, jsonDomHelperOption: AxeDomHelperOptionInterface | null)
-		: void
+		, jsonDomHelperOption?: AxeDomHelperOptionInterface | null)
+		: void;
 
 	/**
 	 * 지정된 돔을 옵션에 따라 처리한다.
@@ -90,7 +91,7 @@ export class AxeDomHelper
 	{
 		let BindOptionTemp: AxeDomHelperOptionInterface = jsonBindOption;
 
-		if (false === BindOptionTemp.OptionUse)
+		if (false === BindOptionTemp.OptionUseIs)
 		{//옵션 사용안함.
 			return;
 		}
@@ -146,6 +147,35 @@ export class AxeDomHelper
 				}
 
 			});
-		
+
+	}
+
+	/**
+	 * 돔생성이 끝나고 OverwatchingOutputType.Dom된 개체를 교체해 준다.
+	 * @param arrOW
+	 */
+	public DomReplace(arrOW: Overwatch[])
+	{
+		for (let i = 0; i < arrOW.length; ++i)
+		{
+			let item: Overwatch = arrOW[i];
+
+			if (true === item.DomIs)
+			{
+				if (null !== item.Temp
+					&& undefined !== item.Temp)
+				{//초기 돔이 존제 한다.
+
+					//초기 돔을 넣어주고
+					item.data = item.Temp;
+					//임시값을 제거한다.
+					item.Temp = null;
+				}
+				else
+				{
+					//debugger;
+				}
+			}
+		}//end for i
 	}
 }

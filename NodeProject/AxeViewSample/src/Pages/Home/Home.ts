@@ -83,27 +83,13 @@ export default class Home extends ContentComponent {
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: true,
         });
-        this.UseOverwatch({
-            Name: "cardComponent",
-            FirstData: document.createElement("div"),
-            OverwatchingOutputType: OverwatchingOutputType.Dom,
-            OverwatchingType: OverwatchingType.OutputFirst,
-            OverwatchingOneIs: true,
-        });
-        this.UseOverwatch({
-            Name: "buttonComponent",
-            FirstData: document.createElement("div"),
-            OverwatchingOutputType: OverwatchingOutputType.Dom,
-            OverwatchingType: OverwatchingType.OutputFirst,
-            OverwatchingOneIs: true,
-        });
-        this.UseOverwatch({
-            Name: "formComponent",
-            FirstData: document.createElement("div"),
-            OverwatchingOutputType: OverwatchingOutputType.Dom,
-            OverwatchingType: OverwatchingType.OutputFirst,
-            OverwatchingOneIs: true,
-        });
+        this.AddOverwatchComponent();
+    }
+
+    private AddOverwatchComponent() {
+        this.UseOverwatchComponent("cardComponent");
+        this.UseOverwatchComponent("buttonComponent");
+        this.UseOverwatchComponent("formComponent");
     }
 
     public onChangeOutputValue = (event: Event, sender: ChildNode, objThis: Overwatch): void => {
@@ -125,6 +111,7 @@ export default class Home extends ContentComponent {
     private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) => {
         const Target = sender as HTMLElement;
         const ColorName = Target.id;
+        const testSt = "123124213";
 
         switch (ColorName) {
             case "primary":

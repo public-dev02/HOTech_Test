@@ -4,8 +4,10 @@ import AsyncHtmlLoader from "@/Utility/AsyncHTMLLoader/async-html-loader";
 import { NavigateMatchModel } from "../Router/Models/NavigateMatchModel";
 import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import { OverwatchInterface } from "@/Utility/AxeView/OverwatchInterface";
+import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/OverwatchingType";
 
-interface ChildComponentInterface {
+interface ChildComponentInterface
+{
     overwatchName: string;
     component: HeosabiComponent;
 }
@@ -13,7 +15,8 @@ interface ChildComponentInterface {
 /**
  * 모든 Component의 부모가 되는 Component이다.
  */
-export default class HeosabiComponent {
+export default class HeosabiComponent
+{
     /** 자식 class의 dom */
     public DomThis: HTMLElement;
     /** 비동기로 HTML 파일을 불러오는 라이브러리 */
@@ -21,17 +24,19 @@ export default class HeosabiComponent {
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
     public RouteThis: NavigateMatchModel;
 
-    constructor() {}
+    constructor() { }
 
     /**
      * constructor에 전달받은 HtmlPath를 통해서 비동기로 HTML을 다운로드 하는 함수
      * @param {string} HtmlPath
      */
-    protected RenderingStart(HtmlPath: string): void {
+    protected RenderingStart(HtmlPath: string): void
+    {
         this.AsyncHtmlLoader.addPath(HtmlPath);
         this.AsyncHtmlLoader.startLoad();
 
-        this.AsyncHtmlLoader.asyncGetHTMLByUrl(HtmlPath, (data) => {
+        this.AsyncHtmlLoader.asyncGetHTMLByUrl(HtmlPath, (data) =>
+        {
             const sHtml: string = data.htmlString;
 
             this.DomThis = GlobalStatic.createDOMElement(sHtml);
@@ -43,7 +48,8 @@ export default class HeosabiComponent {
             this.RenderingComplete();
 
             // 컴포넌트가 존재한다면
-            if (this.ChildComponents.length > 0) {
+            if (this.ChildComponents.length > 0)
+            {
                 // AxeView를 바인드한 후 컴포넌트를 등록한다.
                 this.InitializeChildComponents();
             }
@@ -55,7 +61,8 @@ export default class HeosabiComponent {
      * 자식 Class에서 함수를 Overriding 해서 사용한다.
      * @returns {void}
      */
-    protected RenderingComplete(): void {
+    protected RenderingComplete(): void
+    {
         console.log("Rendering Completed!");
     }
 
@@ -66,7 +73,7 @@ export default class HeosabiComponent {
      * 자식 Class에서 함수를 Overriding해서 사용한다.
      * @returns {void}
      */
-    public DomThisComplete(): void {}
+    public DomThisComplete(): void { }
 
     //#region 액스뷰 리스트 처리
     public AxeList: Array<Overwatch> = new Array<Overwatch>();
@@ -77,7 +84,8 @@ export default class HeosabiComponent {
         OverwatchingOutputType,
         OverwatchingType,
         OverwatchingOneIs,
-    }: OverwatchInterface): void {
+    }: OverwatchInterface): void
+    {
         const model: Overwatch = new Overwatch({
             Name,
             FirstData,
@@ -89,25 +97,40 @@ export default class HeosabiComponent {
         this.AxeList.push(model);
     }
 
-    protected AxeSelectorByName(sName: string): Overwatch | undefined {
+    protected UseOverwatchComponent(sName: string, FirstDom?: HTMLElement): void
+    {
+        this.UseOverwatch({
+            Name: sName,
+            FirstData: FirstDom ?? document.createElement("div"),
+            OverwatchingOutputType: OverwatchingOutputType.Dom,
+            OverwatchingType: OverwatchingType.OutputFirst,
+            OverwatchingOneIs: false,
+        });
+    }
+
+    protected AxeSelectorByName(sName: string): Overwatch | undefined
+    {
         const findOverwatch: Overwatch | undefined = this.AxeList.find(
             (overwatch: Overwatch) => overwatch.Name === sName
         );
 
-        if (undefined === findOverwatch) {
+        if (undefined === findOverwatch)
+        {
             console.log(`AxeSelector Error: ${sName} is not found!`);
         }
 
         return findOverwatch;
     }
 
-    protected AxeSelectorById(sId: string): Overwatch | undefined {
+    protected AxeSelectorById(sId: string): Overwatch | undefined
+    {
         // OverwatchType이 Dom 일 경우에 사용할 수 있고 Dom이 아닐 경우에는 에러를 발생시킨다.
         const findOverwatch: Overwatch | undefined = this.AxeList.find(
             (overwatch: Overwatch) => overwatch.data.id === sId
         );
 
-        if (undefined === findOverwatch) {
+        if (undefined === findOverwatch)
+        {
             throw new Error(`AxeView Error: ${sId} is not found.`);
         }
 
@@ -118,25 +141,26 @@ export default class HeosabiComponent {
     //#region 컴포넌트 레이아웃 처리
     public ChildComponents: ChildComponentInterface[] = [];
 
-    protected AddChildComponent(components: ChildComponentInterface[]): void {
+    protected AddChildComponent(components: ChildComponentInterface[]): void
+    {
         this.ChildComponents.push(...components);
     }
 
-    private InitializeChildComponents(): void {
+    private InitializeChildComponents(): void
+    {
         // 슬립 함수
-        const sleep = (ms: number) => {
-            return new Promise((resolve) => setTimeout(resolve, ms));
-        };
+        // const sleep = (ms: number) => {
+        //     return new Promise((resolve) => setTimeout(resolve, ms));
+        // };
 
-        sleep(1000).then(() => {
-            this.ChildComponents.forEach((child) => {
-                const component: HTMLElement = child.component.DomThis;
-                const overwatch: Overwatch = this.AxeList.find(
-                    (axe) => axe.Name === child.overwatchName
-                );
+        this.ChildComponents.forEach((child) =>
+        {
+            const component: HTMLElement = child.component.DomThis;
+            const overwatch: Overwatch = this.AxeList.find(
+                (axe) => axe.Name === child.overwatchName
+            );
 
-                overwatch.data = component;
-            });
+            overwatch.data = component;
         });
 
         console.log("컴포넌트 렌더링");

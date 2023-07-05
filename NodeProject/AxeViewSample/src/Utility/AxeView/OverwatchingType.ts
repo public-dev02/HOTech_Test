@@ -19,7 +19,7 @@ export const enum OverwatchingOutputType
 	 * '속성(attribute)'과 같이 html이 적용되지 않는 경우 무시(감시하지 않음) 된다.
 	 * */
 	Html,
-	
+
 	/**
 	 * 함수 연결 - 속성(attribute)이름 그대로 사용
 	 * 함수는 속성(attribute)에서만 동작한다.(그외는 감시하지 않음)
@@ -96,4 +96,10 @@ export const enum OverwatchingType
 	 * 그래서 'change'를 넣어 값이 변경되면 돔이 가지고 있는 값도 수정하도록 변경하였다.
 	 * */
 	Monitoring_AttrValue,
+
+	/**
+	 * 속성(attribute)의 값(value)만 모니터링 하고 사용자의 입력값을 감시한다.
+	 * Monitoring_AttrValue동일하지만 연결하는 이벤트만 'input'로 변경됐다.
+	 */
+	Monitoring_AttrValue_Input,
 }

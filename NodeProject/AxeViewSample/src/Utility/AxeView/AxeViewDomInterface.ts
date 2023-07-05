@@ -53,5 +53,5 @@ export const enum AxeViewDomType
 	/** 속성 - 값 모니터링(UI 우선), 전체 교체로만 동작함 */
 	Attr_ValueMonitoring,
 
-	
+
 }
