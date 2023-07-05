@@ -9,7 +9,7 @@ import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/Over
 interface ChildComponentInterface
 {
     overwatchName: string;
-    component: HeosabiComponent;
+    component: new () => HeosabiComponent;
 }
 
 /**
@@ -52,6 +52,7 @@ export default class HeosabiComponent
             {
                 // AxeView를 바인드한 후 컴포넌트를 등록한다.
                 this.InitializeChildComponents();
+                console.log("컴포넌트 렌더링");
             }
         });
     }
@@ -78,7 +79,7 @@ export default class HeosabiComponent
     //#region 액스뷰 리스트 처리
     public AxeList: Array<Overwatch> = new Array<Overwatch>();
 
-    protected UseOverwatch({
+    protected UseOverwatchAll({
         Name,
         FirstData,
         OverwatchingOutputType,
@@ -97,9 +98,25 @@ export default class HeosabiComponent
         this.AxeList.push(model);
     }
 
+    protected UseOverwatchOutputString(sName: string, FirstData: string): void
+    {
+        const model: Overwatch =
+            GlobalStatic.app.AxeView.New_OutputString(sName, FirstData);
+
+        this.AxeList.push(model);
+    }
+
+    protected UseOverwatchMonitoringString(sName: string, FirstData: string): void
+    {
+        const model: Overwatch =
+            GlobalStatic.app.AxeView.New_MonitoringString(sName, FirstData);
+
+        this.AxeList.push(model);
+    };
+
     protected UseOverwatchComponent(sName: string, FirstDom?: HTMLElement): void
     {
-        this.UseOverwatch({
+        this.UseOverwatchAll({
             Name: sName,
             FirstData: FirstDom ?? document.createElement("div"),
             OverwatchingOutputType: OverwatchingOutputType.Dom,
@@ -155,15 +172,21 @@ export default class HeosabiComponent
 
         this.ChildComponents.forEach((child) =>
         {
-            const component: HTMLElement = child.component.DomThis;
-            const overwatch: Overwatch = this.AxeList.find(
-                (axe) => axe.Name === child.overwatchName
-            );
+            const component: HeosabiComponent = new child.component();
 
-            overwatch.data = component;
+            component.DomThisComplete = () =>
+            {
+                const componentDomThis: HTMLElement = component.DomThis;
+
+                const overwatch: Overwatch = this.AxeList.find(
+                    (axe) => axe.Name === child.overwatchName
+                );
+
+                console.log(overwatch);
+
+                overwatch.data = componentDomThis;
+            };
         });
-
-        console.log("컴포넌트 렌더링");
     }
     //#endregion
 }

@@ -12,33 +12,30 @@ import Form from "../Components/Form/Form";
  * Home Component를 생성하는 Class
  * Index가 되는 페이지이다.
  */
-export default class Home extends ContentComponent {
+export default class Home extends ContentComponent
+{
     /** Home Component의 html 파일 주소 */
     private readonly PagePath: string = "Pages/Home/Home.html";
 
-    constructor() {
+    constructor()
+    {
         /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
         super();
         this.AddOverwatchState();
         /** this.PagePath를 통해서 렌더링 시작 */
         this.AddChildComponent([
-            { overwatchName: "cardComponent", component: new Card() },
-            { overwatchName: "buttonComponent", component: new Button() },
-            { overwatchName: "formComponent", component: new Form() },
+            { overwatchName: "cardComponent", component: Card },
+            { overwatchName: "buttonComponent", component: Button },
+            { overwatchName: "formComponent", component: Form },
         ]);
         super.RenderingStart(this.PagePath);
     }
 
-    private AddOverwatchState(): void {
-        this.UseOverwatch({
-            Name: "welcomeText",
-            FirstData: "Welcome to, Axe Shop",
-            OverwatchingOutputType: OverwatchingOutputType.String,
-            OverwatchingType: OverwatchingType.Monitoring,
-            OverwatchingOneIs: false,
-        });
+    private AddOverwatchState(): void
+    {
+        this.UseOverwatchMonitoringString("welcomeText", "Welcome to, Axe Shop");
 
-        this.UseOverwatch({
+        this.UseOverwatchAll({
             Name: "testSectionTitle",
             FirstData: "Test",
             OverwatchingOutputType: OverwatchingOutputType.String,
@@ -46,7 +43,7 @@ export default class Home extends ContentComponent {
             OverwatchingOneIs: true,
         });
 
-        this.UseOverwatch({
+        this.UseOverwatchAll({
             Name: "testCurrentColorName",
             FirstData: "Primary",
             OverwatchingOutputType: OverwatchingOutputType.String,
@@ -54,7 +51,7 @@ export default class Home extends ContentComponent {
             OverwatchingOneIs: true,
         });
 
-        this.UseOverwatch({
+        this.UseOverwatchAll({
             Name: "testCurrentColorClass",
             FirstData: "primary",
             OverwatchingOutputType: OverwatchingOutputType.String,
@@ -62,21 +59,17 @@ export default class Home extends ContentComponent {
             OverwatchingOneIs: false,
         });
 
-        this.UseOverwatch({
+        this.UseOverwatchAll({
             Name: "onClickColorChange",
             FirstData: this.OnClickColorChange,
             OverwatchingOutputType: OverwatchingOutputType.Function_NameRemoveOn,
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: false,
         });
-        this.UseOverwatch({
-            Name: "outputValue",
-            FirstData: "",
-            OverwatchingOutputType: OverwatchingOutputType.String,
-            OverwatchingType: OverwatchingType.Monitoring,
-            OverwatchingOneIs: false,
-        });
-        this.UseOverwatch({
+
+        this.UseOverwatchMonitoringString("outputValue", "");
+
+        this.UseOverwatchAll({
             Name: "onChangeOutputValue",
             FirstData: this.onChangeOutputValue,
             OverwatchingOutputType: OverwatchingOutputType.Function_NameRemoveOn,
@@ -86,13 +79,23 @@ export default class Home extends ContentComponent {
         this.AddOverwatchComponent();
     }
 
-    private AddOverwatchComponent() {
-        this.UseOverwatchComponent("cardComponent");
-        this.UseOverwatchComponent("buttonComponent");
-        this.UseOverwatchComponent("formComponent");
+    private AddOverwatchComponent()
+    {
+        this.UseOverwatchComponent("cardComponent", this.CreateLoadingDom("Card"));
+        this.UseOverwatchComponent("buttonComponent", this.CreateLoadingDom("Button"));
+        this.UseOverwatchComponent("formComponent", this.CreateLoadingDom("Form"));
     }
 
-    public onChangeOutputValue = (event: Event, sender: ChildNode, objThis: Overwatch): void => {
+    private CreateLoadingDom = (sName: string): HTMLElement =>
+    {
+        const LoadingDom = document.createElement('div');
+        LoadingDom.innerHTML = `<h1>${sName} Component Loading...</h1>`;
+
+        return LoadingDom;
+    };
+
+    public onChangeOutputValue = (event: Event, sender: ChildNode, objThis: Overwatch): void =>
+    {
         const Target = event.target as HTMLInputElement;
         const Value = Target.value;
         const OutputValue = this.AxeSelectorByName("outputValue");
@@ -103,17 +106,20 @@ export default class Home extends ContentComponent {
      * Dom이 생성되고 나서 실행되는 함수
      * @returns {void}
      */
-    public RenderingComplete(): void {
+    public RenderingComplete(): void
+    {
         const welcomeText = this.AxeSelectorByName("welcomeText");
         console.log("홈 렌더링 완료");
     }
 
-    private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) => {
+    private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
+    {
         const Target = sender as HTMLElement;
         const ColorName = Target.id;
         const testSt = "123124213";
 
-        switch (ColorName) {
+        switch (ColorName)
+        {
             case "primary":
                 this.ChangeColorAndName("primary");
                 break;
@@ -143,7 +149,8 @@ export default class Home extends ContentComponent {
         }
     };
 
-    private ChangeColorAndName = (ColorName: string) => {
+    private ChangeColorAndName = (ColorName: string) =>
+    {
         let UpperCaseColorName = ColorName.replace(/^[a-z]/, (char) => char.toUpperCase());
         this.AxeSelectorByName("testCurrentColorClass").data = ColorName;
         this.AxeSelectorByName("testCurrentColorName").data = UpperCaseColorName;
