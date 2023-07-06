@@ -5,6 +5,7 @@ import { NavigateMatchModel } from "../Router/Models/NavigateMatchModel";
 import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import { OverwatchInterface } from "@/Utility/AxeView/OverwatchInterface";
 import { OverwatchingOutputType, OverwatchingType } from "@/Utility/AxeView/OverwatchingType";
+import PrintInferredTypes from "@/Utility/PrintInferredTypes/PrintInferredTypes";
 
 interface ChildComponentInterface
 {
@@ -23,7 +24,10 @@ export default class HeosabiComponent
     public AsyncHtmlLoader: AsyncHtmlLoader = new AsyncHtmlLoader();
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
     public RouteThis: NavigateMatchModel;
+    /** 나의 오버워치 객체 */
     public OverwatchThis: Overwatch;
+    /** Json의 타입을 추론하여 완성된 Json 객체를 만들어주는 class */
+    private JsonInferredTypes: PrintInferredTypes = new PrintInferredTypes();
 
     constructor() { }
 
@@ -58,9 +62,16 @@ export default class HeosabiComponent
         });
     }
 
+    /**
+     * 나에게 정의된 옵션을 가져오는 함수
+     * @returns {T}
+     */
     protected GetOptions<T>(): T
     {
-        return this.OverwatchThis.TossOptionFirst<T>();
+        const options: T = this.OverwatchThis.TossOptionFirst<T>();
+        const InferredOptions: T = this.JsonInferredTypes.Parse<T>(options);
+
+        return InferredOptions;
     }
 
     /**
