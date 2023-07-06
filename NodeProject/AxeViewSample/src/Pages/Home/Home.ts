@@ -7,6 +7,7 @@ import Card from "../Components/Card/Card";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
 import Button from "../Components/Button/Button";
 import Form from "../Components/Form/Form";
+import { OverwatchOptions } from "@/Utility/AxeView/OverwatchInterface";
 
 /**
  * Home Component를 생성하는 Class
@@ -76,12 +77,20 @@ export default class Home extends ContentComponent
             OverwatchingType: OverwatchingType.Monitoring,
             OverwatchingOneIs: true,
         });
+
         this.AddOverwatchComponent();
     }
 
     private AddOverwatchComponent()
     {
-        this.UseOverwatchComponent("cardComponent", this.CreateLoadingDom("Card"));
+        this.UseOverwatchAll({
+            Name: "cardComponent",
+            FirstData: this.CreateLoadingDom("Card"),
+            OverwatchingOutputType: OverwatchingOutputType.Dom,
+            OverwatchingType: OverwatchingType.OutputFirst,
+            OverwatchingOneIs: false,
+            TossOption: JSON.parse(`{"message":"카드 컴포넌트"}`)
+        });
         this.UseOverwatchComponent("buttonComponent", this.CreateLoadingDom("Button"));
         this.UseOverwatchComponent("formComponent", this.CreateLoadingDom("Form"));
     }
@@ -109,8 +118,19 @@ export default class Home extends ContentComponent
     public RenderingComplete(): void
     {
         const welcomeText = this.AxeSelectorByName("welcomeText");
-        console.log("홈 렌더링 완료");
+        const Card: Overwatch = this.AxeSelectorByName("cardComponent");
+        // const CardOptions = Card.GetOption<{ message: string; message: string; message: string; }>;
+        // // Card.TossOption.;
+        // console.log(CardOptions.message);
+        // let jSon: JSON = JSON.parse("{}");
+
     }
+
+    // public get GetOption<T>(sName: string)
+    // {
+    //     const Options: OverwatchOptions<T> = this.AxeSelectorByName(sName).TossOption;
+    //     return Options;
+    // }
 
     private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
     {

@@ -8,7 +8,22 @@ export class Overwatch
 	constructor(target: OverwatchInterface)
 	{
 		this.Name = target.Name;
-		this.NameFindString = "{{" + this.Name + "}}";
+		this.NameFindStringOri =
+			new RegExp(`\{\{${this.Name}+\}\}|\{\{${this.Name}+<.*\}\}`, 'g');
+		this.NameFindStringLowerCaseOri =
+			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase()}+<.*\}\}`, 'g');
+
+		//전달 옵션
+		if (undefined === target.TossOption
+			|| null === target.TossOption)
+		{
+
+		}
+		else
+		{//있을때만 전달
+			this.TossOption = target.TossOption;
+		}
+
 
 
 		if ("" === target.FirstData
@@ -52,9 +67,35 @@ export class Overwatch
 	 * OverwatchInterface.Name 참조
 	 * */
 	public Name: string = "";
+
+	/** 이름 검색용 문자열 - 원본
+	 * 자동생성된다.*/
+	private NameFindStringOri: RegExp;
 	/** 이름 검색용 문자열
 	 * 자동생성된다.*/
-	public NameFindString: string = "";
+	public get NameFindString(): RegExp
+	{
+		return this.NameFindStringOri;
+	}
+
+	/** 이름 검색용 문자열(소문자) - 원본
+	 * 자동생성된다.*/
+	private NameFindStringLowerCaseOri: RegExp;
+	/** 이름 검색용 문자열(소문자)
+	 * 자동생성된다.*/
+	public get NameFindStringLowerCase(): RegExp
+	{
+		return this.NameFindStringLowerCaseOri;
+	}
+
+
+
+	/** 
+	 * 기본값으로 사용할 전달 옵션
+	 * 뷰단에서 넘어오는 옵션은 이 옵션과 합쳐서 사용한다.
+	 * 뷰에서 넘어온 옵션이 우선이다.
+	 */
+	public TossOption: JSON = JSON.parse("{}");
 
 	/** 지금 가지고 있는 데이터 */
 	private _DataNow: string | Function | HTMLElement = "";

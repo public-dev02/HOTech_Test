@@ -16,12 +16,10 @@ export interface AxeViewDomInterface
 	/** 이벤트 내용이 필요할때 추가한다. */
 	Event?: EventListener | null;
 
-	//패턴 기능 추가 필요
-	//문자열일때만 동작함
-	//정규식 : /{{abcd.*?}}/g
-	//테스트 : {{addsd}} {{A}} {{abcd:aabbc}},  {{a111 : a2222}} {{abcd:a11212211/2**2abbc}}
-	//패턴명 : 구분할 패턴명. 콜론(:)뒤에 나오는 문자열 -> 바인딩할때만 사용
-	//함수 : 해당 패턴명에 사용될 함수
+	/**
+	 * 뷰단에서 넘어온 옵션
+	 */
+	TossOption: JSON;
 }
 
 
@@ -53,5 +51,5 @@ export const enum AxeViewDomType
 	/** 속성 - 값 모니터링(UI 우선), 전체 교체로만 동작함 */
 	Attr_ValueMonitoring,
 
-
+	
 }

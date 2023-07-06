@@ -27,5 +27,5 @@ export interface AxeDomHelperOptionInterface
      *  타입스크립트에 클릭이벤트가 'MouseEvent'로 되어있지만 실제론 a태그 관련 속성들이 더 있다.
      *  (event  as any)로 변환하여 사용할 것을 권장한다.
      * */
-    AtagClickEventCallback: (event: MouseEvent) => void | null;
+    AtagClickEventCallback: (event: MouseEvent) => void | null
 }

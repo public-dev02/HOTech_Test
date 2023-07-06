@@ -19,7 +19,7 @@ export const enum OverwatchingOutputType
 	 * '속성(attribute)'과 같이 html이 적용되지 않는 경우 무시(감시하지 않음) 된다.
 	 * */
 	Html,
-
+	
 	/**
 	 * 함수 연결 - 속성(attribute)이름 그대로 사용
 	 * 함수는 속성(attribute)에서만 동작한다.(그외는 감시하지 않음)

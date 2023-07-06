@@ -1,3 +1,4 @@
+import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import "./Card.scss";
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 
@@ -24,7 +25,7 @@ export default class Card extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log("카드 컴포넌트 렌더링");
+        const meOverwatch: Overwatch = this.AxeSelectorByName("cardComponent");
     }
 }
 

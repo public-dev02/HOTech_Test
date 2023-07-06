@@ -1,7 +1,7 @@
 ﻿
-import { Overwatch } from "./Overwatch";
+import { Overwatch } from "./Overwatch"
 
-import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface";
+import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface"
 
 
 /**
@@ -21,8 +21,8 @@ export class AxeDomHelper
 		OptionUseIs: false
 		, AtagClickEventCancel: false
 		, AtagClickEventCallback: null
-	};
-
+		};
+	
 	/**
 	 * 문자열을 변환하는 개체를 생성한다.
 	 * @param jsonDomHelperOption
@@ -57,7 +57,7 @@ export class AxeDomHelper
 	public DomHelping(
 		domTarget: HTMLElement
 		, jsonDomHelperOption?: AxeDomHelperOptionInterface | null)
-		: void;
+		: void
 
 	/**
 	 * 지정된 돔을 옵션에 따라 처리한다.
@@ -147,7 +147,7 @@ export class AxeDomHelper
 				}
 
 			});
-
+		
 	}
 
 	/**
