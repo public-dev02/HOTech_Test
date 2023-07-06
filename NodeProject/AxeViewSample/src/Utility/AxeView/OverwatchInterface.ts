@@ -1,4 +1,4 @@
-﻿import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType";
+﻿import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType"
 
 /** 감시자 인터페이스 */
 export interface OverwatchInterface
@@ -35,11 +35,11 @@ export interface OverwatchInterface
 	 * 액스뷰 바인딩이 끝나고 전달할 옵션
 	 * 옵션은 Html로 전달한 옵션을 최우선으로 사용한다.
 	 */
-	TossOption?: JSON,
-
+	TossOption?: {[key: string]: string},
 }
 
-export interface OverwatchOptions<T>
+/** 감시자 전달 인터페이스 */
+export interface OverwatchTossOptions<T>
 {
 	[key: string]: T;
 }

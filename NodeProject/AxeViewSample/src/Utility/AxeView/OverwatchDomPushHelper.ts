@@ -1,13 +1,13 @@
 ﻿import { AxeViewDomInterface, AxeViewDomType } from "./AxeViewDomInterface";
-import { Overwatch } from "./Overwatch";
-import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType";
+import { Overwatch } from "./Overwatch"
+import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType"
 
 /** 감시 대상 돔 추가 도우미  */
 export class OverwatchDomPushHelper
 {
 	constructor()
 	{
-
+		
 	}
 
 	/** 지금 처리중인 감시대상 */
@@ -53,13 +53,16 @@ export class OverwatchDomPushHelper
 	{
 
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
+		
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.HTMLElement
 			, Dom: domPushData
 			, EventName: null
 			, TossOption: jsonOpt
+			//, TossOption2: <T>(): T => { return jsonOpt as T }
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 	/**
@@ -72,13 +75,14 @@ export class OverwatchDomPushHelper
 		, sMatchString: string)
 	{
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.Node
 			, Dom: domPushData
 			, EventName: null
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 
@@ -102,13 +106,14 @@ export class OverwatchDomPushHelper
 		this._MyOw.DomIs = true;
 
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.Dom
 			, Dom: domPushData
 			, EventName: null
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 
@@ -123,13 +128,14 @@ export class OverwatchDomPushHelper
 		, sMatchString: string)
 	{
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.Attr_Valueless
 			, Dom: domPushData
 			, EventName: null
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 
@@ -144,13 +150,14 @@ export class OverwatchDomPushHelper
 		, sMatchString: string)
 	{
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.Attr_OneValue
 			, Dom: domPushData
 			, EventName: null
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 
@@ -166,12 +173,13 @@ export class OverwatchDomPushHelper
 		, sMatchString: string)
 	{
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		this._MyOw.Dom_AxeView.push({
 			AxeViewDomType: AxeViewDomType.Attr_ReplaceValue
 			, Dom: domPushData
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
 	}
 
@@ -191,11 +199,11 @@ export class OverwatchDomPushHelper
 		let objThis: Overwatch = this._MyOw;
 
 		//전달된 문자열을 json으로 바꾼다.
-		let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+		let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 		//이름 처리
 		if (OverwatchingOutputType.Function_NameRemoveOn
-			=== this._MyOw.OverwatchingOutputType)
+				=== this._MyOw.OverwatchingOutputType)
 		{//이름 앞에 'on'을 뺀다.
 
 			if (2 <= sEventName.length)
@@ -216,6 +224,7 @@ export class OverwatchDomPushHelper
 			, Dom: domPushData
 			, EventName: sEventName
 			, TossOption: jsonOpt
+			, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 		};
 
 		//이벤트로 사용할 함수
@@ -253,7 +262,7 @@ export class OverwatchDomPushHelper
 			let avdTemp: AxeViewDomInterface;
 
 			//전달된 문자열을 json으로 바꾼다.
-			let jsonOpt: JSON = this.MatchToTossOpt(sMatchString);
+			let jsonOpt: { [key: string]: string } = this.MatchToTossOpt(sMatchString);
 
 			switch (objThis.OverwatchingType)
 			{
@@ -268,6 +277,7 @@ export class OverwatchDomPushHelper
 							objThis.data = this.value;
 						}
 						, TossOption: jsonOpt
+						, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 					};
 					break;
 
@@ -282,6 +292,7 @@ export class OverwatchDomPushHelper
 							objThis.data = this.value;
 						}
 						, TossOption: jsonOpt
+						, TossOption2: <T>(): T => { return this.GetOption(jsonOpt); }
 					};
 					break;
 			}
@@ -305,10 +316,10 @@ export class OverwatchDomPushHelper
 	 * @param sMatchString
 	 * @returns
 	 */
-	private MatchToTossOpt(sMatchString: string): JSON
+	private MatchToTossOpt(sMatchString: string): { [key: string]: string }
 	{
-		let jsonReturn: JSON = JSON.parse("{}");
-
+		let jsonReturn: { [key: string]: string } = {};
+		
 
 		if ("" === sMatchString
 			|| null === sMatchString
@@ -360,5 +371,9 @@ export class OverwatchDomPushHelper
 		return jsonReturn;
 	}
 
+	private GetOption = <T>(json):T =>
+	{
+		return json as T;
+	}
 }
 

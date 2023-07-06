@@ -25,7 +25,7 @@ export default class Card extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        const meOverwatch: Overwatch = this.AxeSelectorByName("cardComponent");
+        console.log(this.OverwatchThis);
     }
 }
 

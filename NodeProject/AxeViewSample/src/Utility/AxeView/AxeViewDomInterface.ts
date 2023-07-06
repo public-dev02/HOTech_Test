@@ -19,7 +19,14 @@ export interface AxeViewDomInterface
 	/**
 	 * 뷰단에서 넘어온 옵션
 	 */
-	TossOption: JSON;
+	TossOption: { [key: string]: string };
+
+	/** 
+	 * 뷰단에서 넘어온 옵션을 지정한 형식으로 변환한다.
+	 * 변환된 타입은 무조건 문자열(string)이다. 형식> {key:string}
+	 * 인터페이스로 변환은 별도의 유틸리티를 사용하거나 직접 해야 한다.
+	 */
+	TossOption2: <T>() => T
 }
 
 

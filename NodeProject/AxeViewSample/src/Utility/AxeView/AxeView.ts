@@ -4,20 +4,20 @@ export * from "./OverwatchInterface";
 import { AxeViewDomInterface, AxeViewDomType } from "./AxeViewDomInterface";
 export * from "./AxeViewDomInterface";
 
-import { OverwatchingType, OverwatchingOutputType } from "./OverwatchingType";
+import { OverwatchingType, OverwatchingOutputType } from "./OverwatchingType"
 export * from "./OverwatchingType";
 
-import { Overwatch } from "./Overwatch";
+import { Overwatch } from "./Overwatch"
 export * from "./Overwatch";
 
-import { OverwatchDomPushHelper } from "./OverwatchDomPushHelper";
+import { OverwatchDomPushHelper } from "./OverwatchDomPushHelper"
 
 
 
-import { AxeDomHelper } from "./AxeDomHelper";
-export * from "./AxeDomHelper";
+import { AxeDomHelper } from "./AxeDomHelper"
+export *  from "./AxeDomHelper";
 
-import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface";
+import { AxeDomHelperOptionInterface } from "./AxeDomHelperOptionInterface"
 export * from "./AxeDomHelperOptionInterface";
 
 
@@ -46,7 +46,7 @@ export default class AxeView
 	public LastList: Overwatch[] = [];
 	/** 감시대상의 처리를 공통화 해주는 도우미 */
 	private OverwatchDomPushHelper: OverwatchDomPushHelper;
-
+	
 	/**
 	 * 
 	 * @param jsonDomHelperOption 헬퍼를 사용할때 전달할 옵션
@@ -90,7 +90,7 @@ export default class AxeView
 	public BindOverwatch(
 		domParent: HTMLElement
 		, arrTarget: Overwatch[]
-		, jsonDomHelperOption: AxeDomHelperOptionInterface | null)
+		, jsonDomHelperOption: AxeDomHelperOptionInterface | null	)
 		: void;
 
 	/**
@@ -193,7 +193,7 @@ export default class AxeView
 		//초기값으로 전달받은 텍스트를 그대로 넣어 준다.
 		arrStrText.push({ Text: nodeText.textContent, Overwatch: null, Match: false });
 
-
+		
 		for (let nOverwatchIdx = 0
 			; nOverwatchIdx < owTarget.length
 			; ++nOverwatchIdx)
@@ -216,7 +216,7 @@ export default class AxeView
 				//arrStrText에 바로 반영한다.
 				this.NodeMatch_String(arrStrText, itemOW);
 			}
-
+			
 		}//end for nOverwatchIdx
 
 
@@ -236,7 +236,7 @@ export default class AxeView
 				newParent.push(document.createTextNode(itemStrText.Text));
 			}
 			else if (OverwatchingOutputType.String === itemStrText.Overwatch.OverwatchingOutputType
-				&& OverwatchingType.OutputFirst === itemStrText.Overwatch.OverwatchingType)
+					&& OverwatchingType.OutputFirst === itemStrText.Overwatch.OverwatchingType)
 			{//감시 타입이 단순 문자열 출력이다.
 
 				//일반 택스트라는 소리다.
@@ -345,10 +345,10 @@ export default class AxeView
 		//엘리먼트를 유지하기위해 새로 생성한 부모노드에 엘리먼트를 복사한다.
 		//Array.from((nodeParent as HTMLElement).attributes)
 		//	.forEach(attr => { newElemParent.setAttribute(attr.nodeName, attr.nodeValue) });
-
+		
 		//이 노드의 자식 노드 추출
 		let arrChildNode: ChildNode[] = Array.from(nodeParent.childNodes);
-
+		
 		//자식 노드 만큼 검사
 		for (let nChildNodeIdx: number = 0
 			; nChildNodeIdx < arrChildNode.length
@@ -389,13 +389,13 @@ export default class AxeView
 				let newNodeMatch: HTMLElement
 					= this.NodeMatch_Normal(itemNode, owTarget);
 
-
+				
 				//새 엘리먼트의 어트리뷰트 판단.
 				this.NodeMatch_Attr(
 					itemNode
 					, newNodeMatch
 					, owTarget);
-
+				
 				//새 부모에 추가
 				newElemParent.appendChild(newNodeMatch);
 			}
@@ -429,7 +429,7 @@ export default class AxeView
 
 		//debugger;
 
-		while (true)
+		while(true)
 		{
 			if (true === owTarget.OverwatchingOneIs
 				&& true === owTarget.OneDataIs)
@@ -442,7 +442,7 @@ export default class AxeView
 			owTarget.NameFindString.lastIndex = 0;
 			let arrRegExpTemp: RegExpExecArray
 				= owTarget.NameFindString.exec(sTemp);
-
+				
 
 			//일치하는게 있었는지 검사
 			if (null === arrRegExpTemp
@@ -461,7 +461,7 @@ export default class AxeView
 			{//검색값이 0이다.
 
 				//검색된값이 맨앞에 있다는 의미이므로 빈값은 추가할 필요가 없다.
-
+				
 				//앞에 값 추가
 				arrStrText.push({
 					Text: sTemp.substring(0, nFindIdx)
@@ -489,7 +489,7 @@ export default class AxeView
 			//console.log("NodeMatch_TextCut(" + owTarget.NameFindString + ") : " + sTemp);
 
 		}//end while(true)
-
+		
 
 		//남은것 추가
 		arrStrText.push({
@@ -572,7 +572,7 @@ export default class AxeView
 		//어트리뷰트를 추출한다.
 		let arrAttr: Attr[] = Array.from((nodeParentNew as HTMLElement).attributes);
 
-
+		
 		//
 		for (let nAttrIdx: number = 0
 			; nAttrIdx < arrAttr.length
@@ -625,16 +625,18 @@ export default class AxeView
 				|| OverwatchingOutputType.Function_NameRemoveOn === itemOW.OverwatchingOutputType)
 			{//함수
 
+				//debugger;
+
 				//정규식으로 액스뷰 형식 찾기
 				itemOW.NameFindString.lastIndex = 0;
 				let arrRegExpTemp: RegExpExecArray
 					= itemOW.NameFindString.exec(attrItem.value);
-
+				
 				//함수는 부분교체가 없으므로 무조건 전체 비교다.
 				if (null !== arrRegExpTemp
 					&& 0 < arrRegExpTemp.length)
 				{//일치한다.
-
+					
 					let elemTemp: HTMLElement = nodeParentNew as HTMLElement;
 					//속성에 기존 이름 제거
 					elemTemp.removeAttribute(attrItem.name);
@@ -738,7 +740,7 @@ export default class AxeView
 
 						if (OverwatchingOutputType.Dom === itemOW.OverwatchingOutputType)
 						{//돔 개체
-
+							
 							//소속된 개체를 저장한다.
 							let elemTemp: HTMLElement = nodeParentNew as HTMLElement;
 							//기존 이름 제거
@@ -761,8 +763,7 @@ export default class AxeView
 							//감시자에 추가
 							itemOW.OneDataIs = true;
 							if (OverwatchingType.Monitoring === itemOW.OverwatchingType
-								|| OverwatchingType.Monitoring_OneValue === itemOW.OverwatchingType)
-							{//모니터링이다.
+								|| OverwatchingType.Monitoring_OneValue === itemOW.OverwatchingType) {//모니터링이다.
 
 								//감시할 돔 추가
 								this.OverwatchDomPushHelper
@@ -865,7 +866,7 @@ export default class AxeView
 		let bReturn: boolean = false;
 
 		const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-
+		
 		while (walker.nextNode())
 		{
 			let sTemp: string = walker.currentNode.textContent;
@@ -922,7 +923,7 @@ export default class AxeView
 	public ListSet = (arrOverwatch: Overwatch[]): void =>
 	{
 		this.LastList = arrOverwatch;
-	};
+	}
 
 	/**
 	 * 가지고 있는 리스트에서 이름으로 감시대상을 찾는다.
@@ -933,7 +934,7 @@ export default class AxeView
 	{
 		return this.LastList.find(f => f.Name === sName);
 
-	};
+	}
 	// #endregion
 
 
@@ -989,10 +990,10 @@ export default class AxeView
 interface MatchStringInterface
 {
 	/** 매칭된 문자열. 혹은 남은 문자열 */
-	Text: string
+	Text: string 
 	/** 매칭된 감시자. 매칭이 없는경우 null */
 	, Overwatch: Overwatch | null
 	/** 명시적으로 매칭됐는지 여부. 
 	 * 감시자가 없어도 매칭에 사용되지 않을 문자열은 이것을 true로 해둔다.*/
-	, Match: boolean;
+	, Match: boolean
 }

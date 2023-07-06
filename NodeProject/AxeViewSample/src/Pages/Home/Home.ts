@@ -7,7 +7,14 @@ import Card from "../Components/Card/Card";
 import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
 import Button from "../Components/Button/Button";
 import Form from "../Components/Form/Form";
-import { OverwatchOptions } from "@/Utility/AxeView/OverwatchInterface";
+import PrintInferredTypes from "@/Utility/PrintInferredTypes/PrintInferredTypes";
+
+interface TestInterface
+{
+    message: string;
+    comma: boolean;
+    num: number;
+}
 
 /**
  * Home Component를 생성하는 Class
@@ -119,6 +126,13 @@ export default class Home extends ContentComponent
     {
         const welcomeText = this.AxeSelectorByName("welcomeText");
         const Card: Overwatch = this.AxeSelectorByName("cardComponent");
+
+        const JsonGenerator = new PrintInferredTypes();
+        const CardProps = JsonGenerator.Parse<TestInterface>(Card.TossOption);
+
+        const CardPropsAxeView = Card.TossOptionFirst<TestInterface>();
+        console.log(CardPropsAxeView);
+
         // const CardOptions = Card.GetOption<{ message: string; message: string; message: string; }>;
         // // Card.TossOption.;
         // console.log(CardOptions.message);

@@ -1,6 +1,6 @@
-﻿import { OverwatchInterface } from "./OverwatchInterface";
+﻿import { OverwatchInterface, OverwatchTossOptions } from "./OverwatchInterface";
 import { AxeViewDomInterface, AxeViewDomType } from "./AxeViewDomInterface";
-import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType";
+import { OverwatchingOutputType, OverwatchingType } from "./OverwatchingType"
 
 /** 감시 대상  */
 export class Overwatch
@@ -11,7 +11,7 @@ export class Overwatch
 		this.NameFindStringOri =
 			new RegExp(`\{\{${this.Name}+\}\}|\{\{${this.Name}+<.*\}\}`, 'g');
 		this.NameFindStringLowerCaseOri =
-			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase()}+<.*\}\}`, 'g');
+			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase() }+<.*\}\}`, 'g');
 
 		//전달 옵션
 		if (undefined === target.TossOption
@@ -23,7 +23,7 @@ export class Overwatch
 		{//있을때만 전달
 			this.TossOption = target.TossOption;
 		}
-
+		
 
 
 		if ("" === target.FirstData
@@ -95,7 +95,17 @@ export class Overwatch
 	 * 뷰단에서 넘어오는 옵션은 이 옵션과 합쳐서 사용한다.
 	 * 뷰에서 넘어온 옵션이 우선이다.
 	 */
-	public TossOption: JSON = JSON.parse("{}");
+	public TossOption: { [key: string]: string } = {};
+
+	public TossOptionFirst<T>():T
+	{
+		//const Options: OverwatchTossOptions<T> 
+		//	= this.Dom_AxeView[0].TossOption as OverwatchTossOptions<T>;
+
+		//debugger;
+		return this.Dom_AxeView[0].TossOption as T;
+	}
+
 
 	/** 지금 가지고 있는 데이터 */
 	private _DataNow: string | Function | HTMLElement = "";
@@ -128,7 +138,7 @@ export class Overwatch
 		}
 		else if (true === this.ValueMonitoringIs)
 		{//값 모니터링 전용
-
+			
 			if (0 < this._Dom_AxeView.length)
 			{
 				//값 모니터링은 돔의 value를 우선한다.
@@ -153,7 +163,7 @@ export class Overwatch
 
 		//새값 저장
 		this._DataNow = data;
-
+		
 		if (null !== this._Dom_AxeView
 			&& 0 < this._Dom_AxeView.length)
 		{//돔이 있으면 실행
@@ -179,10 +189,10 @@ export class Overwatch
 						(OldData.parentElement as HTMLElement)
 							.replaceChild(this._DataNow, OldData);
 					}
-
+					
 				}
 				else if (AxeViewDomType.Attr_OneValue === item.AxeViewDomType
-					|| AxeViewDomType.Attr_ValueMonitoring === item.AxeViewDomType)
+					|| AxeViewDomType.Attr_ValueMonitoring === item.AxeViewDomType				)
 				{
 					(item.Dom as Attr).value = this._DataNow;
 				}
@@ -194,7 +204,7 @@ export class Overwatch
 					//속성을 교체하는 방식인 경우 빈값이 들어오면 교체하지 못하므로
 					//임의의 고유값을 생성하여 저장한다.
 
-
+					
 
 					//이전 데이터를 백업하고
 					let OldDataTemp: string = OldReplaceValue;
@@ -205,7 +215,7 @@ export class Overwatch
 
 					//현재 데이터 저장
 					this._DataNow_ReplaceValue = this._DataNow;
-
+					
 					if ("" === this._DataNow_ReplaceValue)
 					{//현재 데이터가 비어있다.
 
@@ -263,11 +273,11 @@ export class Overwatch
 					{
 						(item.Dom as HTMLElement).innerHTML = data;
 					}
-
-
+					
+					
 				}
 			}
-
+			
 		}
 	};
 
@@ -353,17 +363,17 @@ export class Overwatch
 	/** 값 모니터링 전용인지 여부 */
 	public get ValueMonitoringIs(): boolean { return this.ValueMonitoringIsOri; }
 	/** 값 모니터링 전용인지 여부 */
-	public set ValueMonitoringIs(value: boolean) { this.ValueMonitoringIsOri = value; }
+	public set ValueMonitoringIs(value: boolean) { this.ValueMonitoringIsOri = value; } 
 
 	/** 돔 개체 전용인지 여부 - 원본 */
 	private DomIsOri: boolean = false;
 	/** 돔 개체 전용인지 여부 */
 	public get DomIs(): boolean { return this.DomIsOri; }
 	/** 돔 개체 전용인지 여부 */
-	public set DomIs(value: boolean) { this.DomIsOri = value; }
+	public set DomIs(value: boolean) { this.DomIsOri = value; } 
 
 
-
+	
 
 	/**
 	 * 지정한 문자열을 모두 찾아 변환한다.

@@ -23,6 +23,7 @@ export default class HeosabiComponent
     public AsyncHtmlLoader: AsyncHtmlLoader = new AsyncHtmlLoader();
     /** 컴포넌트가 보여지고 있는 현재 Route 정보들 */
     public RouteThis: NavigateMatchModel;
+    public OverwatchThis: Overwatch;
 
     constructor() { }
 
@@ -173,17 +174,16 @@ export default class HeosabiComponent
         this.ChildComponents.forEach((child) =>
         {
             const component: HeosabiComponent = new child.component();
+            const overwatch: Overwatch = this.AxeList.find(
+                (axe) => axe.Name === child.overwatchName
+            );
+
+            component.OverwatchThis = overwatch;
 
             component.DomThisComplete = () =>
             {
                 const componentDomThis: HTMLElement = component.DomThis;
-
-                const overwatch: Overwatch = this.AxeList.find(
-                    (axe) => axe.Name === child.overwatchName
-                );
-
                 console.log(overwatch);
-
                 overwatch.data = componentDomThis;
             };
         });
