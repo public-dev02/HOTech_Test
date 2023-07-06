@@ -58,6 +58,11 @@ export default class HeosabiComponent
         });
     }
 
+    protected GetOptions<T>(): T
+    {
+        return this.OverwatchThis.TossOptionFirst<T>();
+    }
+
     /**
      * Dom이 생성되고 나서 실행되는 함수
      * 자식 Class에서 함수를 Overriding 해서 사용한다.

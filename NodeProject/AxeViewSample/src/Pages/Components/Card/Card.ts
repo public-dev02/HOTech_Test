@@ -25,7 +25,9 @@ export default class Card extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        console.log(this.OverwatchThis);
+        const overwatch = this.OverwatchThis;
+        const option = this.GetOptions<{ message: string, comma: boolean, num: number; }>();
+        console.log(option);
     }
 }
 

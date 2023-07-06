@@ -332,7 +332,7 @@ export class OverwatchDomPushHelper
 		else
 		{
 			//구분자를 기준으로 데이터를 자른다.
-			let arrDataString: string[] = sMatchString.split("<");
+			let arrDataString: string[] = sMatchString.split("@");
 
 			if (1 < arrDataString.length)
 			{//잘린 데이터가 있으면

@@ -9,9 +9,9 @@ export class Overwatch
 	{
 		this.Name = target.Name;
 		this.NameFindStringOri =
-			new RegExp(`\{\{${this.Name}+\}\}|\{\{${this.Name}+<.*\}\}`, 'g');
+			new RegExp(`\{\{${this.Name}+\}\}|\{\{${this.Name}+@.*\}\}`, 'g');
 		this.NameFindStringLowerCaseOri =
-			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase() }+<.*\}\}`, 'g');
+			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase() }+@.*\}\}`, 'g');
 
 		//전달 옵션
 		if (undefined === target.TossOption
