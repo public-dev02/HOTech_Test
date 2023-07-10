@@ -7,6 +7,14 @@ export interface AxeViewDomInterface
 	 * */
 	Dom: HTMLElement | Node | Attr | Function;
 
+	/**
+	 * 화면에 표시된 데이터
+	 * 조건에 따라서 각 액스돔의 출력값이 다를 수 있다.
+	 * 그래서 실제 표시된 값을 별도로 저장한다.
+	 * 돔과 같은 특수동작의 경우 저장을 안할 수도 있으니 주의!
+	 */
+	DataView?: string;
+
 	/** 액스뷰에서 동작할 방식 */
 	AxeViewDomType: AxeViewDomType;
 
@@ -26,7 +34,7 @@ export interface AxeViewDomInterface
 	 * 변환된 타입은 무조건 문자열(string)이다. 형식> {key:string}
 	 * 인터페이스로 변환은 별도의 유틸리티를 사용하거나 직접 해야 한다.
 	 */
-	TossOption2: <T>() => T
+	TossOptionType: <T>() => T
 }
 
 

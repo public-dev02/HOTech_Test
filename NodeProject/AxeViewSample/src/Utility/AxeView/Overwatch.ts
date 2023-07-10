@@ -14,22 +14,30 @@ export class Overwatch
 			new RegExp(`\{\{${this.Name.toLowerCase()}+\}\}|\{\{${this.Name.toLowerCase() }+@.*\}\}`, 'g');
 
 		//전달 옵션
-		if (undefined === target.TossOption
-			|| null === target.TossOption)
-		{
-
-		}
-		else
+		if (undefined !== target.TossOption
+			&& null !== target.TossOption)
 		{//있을때만 전달
 			this.TossOption = target.TossOption;
 		}
-		
+
+		if (undefined !== target.AxeDomSet_DataEdit
+			&& null !== target.AxeDomSet_DataEdit)
+		{//있을때만 전달
+			this.AxeDomSet_DataEdit = target.AxeDomSet_DataEdit;
+		}
+
+
 
 
 		if ("" === target.FirstData
 			|| " " === target.FirstData)
 		{
-			if (OverwatchingOutputType.String === this.OverwatchingOutputType)
+			if (OverwatchingOutputType.Dom === this.OverwatchingOutputType)
+			{
+				//빈값은 돔인경우만 허용된다.
+				this._DataNow = "";
+			}
+			else if (OverwatchingOutputType.String === this.OverwatchingOutputType)
 			{
 				//이 값은 절대 비어있으면 안된다.(빈값을 쓰려면 스페이스를 사용하자)
 				//빈값으로는 노드를 생성하지 않고 있기 때문이다.
@@ -99,11 +107,7 @@ export class Overwatch
 
 	public TossOptionFirst<T>():T
 	{
-		//const Options: OverwatchTossOptions<T> 
-		//	= this.Dom_AxeView[0].TossOption as OverwatchTossOptions<T>;
-
-		//debugger;
-		return this.Dom_AxeView[0].TossOption as T;
+		return this.Dom_AxeViewList[0].TossOption as T;
 	}
 
 
@@ -114,13 +118,6 @@ export class Overwatch
 	{
 		this._DataNow = dataNow;
 	}
-
-	/** 
-	 *  지금 가지고 있는 데이터 - Replace
-	 *  교체(Replace)의 경우 이전값이 빈값이면 동작할 수 없으므로
-	 *  임의의 고유값을 생성하여 저장하는 변수다.
-	 * */
-	private _DataNow_ReplaceValue: string = "";
 
 	/** 임시로 들고 있어야할 데이터가 있을때 사용하는 속성 */
 	public Temp?: any = null;
@@ -139,10 +136,10 @@ export class Overwatch
 		else if (true === this.ValueMonitoringIs)
 		{//값 모니터링 전용
 			
-			if (0 < this._Dom_AxeView.length)
+			if (0 < this.Dom_AxeViewListOri.length)
 			{
 				//값 모니터링은 돔의 value를 우선한다.
-				sReturn = (this._Dom_AxeView[0].Dom as Attr).value;
+				sReturn = (this.Dom_AxeViewListOri[0].Dom as Attr).value;
 			}
 		}
 		else
@@ -157,44 +154,55 @@ export class Overwatch
 	 */
 	private DataNowSet: Function = function (data: any)
 	{
+
 		//기존값 백업
 		let OldData: any = this._DataNow;
-		let OldReplaceValue: string = this._DataNow_ReplaceValue;
+		
 
 		//새값 저장
 		this._DataNow = data;
+		//저장된 새값 사용
+		let DataNowThis = this._DataNow;
+
 		
-		if (null !== this._Dom_AxeView
-			&& 0 < this._Dom_AxeView.length)
+		if (null !== this.Dom_AxeViewListOri
+			&& 0 < this.Dom_AxeViewListOri.length)
 		{//돔이 있으면 실행
 
 			//저장된 돔개수만큼 실행
-			for (let nDomIdx: number = 0; nDomIdx < this._Dom_AxeView.length; ++nDomIdx)
+			for (let nDomIdx: number = 0; nDomIdx < this.Dom_AxeViewListOri.length; ++nDomIdx)
 			{
-				let item: AxeViewDomInterface = this.Dom_AxeView[nDomIdx];
-				//item.innerHTML = this._DataNow;
+				let item: AxeViewDomInterface = this.Dom_AxeViewList[nDomIdx];
+
+				//화면에 표시한 데이터 백업
+				let OldDataView: string | null = item.DataView;
+				//화면 표시용 데이터
+				let ViewData = this.AxeDomSet_DataEdit(this, item, DataNowThis);
+
+				
 				if (AxeViewDomType.Node === item.AxeViewDomType)
 				{
-					(item.Dom as Node).nodeValue = this._DataNow;
+					//(item.Dom as Node).nodeValue = DataNowThis;
+					(item.Dom as Node).nodeValue = ViewData;
 				}
 				else if (AxeViewDomType.Dom === item.AxeViewDomType)
 				{//돔인 경우
 
 					//돔은 교체만 허용한다.
-					if (true === (this._DataNow instanceof HTMLElement))
+					if (true === (DataNowThis instanceof HTMLElement))
 					{//들어온 값이 HTMLElement다.
 
 						//돔의 경우 이전 개체(OldData)의 부모를 찾아
 						//.replaceChild를 해야 한다.
 						(OldData.parentElement as HTMLElement)
-							.replaceChild(this._DataNow, OldData);
+							.replaceChild(DataNowThis, OldData);
 					}
 					
 				}
 				else if (AxeViewDomType.Attr_OneValue === item.AxeViewDomType
 					|| AxeViewDomType.Attr_ValueMonitoring === item.AxeViewDomType				)
 				{
-					(item.Dom as Attr).value = this._DataNow;
+					(item.Dom as Attr).value = ViewData;
 				}
 				else if (AxeViewDomType.Attr_ReplaceValue === item.AxeViewDomType)
 				{
@@ -207,20 +215,20 @@ export class Overwatch
 					
 
 					//이전 데이터를 백업하고
-					let OldDataTemp: string = OldReplaceValue;
+					let OldDataTemp: string = item.DataView;
 					if ("" === OldDataTemp)
 					{
 						OldDataTemp = OldData;
 					}
 
 					//현재 데이터 저장
-					this._DataNow_ReplaceValue = this._DataNow;
+					item.DataView = ViewData;
 					
-					if ("" === this._DataNow_ReplaceValue)
+					if ("" === item.DataView)
 					{//현재 데이터가 비어있다.
 
 						//임의의 값을 생성해 준다.
-						this._DataNow_ReplaceValue
+						item.DataView
 							= OldData + "_AxeViewTemp" + this.MyNumber;
 					}
 
@@ -229,7 +237,7 @@ export class Overwatch
 						attrTemp.value
 							= attrTemp.value.replace(
 								OldDataTemp
-								, this._DataNow_ReplaceValue);
+								, item.DataView);
 					}
 					else
 					{//전체 교체
@@ -237,7 +245,7 @@ export class Overwatch
 							= this.ReplaceAll(
 								attrTemp.value
 								, OldDataTemp
-								, this._DataNow_ReplaceValue);
+								, item.DataView);
 					}
 				}
 				else if (AxeViewDomType.Attr_Valueless === item.AxeViewDomType)
@@ -247,7 +255,7 @@ export class Overwatch
 					//기존 이름 제거
 					elemTemp.removeAttribute(OldData.toLowerCase());
 					//새 이름 추가(값없음)
-					elemTemp.setAttribute(this._DataNow, "");
+					elemTemp.setAttribute(ViewData, "");
 				}
 				else if (AxeViewDomType.Attr_Event === item.AxeViewDomType)
 				{
@@ -255,28 +263,29 @@ export class Overwatch
 					(item.Dom as Node).removeEventListener(item.EventName, item.Event);
 
 					//새로들어온 이벤트 연결
-					item.Event = data;
+					item.Event = DataNowThis;
 					(item.Dom as Node).addEventListener(item.EventName, item.Event);
 				}
 				else
 				{
-					if (true === (data instanceof Element)
-						|| true === (data instanceof HTMLElement)
+					if (true === (DataNowThis instanceof Element)
+						|| true === (DataNowThis instanceof HTMLElement)
 						//|| true === (data instanceof ChildNode)
-						|| true === (data instanceof Node))
-					{
+						|| true === (DataNowThis instanceof Node))
+					{//들어온 데이터가 개체 타입이다.
 						(item.Dom as HTMLElement).innerHTML = "";
 						(item.Dom as HTMLElement)
-							.insertAdjacentElement("beforeend", data);
+							.insertAdjacentElement("beforeend", DataNowThis);
 					}
 					else
-					{
-						(item.Dom as HTMLElement).innerHTML = data;
+					{//html string 이다.
+
+						(item.Dom as HTMLElement).innerHTML = ViewData;
 					}
 					
 					
 				}
-			}
+			}//end for nDomIdx
 			
 		}
 	};
@@ -307,24 +316,24 @@ export class Overwatch
 	 * Dom 개체 형식의 경우 부모는 무조건 한개가 되므로 이 배열에 추가하지 않는다.
 	 * (DataNow만 사용)
 	 * */
-	private _Dom_AxeView: AxeViewDomInterface[] = [];
+	private Dom_AxeViewListOri: AxeViewDomInterface[] = [];
 	/** 연결된 돔 */
-	public get Dom_AxeView(): AxeViewDomInterface[]
+	public get Dom_AxeViewList(): AxeViewDomInterface[]
 	{
-		return this._Dom_AxeView;
+		return this.Dom_AxeViewListOri;
 	}
 
 	/** 연결된 돔 리스트에서 가장 첫 액스돔이 가지고 있는 돔 */
 	public get Dom(): HTMLElement | Node | Attr | Function
 	{
-		return this.Dom_AxeView[0].Dom;
+		return this.Dom_AxeViewList[0].Dom;
 	}
 
 
 	/** 연결된 돔 비우기 */
 	public Dom_Clear()
 	{
-		this._Dom_AxeView = [];
+		this.Dom_AxeViewListOri = [];
 	}
 
 	/** 
@@ -372,8 +381,18 @@ export class Overwatch
 	/** 돔 개체 전용인지 여부 */
 	public set DomIs(value: boolean) { this.DomIsOri = value; } 
 
-
 	
+	/**
+	 * Set동작이 시작되어 데어를 화면에 표시하기 직전에 호출되는 함수
+	 * 
+	 * 이 이벤트는 연결된 개체의 개수만큼 호출된다.
+	 * @param owThis 이 이벤트가 발생한 감시대상
+	 * @param adThis 이 이벤트를 호출한 액스돔 개체
+	 * @param data 전달된 값
+	 * @returns 출력값이 문자열인경우 문자열을 직접 조작하려는 리턴값. 문자열이 아닌경우 빈값을 리턴하는것이 좋다.
+	 */
+	public AxeDomSet_DataEdit
+		= (owThis: Overwatch, adThis: AxeViewDomInterface, data: any): string => { return data; }
 
 	/**
 	 * 지정한 문자열을 모두 찾아 변환한다.

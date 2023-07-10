@@ -263,7 +263,7 @@ export default class AxeView
 					newParent.push(newTextDom);
 					//감시자에 추가
 					this.OverwatchDomPushHelper
-						.Dom_Push_Node(newTextDom, "");
+						.Dom_Push_Node(newTextDom, itemStrText.Text);
 				}
 				else
 				{//내용물은 있는데 감시자가 없다.
@@ -300,7 +300,7 @@ export default class AxeView
 
 						//감시자  dom리스트에 추가
 						this.OverwatchDomPushHelper.Dom_Push_HTMLElement(
-							<HTMLElement>newMElem.firstChild, "");
+							<HTMLElement>newMElem.firstChild, itemStrText.Text);
 					}
 				}
 				else
@@ -962,7 +962,7 @@ export default class AxeView
 			, FirstData: sData
 			, OverwatchingOutputType: OverwatchingOutputType.String
 			, OverwatchingType: OverwatchingType.OutputFirst
-			, OverwatchingOneIs: true
+			, OverwatchingOneIs: false
 		});
 	}
 
@@ -978,7 +978,7 @@ export default class AxeView
 			, FirstData: sData
 			, OverwatchingOutputType: OverwatchingOutputType.String
 			, OverwatchingType: OverwatchingType.Monitoring
-			, OverwatchingOneIs: true
+			, OverwatchingOneIs: false
 		});
 	}
 	// #endregion

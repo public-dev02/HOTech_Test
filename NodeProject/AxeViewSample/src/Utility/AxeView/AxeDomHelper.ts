@@ -162,7 +162,13 @@ export class AxeDomHelper
 
 			if (true === item.DomIs)
 			{
-				if (null !== item.Temp
+
+				if ("" === item.Temp)
+				{//돔인데 비어있다.
+
+					//돔인데 비어있으면 초기돔 처리를 하지 않는다.
+				}
+				else if (null !== item.Temp
 					&& undefined !== item.Temp)
 				{//초기 돔이 존제 한다.
 

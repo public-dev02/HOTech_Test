@@ -1,4 +1,3 @@
-import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import "./Card.scss";
 import ContentComponent from "@/Faculty/Base/ContentComponent";
 
@@ -25,9 +24,10 @@ export default class Card extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        const overwatch = this.OverwatchThis;
         const option = this.GetOptions<TestInterface>();
-        console.log(option);
+        const CardBody = (this.OverwatchThis.data as HTMLElement).querySelector(".card-body");
+
+        CardBody.textContent = option.message;
     }
 }
 
