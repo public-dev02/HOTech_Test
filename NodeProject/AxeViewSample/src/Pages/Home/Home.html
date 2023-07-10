@@ -17,6 +17,20 @@
     </section>
     <section class="test-section bg-light">
         <div class="container py-5">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <button id="btnClick">금액 적용</button>
+                        <input type="text" id="txtInput" value="10000" />
+                        <ul>
+                            <li>돈(콤마,$) : {{Money@val:100,comma:true,currency:$,formatGroup:[MONEY|DATE]}}</li>
+                            <li>돈(콤마,￦) : {{Money@val:500,comma:true,currency:￦,formatGroup:[MONEY|DATE]}}</li>
+                            <li>돈(￥) : {{Money@val:500,comma:false,currency:￥,formatGroup:[MONEY|DATE]}}</li>
+                            <li>돈(￡) : {{Money@val:500,comma:false,currency:￡,formatGroup:[MONEY|DATE]}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1 mb-2">{{testSectionTitle}}</h1>

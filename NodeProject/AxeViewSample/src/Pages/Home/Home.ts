@@ -5,6 +5,8 @@ import { Overwatch } from "@/Utility/AxeView/Overwatch";
 import Card from "../Components/Card/Card";
 import Button from "../Components/Button/Button";
 import Form from "../Components/Form/Form";
+import AxeView_StringFormatPlugin from "@/Utility/AxeView_StringFormatPlugin/AxeView_StringFormatPlugin";
+import { AxeViewDomInterface } from "@/Utility/AxeView/AxeViewDomInterface";
 
 /**
  * Home Component를 생성하는 Class
@@ -14,6 +16,7 @@ export default class Home extends ContentComponent
 {
     /** Home Component의 html 파일 주소 */
     private readonly PagePath: string = "Pages/Home/Home.html";
+    private StringFormatPlugin: AxeView_StringFormatPlugin;
 
     constructor()
     {
@@ -27,9 +30,25 @@ export default class Home extends ContentComponent
             { overwatchName: "formComponent", component: Form },
         ]);
         super.RenderingStart(this.PagePath);
+
+        this.StringFormatPlugin = new AxeView_StringFormatPlugin();
+
+        this.StringFormatPlugin.AddHook("MONEY", {
+            comma: (data, options) =>
+            {
+                return Number(data).toLocaleString();
+            },
+            currency: (data, options) =>
+            {
+                if ("" !== options.currency)
+                {
+                    return options.currency + " " + data;
+                }
+            }
+        });
     }
 
-    private AddOverwatchState(): void
+    private AddOverwatchState = (): void =>
     {
         this.UseOverwatchMonitoringString("welcomeText", "Welcome to, Axe Shop");
 
@@ -75,8 +94,17 @@ export default class Home extends ContentComponent
             OverwatchingOneIs: true,
         });
 
+        this.UseOverwatchAll({
+            Name: "Money"
+            , FirstData: "0"
+            , OverwatchingOutputType: OverwatchingOutputType.String
+            , OverwatchingType: OverwatchingType.Monitoring
+            , OverwatchingOneIs: false
+            , AxeDomSet_DataEdit: this.AxeDomSet_DataEdit
+        });
+
         this.AddOverwatchComponent();
-    }
+    };
 
     private AddOverwatchComponent()
     {
@@ -114,21 +142,46 @@ export default class Home extends ContentComponent
      */
     public RenderingComplete(): void
     {
-        const welcomeText = this.AxeSelectorByName("welcomeText");
-        const Card: Overwatch = this.AxeSelectorByName("cardComponent");
+        const TestButton = this.DomThis.querySelector('#btnClick') as HTMLButtonElement;
+        const MoneyOverwatch = this.AxeSelectorByName("Money");
+        console.log(MoneyOverwatch);
 
-        // const CardOptions = Card.GetOption<{ message: string; message: string; message: string; }>;
-        // // Card.TossOption.;
-        // console.log(CardOptions.message);
-        // let jSon: JSON = JSON.parse("{}");
-
+        TestButton.onclick = () =>
+        {
+            const InputValue = this.TextInput();
+            const OutputValue = this.AxeSelectorByName("Money");
+            OutputValue.data = InputValue;
+        };
     }
 
-    // public get GetOption<T>(sName: string)
-    // {
-    //     const Options: OverwatchOptions<T> = this.AxeSelectorByName(sName).TossOption;
-    //     return Options;
-    // }
+    private TextInput = (): number =>
+    {
+        return Number((document.getElementById("txtInput") as HTMLInputElement).value);
+
+    };
+
+    private AxeDomSet_DataEdit = (
+        objThis: Overwatch
+        , axeDom: AxeViewDomInterface
+        , data: any)
+        : string =>
+    {
+        let sReturn = "";
+
+        let tossOpt: { val: string, comma: string, currency: string; }
+            = axeDom.TossOptionType<{ val: string, comma: string, currency: string; }>();
+        let nMoney: number = Number(data);
+
+        if (true === isNaN(nMoney))
+        {
+            // 숫자형이 아니라면 종료
+            return;
+        }
+
+        sReturn = this.StringFormatPlugin.Use(data, tossOpt);
+
+        return sReturn;
+    };
 
     private OnClickColorChange = (event: Event, sender: ChildNode, objThis: Overwatch) =>
     {

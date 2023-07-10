@@ -102,6 +102,7 @@ export default class HeosabiComponent
         OverwatchingOutputType,
         OverwatchingType,
         OverwatchingOneIs,
+        AxeDomSet_DataEdit,
     }: OverwatchInterface): void
     {
         const model: Overwatch = new Overwatch({
@@ -110,6 +111,7 @@ export default class HeosabiComponent
             OverwatchingOutputType,
             OverwatchingType,
             OverwatchingOneIs,
+            AxeDomSet_DataEdit,
         });
 
         this.AxeList.push(model);
