@@ -11,9 +11,10 @@ export interface AxeViewDomInterface
 	 * 화면에 표시된 데이터
 	 * 조건에 따라서 각 액스돔의 출력값이 다를 수 있다.
 	 * 그래서 실제 표시된 값을 별도로 저장한다.
-	 * 돔과 같은 특수동작의 경우 저장을 안할 수도 있으니 주의!
+	 * !!주의!! 돔과 같은 특수동작의 경우 저장을 안할 수도 있다.
+	 * !!주의!! undefined면 이상한 동작을 하므로 최소 빈값으로 초기화 해준다.
 	 */
-	DataView?: string;
+	DataView: string;
 
 	/** 액스뷰에서 동작할 방식 */
 	AxeViewDomType: AxeViewDomType;

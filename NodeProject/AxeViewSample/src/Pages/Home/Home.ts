@@ -34,17 +34,8 @@ export default class Home extends ContentComponent
         this.StringFormatPlugin = new AxeView_StringFormatPlugin();
 
         this.StringFormatPlugin.AddHook("MONEY", {
-            comma: (data, options) =>
-            {
-                return Number(data).toLocaleString();
-            },
-            currency: (data, options) =>
-            {
-                if ("" !== options.currency)
-                {
-                    return options.currency + " " + data;
-                }
-            }
+            comma: (data, options) => Number(data).toLocaleString(),
+            currency: (data, options) => options.currency + " " + data
         });
     }
 
@@ -187,7 +178,6 @@ export default class Home extends ContentComponent
     {
         const Target = sender as HTMLElement;
         const ColorName = Target.id;
-        const testSt = "123124213";
 
         switch (ColorName)
         {
@@ -224,6 +214,8 @@ export default class Home extends ContentComponent
     {
         let UpperCaseColorName = ColorName.replace(/^[a-z]/, (char) => char.toUpperCase());
         this.AxeSelectorByName("testCurrentColorClass").data = ColorName;
+        console.log(this.AxeSelectorByName("testCurrentColorClass").data);
         this.AxeSelectorByName("testCurrentColorName").data = UpperCaseColorName;
+        console.log(this.AxeSelectorByName("testCurrentColorName"));
     };
 }

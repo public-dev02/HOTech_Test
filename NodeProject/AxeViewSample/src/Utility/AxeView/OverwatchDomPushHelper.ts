@@ -59,6 +59,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.HTMLElement
 			, Dom: domPushData
+			, DataView: ""
 			, EventName: null
 			, TossOption: jsonOpt
 			//, TossOption2: <T>(): T => { return jsonOpt as T }
@@ -79,6 +80,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.Node
 			, Dom: domPushData
+			, DataView : ""
 			, EventName: null
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
@@ -111,6 +113,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.Dom
 			, Dom: domPushData
+			, DataView: ""
 			, EventName: null
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
@@ -133,6 +136,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.Attr_Valueless
 			, Dom: domPushData
+			, DataView: ""
 			, EventName: null
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
@@ -155,6 +159,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.Attr_OneValue
 			, Dom: domPushData
+			, DataView: ""
 			, EventName: null
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
@@ -178,6 +183,7 @@ export class OverwatchDomPushHelper
 		this._MyOw.Dom_AxeViewList.push({
 			AxeViewDomType: AxeViewDomType.Attr_ReplaceValue
 			, Dom: domPushData
+			, DataView: ""
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
 		});
@@ -222,6 +228,7 @@ export class OverwatchDomPushHelper
 		let avdTemp: AxeViewDomInterface = {
 			AxeViewDomType: AxeViewDomType.Attr_Event
 			, Dom: domPushData
+			, DataView: ""
 			, EventName: sEventName
 			, TossOption: jsonOpt
 			, TossOptionType: <T>(): T => { return this.GetOption(jsonOpt); }
@@ -271,6 +278,7 @@ export class OverwatchDomPushHelper
 					avdTemp = {
 						AxeViewDomType: AxeViewDomType.Attr_ValueMonitoring
 						, Dom: domPushData
+						, DataView: ""
 						, EventName: "input"
 						, Event: function (event: Event)
 						{
@@ -286,6 +294,7 @@ export class OverwatchDomPushHelper
 					avdTemp = {
 						AxeViewDomType: AxeViewDomType.Attr_ValueMonitoring
 						, Dom: domPushData
+						, DataView: ""
 						, EventName: "change"
 						, Event: function (event: Event)
 						{
