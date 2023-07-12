@@ -56,7 +56,6 @@
         .sidebar-list {
             display: flex;
             flex-direction: column;
-            gap: 4px;
 
             .sidebar-list-title {
                 padding: 4px 10px;
@@ -69,7 +68,87 @@
                 }
             }
 
+
             .sidebar-item {
+                display: flex;
+                flex-direction: column;
+
+                &.open {
+                    .item-toggle-btn {
+                        color: $primary;
+                        background-color: $gray-100;
+                        &:hover {
+                            color: $primary;
+                            background-color: $gray-100;
+                        }
+
+                        .arrow {
+                            transform: rotate(0deg);
+                        }
+                    }
+
+                }
+
+                &.active {
+                    a {
+                        background-color: $primary;
+                        color: $white;
+                        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+                        &:hover {
+                            background-color: $primary;
+                            color: $white;
+                            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+                        }
+                    }
+                }
+
+                .item-toggle-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 10px;
+                    color: $gray-700;
+                    font-size: 14px;
+                    border-radius: 8px;
+
+                    .item-content {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+
+                    .arrow {
+                        transform: rotate(180deg);
+                        transition: all 0.2s ease-in-out;
+                    }
+
+                    &:hover {
+                        color: $primary;
+                        background-color: $gray-100;
+                    }
+                }
+
+                .item-list {
+                    display: flex;
+                    flex-direction: column;
+                    max-height: 0;
+                    overflow: hidden;
+                    padding: 0;
+                    transition: all 0.2s ease-in-out;
+
+                    .item {
+                        padding: 6px 6px 6px 38px;
+                        a {
+                            color: #A9A9A9;
+                            padding: 4px 8px;
+                            &:hover {
+                                color: $primary;
+                            }
+                        }
+                    }
+                }
+
                 .sidebar-link {
                     display: flex;
                     align-items: center;

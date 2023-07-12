@@ -15,7 +15,6 @@ import Buttons from "./Pages2/Buttons/Buttons";
 import Alerts from "./Pages2/Alerts/Alerts";
 import Card from "./Pages2/Card/Card";
 import Forms from "./Pages2/Forms/Forms";
-import Typography from "./Pages2/Typography/Typography";
 
 /**
  * App을 시작하는 함수
@@ -80,10 +79,6 @@ export default class StartUp
             .on("/admin/forms", this.Router.ContentRender({
                 Page: Page2,
                 Component: Forms
-            }))
-            .on("/admin/typography", this.Router.ContentRender({
-                Page: Page2,
-                Component: Typography
             }))
             .notFound(this.Router.ContentRender({
                 Page: Page,

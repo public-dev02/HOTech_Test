@@ -43,17 +43,67 @@ export default class Aside extends ContentComponent
     {
         this.LoadActiveMenu();
 
-        const MenuList = this.DomThis.querySelectorAll('nav.sidebar-nav ul li a') as NodeListOf<HTMLElement>;
-        MenuList.forEach((menu) =>
+        const NormalMenuList = this.DomThis.querySelectorAll('li.sidebar-item.normal') as NodeListOf<HTMLElement>;
+        const ToggleMenuList = this.DomThis.querySelectorAll('li.sidebar-item.toggle') as NodeListOf<HTMLElement>;
+
+        NormalMenuList.forEach((menu) =>
         {
             menu.addEventListener('click', () =>
             {
-                MenuList.forEach((menu) =>
+                NormalMenuList.forEach((menu) =>
                 {
                     menu.classList.remove('active');
                 });
 
+                ToggleMenuList.forEach((menu) =>
+                {
+                    menu.classList.remove('open');
+                    const list = menu.querySelector('ul.item-list') as HTMLElement;
+                    list.classList.remove('open');
+                    list.style.maxHeight = null;
+                });
+
                 menu.classList.add('active');
+            });
+        });
+
+        ToggleMenuList.forEach((menu) =>
+        {
+            menu.addEventListener('click', (event: MouseEvent) =>
+            {
+                const EventTarget = event.target as HTMLElement;
+                const IsToggleMenu = EventTarget.parentElement.classList.contains('sidebar-item')
+                    || EventTarget.parentElement.classList.contains('item-content')
+                    || EventTarget.parentElement.classList.contains('arrow')
+                    || EventTarget.parentElement.tagName === "svg";
+
+                if (!IsToggleMenu)
+                {
+                    NormalMenuList.forEach((menu) =>
+                    {
+                        menu.classList.remove('active');
+                    });
+
+                    ToggleMenuList.forEach((menu) =>
+                    {
+                        if (menu !== event.currentTarget)
+                        {
+                            menu.classList.remove('open');
+                            const list = menu.querySelector('ul.item-list') as HTMLElement;
+                            list.classList.remove('open');
+                            list.style.maxHeight = null;
+                        }
+                    });
+
+                    return;
+                }
+
+                const list = menu.querySelector('ul.item-list') as HTMLElement;
+
+                menu.classList.toggle('open');
+                list.classList.toggle('open');
+
+                this.HeightAnimation(list);
             });
         });
     }
@@ -62,8 +112,40 @@ export default class Aside extends ContentComponent
     {
         const CurrentUrl = GlobalStatic.app.Router.getCurrentLocation().url;
         const CurrentMenu = this.DomThis.querySelector(`a[href="/${CurrentUrl}"]`) as HTMLElement;
+        const Parent = CurrentMenu.parentElement.parentElement as HTMLElement;
+        const CurrentMenuParent = Parent.parentElement as HTMLElement;
 
-        CurrentMenu.classList.add('active');
+        if (CurrentMenu.parentElement.classList.contains('sidebar-item'))
+        {
+            // treeview가 아닌 메뉴
+            CurrentMenu.parentElement.classList.add('active');
+        }
+        else
+        {
+            // treeview 메뉴
+            Parent.classList.add('open');
+            CurrentMenuParent.classList.add('open');
+        }
+
+
+        this.HeightAnimation(Parent);
+    }
+
+    private HeightAnimation(Target: HTMLElement): void
+    {
+        if (!Target) 
+        {
+            return;
+        }
+
+        if (Target.style.maxHeight)
+        {
+            Target.style.maxHeight = null;
+        }
+        else
+        {
+            Target.style.maxHeight = Target.scrollHeight + 22 + "px";
+        }
     }
 
     private SetSideBarToggleEvent(): void
