@@ -1,0 +1,5 @@
+﻿//깃에는 올리면 안되는 정보
+{
+	"ConnectionString_Sqlite": "Data Source=ProjectFiles\\Test.db",
+	"ConnectionString": "Server=218.146.23.224;DataBase=DGAuthServer_Test1;UId=DGAuthServer_Test1_Login;pwd=6!cfSef?J-8KQ5Nf"
+}
