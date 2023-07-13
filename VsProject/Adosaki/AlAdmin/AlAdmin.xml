@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AlAdmin</name>
+    </assembly>
+    <members>
+        <member name="T:AlAdmin.Controllers.DashBoardController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AlAdmin.Controllers.DashBoardController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AlAdmin.Controllers.TestController">
+            <summary>
+            테스트용 API
+            </summary>
+        </member>
+        <member name="M:AlAdmin.Controllers.TestController.SuccessCall">
+            <summary>
+            무조건 성공
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AlAdmin.Controllers.TestController.DataTest(System.Int32,System.String)">
+            <summary>
+            데이터 입력 테스트
+            </summary>
+            <param name="nData1"></param>
+            <param name="sData2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AlAdmin.Controllers.TestController.ErrorCall(System.Int32)">
+            <summary>
+            에러 테스트
+            </summary>
+            <param name="nType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AlAdmin.Global.GlobalStatic">
+            <summary>
+            프로그램 전역 변수
+            </summary>
+        </member>
+        <member name="F:AlAdmin.Global.GlobalStatic.SigninAuto_CookieName">
+            <summary>
+            자동 사인인 여부 - 쿠키이름
+            </summary>
+            <remarks>
+            프론트 엔드와 같은 문자열을 사용해야 한다.
+            </remarks>
+        </member>
+        <member name="T:AlAdmin.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AlAdmin.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AlAdmin.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AlAdmin.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AlAdmin.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AlAdmin.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="env"></param>
+        </member>
+        <member name="M:AlAdmin.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AlAdmin.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

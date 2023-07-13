@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Adosaki.DB</name>
+    </assembly>
+    <members>
+        <member name="T:Adosaki.DB.GlobalDb">
+            <summary>
+            Static으로 선언된 적역 변수들
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.GlobalDb.DBType">
+            <summary>
+            DB 타입
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.GlobalDb.DBString">
+            <summary>
+            DB 컨낵션 스트링 저장
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.GlobalDb.DbArrayDiv">
+            <summary>
+            문자열로 저장된 배열(혹은 리스트)의 데이터를 구분할때 사용하는 구분자
+            </summary>
+            <remarks>
+            이 값을 중간에 바꾸면 기존의 데이터를 재대로 못읽을 수 있다.
+            </remarks>
+        </member>
+        <member name="T:Adosaki.DB.UseDbType">
+            <summary>
+            사용하는 DB 타입
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.UseDbType.None">
+            <summary>
+            없음
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.UseDbType.Memory">
+            <summary>
+            In Memory
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.UseDbType.Sqlite">
+            <summary>
+            Sqlite
+            </summary>
+        </member>
+        <member name="F:Adosaki.DB.UseDbType.Mssql">
+            <summary>
+            MS Sql
+            </summary>
+        </member>
+        <member name="T:ModelsDB.ModelsDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{ModelsDB.ModelsDbContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:ModelsDB.ModelsDbContext.Shop">
+            <summary>
+            샾 사인인 정보
+            </summary>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:ModelsDB.ModelsDbContext_Mssql">
+             <summary>
+             mssql전용 컨텍스트
+             </summary>
+            <remarks>
+             Add-Migration InitialCreate -Context ModelsDB.ModelsDbContext_Mssql -OutputDir Migrations/Mssql 
+             Remove-Migration -Context ModelsDB.ModelsDbContext_Mssql
+             Update-Database -Context ModelsDbContext_Mssql -Migration 0
+            </remarks>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext_Mssql.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{ModelsDB.ModelsDbContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext_Mssql.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ModelsDB.ModelsDbContext_MssqlFactory">
+            <summary>
+             mssql전용 컨텍스트 팩토리
+            </summary>
+        </member>
+        <member name="M:ModelsDB.ModelsDbContext_MssqlFactory.CreateDbContext(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ModelsDB.Shop">
+            <summary>
+            샆 계정
+            </summary>
+        </member>
+        <member name="P:ModelsDB.Shop.idShop">
+            <summary>
+            샾 고유번키
+            </summary>
+        </member>
+        <member name="P:ModelsDB.Shop.SignName">
+            <summary>
+            사인인에 사용되는 이름
+            </summary>
+            <remarks>프로젝트에따라 이것이 이름, 이메일 등의 다양한 값이 될 수 있으므로
+            네이밍을 이렇게 한다.</remarks>
+        </member>
+        <member name="P:ModelsDB.Shop.PasswordHash">
+            <summary>
+            단방향 암호화가된 비밀번호
+            </summary>
+            <remarks>
+            json으로 변환할때 무조건 제외되야할 데이터이다.
+            </remarks>
+        </member>
+    </members>
+</doc>

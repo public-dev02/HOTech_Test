@@ -1,0 +1,17 @@
+﻿namespace AlAdmin.Global;
+
+/// <summary>
+/// 프로그램 전역 변수
+/// </summary>
+public class GlobalStatic
+{
+    #region 쿠키용 이름
+    /// <summary>
+    /// 자동 사인인 여부 - 쿠키이름
+    /// </summary>
+    /// <remarks>
+    /// 프론트 엔드와 같은 문자열을 사용해야 한다.
+    /// </remarks>
+    public static readonly string SigninAuto_CookieName = "spa_AutoSignIn";
+    #endregion
+}
