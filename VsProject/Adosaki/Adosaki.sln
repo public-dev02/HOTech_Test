@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DGAuthServer_Cookie", "DGAu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DGAuthServer", "DGAuthServer\DGAuthServer.csproj", "{4553A6E8-1EE9-4C8A-B71F-A7DFA3B5949E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adosaki.DB", "Adosaki.DB\Adosaki.DB.csproj", "{254688EC-7D42-464A-9616-D8D224C3F96B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{4553A6E8-1EE9-4C8A-B71F-A7DFA3B5949E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4553A6E8-1EE9-4C8A-B71F-A7DFA3B5949E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4553A6E8-1EE9-4C8A-B71F-A7DFA3B5949E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254688EC-7D42-464A-9616-D8D224C3F96B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254688EC-7D42-464A-9616-D8D224C3F96B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254688EC-7D42-464A-9616-D8D224C3F96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254688EC-7D42-464A-9616-D8D224C3F96B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

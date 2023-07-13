@@ -14,15 +14,26 @@
 	  <!--<SpaProxyLaunchCommand>npm run development</SpaProxyLaunchCommand>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
+	  
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	  
+    <DocumentationFile>AlAdmin.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.20">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\Utility\" />
+    <Folder Include="ProjectFiles\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -32,6 +43,13 @@
 		<Content Remove="$(SpaRoot)**" />
 		<None Remove="$(SpaRoot)**" />
 		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Adosaki.DB\Adosaki.DB.csproj" />
+	  <ProjectReference Include="..\ApiResult\ApiResult.csproj" />
+	  <ProjectReference Include="..\DGAuthServer_Cookie\DGAuthServer_Cookie.csproj" />
 	</ItemGroup>
 
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
