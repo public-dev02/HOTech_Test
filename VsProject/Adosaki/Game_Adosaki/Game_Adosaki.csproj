@@ -9,16 +9,19 @@
 	  <IsPackable>false</IsPackable>
 	  <SpaRoot>ClientApp\</SpaRoot>
 	  <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-	  <SpaProxyServerUrl>https://localhost:9500</SpaProxyServerUrl>
+	  <SpaProxyServerUrl>https://localhost:9501</SpaProxyServerUrl>
 	  <SpaProxyLaunchCommand>npm run start</SpaProxyLaunchCommand>
-	  <!--<SpaProxyLaunchCommand>npm run development</SpaProxyLaunchCommand>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
-	  
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-	  
-    <DocumentationFile>AlAdmin.xml</DocumentationFile>
+    <DocumentationFile>Game_Adosaki.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="ClientApp\package-lock.json" />
+    <Content Remove="ClientApp\package.json" />
+    <Content Remove="ClientApp\tsconfig.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.20" />
@@ -28,20 +31,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\Utility\" />
-    <Folder Include="ProjectFiles\" />
+    <ProjectReference Include="..\Adosaki.DB\Adosaki.DB.csproj" />
+    <ProjectReference Include="..\ApiResult\ApiResult.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-	
-	<ItemGroup>
-		<ProjectReference Include="..\Adosaki.DB\Adosaki.DB.csproj" />
-		<ProjectReference Include="..\ApiResult\ApiResult.csproj" />
-		<ProjectReference Include="..\DGAuthServer_Cookie\DGAuthServer_Cookie.csproj" />
-	</ItemGroup>
+
+  <ItemGroup>
+    <None Include="ClientApp\package-lock.json" />
+    <None Include="ClientApp\package.json" />
+    <None Include="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
 
 	<ItemGroup>
 		<!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -49,9 +56,6 @@
 		<None Remove="$(SpaRoot)**" />
 		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
 	</ItemGroup>
-
-
-
 
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
 		<!-- Ensure Node.js is installed -->
@@ -78,4 +82,5 @@
 			</ResolvedFileToPublish>
 		</ItemGroup>
 	</Target>
+
 </Project>

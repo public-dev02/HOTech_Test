@@ -1,0 +1,41 @@
+@import '@/Styles/Default.scss';
+
+#divPage {
+    .navbar {
+        flex-wrap: nowrap;
+        min-height: 70px;
+        padding: 0;
+
+        .navbar-nav {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+
+            .nav-action-btn {
+                padding: 8px;
+                line-height: 70px;
+                display: flex;
+                align-items: center;
+                z-index: 2;
+                position: relative;
+                border-radius: 50%;
+                color: $dark;
+
+                &:hover {
+                    background-color: $gray-100;
+                    color: $primary;
+                }
+
+                .dot {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+}
