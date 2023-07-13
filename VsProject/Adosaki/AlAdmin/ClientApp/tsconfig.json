@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "lib": [ "es6", "dom" ],
-    "sourceMap": true
+      "baseUrl": "./",
+      "outDir": "./dist/",
+      "module": "esnext",
+      "target": "es6",
+      "lib": ["es6", "dom"],
+      "allowJs": true,
+      "moduleResolution": "node",
+      "paths": {
+          "@/*": ["src/*"],
+          "@bootstrap/*": ["node_modules/bootstrap/*"],
+      },
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

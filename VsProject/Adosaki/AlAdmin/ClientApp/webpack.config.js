@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 //소스 위치
 const RootPath = path.resolve(__dirname);
@@ -22,6 +23,8 @@ let OutputFolder = "development";
 let OutputPath = path.resolve(WwwRootPath, OutputFolder);
 //결과물 출력 위치 - 상대 주소
 let OutputPath_relative = path.resolve("/", OutputFolder);
+/** 서비스 주소 - 테스트할때는 루트, 실서비스때는 해당 경로를 적는다. */
+let OutputPath_PublicPath = "/";
 
 
 module.exports = (env, argv) =>
@@ -42,13 +45,18 @@ module.exports = (env, argv) =>
         devtool: "inline-source-map",
         //devtool: "inline-source-map",
         resolve: {
-            extensions: [".js", ".ts"]
+            extensions: [".js", ".ts"],
+            alias: {
+                "@": SrcPath,
+                "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap"),
+            }
         },
         output: {// 최종적으로 만들어질 js
             /** 빌드 위치 */
             path: OutputPath,
             /** 웹팩 빌드 후 최종적으로 만들어질 파일 */
-            filename: "app.js"
+            filename: "app.js",
+            publicPath: OutputPath_PublicPath,
         },
         module: {
             // 모듈 규칙
@@ -58,7 +66,24 @@ module.exports = (env, argv) =>
                     test: /\.ts?$/i,
                     exclude: /node_modules/,
                     use: ['ts-loader']
-                }
+                },
+                {
+                    test: /\.(sa|sc|c)ss$/i,
+                    exclude: /node_modules/,
+                    use: [
+                        EnvPrductionIs ? MiniCssExtractPlugin.loader : { loader: "style-loader" },
+                        { loader: "css-loader" },
+                        { loader: "sass-loader" },
+                        { loader: "postcss-loader" },
+                    ],
+                },
+                {
+                    test: /simplebar\.css$/,
+                    use: [
+                        { loader: "style-loader" },
+                        { loader: "css-loader" }
+                    ],
+                },
             ]
         },
         plugins: [
@@ -100,12 +125,17 @@ module.exports = (env, argv) =>
                     concurrency: 100,
                 },
             }),
+
+            // CSS 파일 하나로
+            new MiniCssExtractPlugin({
+                filename: "app.css",
+            }),
         ],
 
         devServer: {
             /** 서비스 포트 */
             port: "9500",
-            https:true,
+            https: true,
             proxy: {
                 '/weatherforecast': 'https://localhost:7181'
             },
@@ -116,7 +146,8 @@ module.exports = (env, argv) =>
             /** 핫리로드 사용여부 */
             hot: true,
             /** 라이브 리로드 사용여부 */
-            liveReload: true
+            liveReload: true,
+            historyApiFallback: true,
         },
     };
 }
