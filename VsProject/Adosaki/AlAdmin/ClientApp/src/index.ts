@@ -1,25 +1,13 @@
-import AxeView from '@/Utility/AxeView/AxeView';
-import "@/Styles/Default.scss";
+﻿import NavigoProvider from "@/Faculty/Router/Providers/Navigo/NavigoProvider";
+import AxeView from "@/Utility/AxeView/AxeView";
+import GlobalStatic from "@/Global/GlobalStatic";
+import Page from "@/Pages/Page";
+import Admin from "@/Pages/Admin/Admin";
+import Buttons from "@/Pages/Buttons/Buttons";
+import Alerts from "@/Pages/Alerts/Alerts";
+import Card from "@/Pages/Card/Card";
+import Forms from "@/Pages/Forms/Forms";
 
-import NavigoProvider from "./Faculty/Router/Providers/Navigo/NavigoProvider";
-import GlobalStatic from "./Global/GlobalStatic";
-import About from "./Pages/About/About";
-import Home from "./Pages/Home/Home";
-import NotFound from "./Pages/NotFound/NotFound";
-import Page from "./Pages/Page";
-import Admin from "./Pages2/Admin/Admin";
-import Page2 from "./Pages2/Page2";
-import Shop from "./Pages/Shop/Shop";
-import Contact from "./Pages/Contact/Contact";
-import Buttons from "./Pages2/Buttons/Buttons";
-import Alerts from "./Pages2/Alerts/Alerts";
-import Card from "./Pages2/Card/Card";
-import Forms from "./Pages2/Forms/Forms";
-
-/**
- * App을 시작하는 함수
- * 라우터 설정 및 첫 로드시 이벤트 등을 관리하는 곳이다.
- */
 export default class StartUp
 {
     public DomThis: Element;
@@ -31,8 +19,6 @@ export default class StartUp
     {
         this.DomThis = document.querySelector("#root");
         GlobalStatic.app = this;
-
-        console.log(this.DomThis);
 
         this.AxeView = new AxeView();
         this.Router = new NavigoProvider(Page);
@@ -48,48 +34,26 @@ export default class StartUp
         this.Router
             .on("/", this.Router.ContentRender({
                 Page: Page,
-                Component: Home
-            }))
-            .on("/about", this.Router.ContentRender({
-                Page: Page,
-                Component: About
-            }))
-            .on("/shop", this.Router.ContentRender({
-                Page: Page,
-                Component: Shop
-            }))
-            .on("/contact", this.Router.ContentRender({
-                Page: Page,
-                Component: Contact
-            }))
-            .on("/admin", this.Router.ContentRender({
-                Page: Page2,
                 Component: Admin
             }))
-            .on("/admin/buttons", this.Router.ContentRender({
-                Page: Page2,
+            .on("/buttons", this.Router.ContentRender({
+                Page: Page,
                 Component: Buttons
             }))
-            .on("/admin/alerts", this.Router.ContentRender({
-                Page: Page2,
+            .on("/alerts", this.Router.ContentRender({
+                Page: Page,
                 Component: Alerts
             }))
-            .on("/admin/card", this.Router.ContentRender({
-                Page: Page2,
+            .on("/card", this.Router.ContentRender({
+                Page: Page,
                 Component: Card
             }))
-            .on("/admin/forms", this.Router.ContentRender({
-                Page: Page2,
-                Component: Forms
-            }))
-            .notFound(this.Router.ContentRender({
+            .on("/forms", this.Router.ContentRender({
                 Page: Page,
-                Component: NotFound
+                Component: Forms
             }));
 
         this.Router.resolve();
-
-        console.log("라우터 설정 완료!");
 
         /** 모든 a 태그 이벤트를 SPA 성격에 맞게 이벤트를 건다. */
         this.LinkRouteEvent();
@@ -131,5 +95,5 @@ export default class StartUp
     }
 }
 
-/** 시작 */
+/** start */
 const app = new StartUp();
