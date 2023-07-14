@@ -1,0 +1,23 @@
+#divQuestionList {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin: 0 28px;
+    padding: 85px 24px 24px;
+
+    .alert-group {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

@@ -1,17 +1,15 @@
-import ContentComponent from "@/Faculty/Base/ContentComponent";
-import "./Alerts.scss";
+import ContentComponent from '@/Faculty/Base/ContentComponent';
+import './UserList.scss';
 
 /**
  * Home Component를 생성하는 Class
  * Index가 되는 페이지이다.
  */
-export default class Alerts extends ContentComponent
-{
+export default class UserList extends ContentComponent {
     /** Home Component의 html 파일 주소 */
-    private readonly PagePath: string = "Pages/Alerts/Alerts.html";
+    private readonly PagePath: string = 'Pages/List/UserList/UserList.html';
 
-    constructor()
-    {
+    constructor() {
         /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
         super();
         /** this.PagePath를 통해서 렌더링 시작 */
@@ -22,9 +20,7 @@ export default class Alerts extends ContentComponent
      * Dom이 생성되고 나서 실행되는 함수
      * @returns {void}
      */
-    public RenderingComplete(): void
-    {
-        console.log("어드민 렌더링");
+    public RenderingComplete(): void {
+        console.log('회원 리스트 렌더링');
     }
 }
-

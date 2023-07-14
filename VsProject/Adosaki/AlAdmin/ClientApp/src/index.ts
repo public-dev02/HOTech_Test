@@ -9,6 +9,18 @@ import Login from './AuthPages/Login/Login';
 import Register from './AuthPages/Register/Register';
 import DashBoard from './Pages/DashBoard/DashBoard';
 import NotFound from './Pages/NotFound/NotFound';
+import UserList from './Pages/List/UserList/UserList';
+import UserListInStore from './Pages/Store/UserList/UserList';
+import StoreList from './Pages/List/StoreList/StoreList';
+import StoreInfo from './Pages/Store/StoreInfo/StoreInfo';
+import Charge from './Pages/Cash/Charge/Charge';
+import Exchange from './Pages/Cash/Exchange/Exchange';
+import Results from './Pages/Game/Results/Results';
+import LiveBettings from './Pages/Game/LiveBettings/LiveBettings';
+import Bettings from './Pages/Game/Bettings/Bettings';
+import Notice from './Pages/Site/Notice/Notice';
+import Question from './Pages/Site/Question/Question';
+import QuestionList from './Pages/Site/QuestionList/QuestionList';
 
 export default class StartUp {
     public DomThis: Element;
@@ -50,6 +62,90 @@ export default class StartUp {
                 this.Router.ContentRender({
                     Page: Page,
                     Component: DashBoard,
+                })
+            )
+            .on(
+                '/list/store',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: StoreList,
+                })
+            )
+            .on(
+                '/list/users',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: UserList,
+                })
+            )
+            .on(
+                '/store/info',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: StoreInfo,
+                })
+            )
+            .on(
+                '/store/users',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: UserListInStore,
+                })
+            )
+            .on(
+                '/cash/charge',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Charge,
+                })
+            )
+            .on(
+                '/cash/exchange',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Exchange,
+                })
+            )
+            .on(
+                '/game/results',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Results,
+                })
+            )
+            .on(
+                '/game/livebettings',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: LiveBettings,
+                })
+            )
+            .on(
+                '/game/bettings',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Bettings,
+                })
+            )
+            .on(
+                '/site/notice',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Notice,
+                })
+            )
+            .on(
+                '/site/question',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: Question,
+                })
+            )
+            .on(
+                '/site/questionlist',
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: QuestionList,
                 })
             )
             .notFound(

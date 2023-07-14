@@ -45,6 +45,9 @@ export default class Aside extends ContentComponent {
         const ToggleMenuList = this.DomThis.querySelectorAll(
             'li.sidebar-item.toggle'
         ) as NodeListOf<HTMLElement>;
+        const MenuItemList = this.DomThis.querySelectorAll(
+            'li.item'
+        ) as NodeListOf<HTMLElement>;
 
         NormalMenuList.forEach((menu) => {
             menu.addEventListener('click', () => {
@@ -106,6 +109,20 @@ export default class Aside extends ContentComponent {
                 this.HeightAnimation(list);
             });
         });
+
+        MenuItemList.forEach((menu) => {
+            menu.addEventListener('click', (event: MouseEvent) => {
+                const Target = event.currentTarget as HTMLElement;
+
+                MenuItemList.forEach((menu) => {
+                    if (menu !== Target) {
+                        menu.classList.remove('open');
+                    }
+                });
+
+                Target.classList.add('open');
+            });
+        });
     }
 
     private LoadActiveMenu(): void {
@@ -113,19 +130,22 @@ export default class Aside extends ContentComponent {
         const CurrentMenu = this.DomThis.querySelector(
             `a[href="/${CurrentUrl}"]`
         ) as HTMLElement;
-        const Parent = CurrentMenu.parentElement.parentElement as HTMLElement;
-        const CurrentMenuParent = Parent.parentElement as HTMLElement;
+        const CurrentMenuItem = CurrentMenu.parentElement as HTMLElement;
+        const CurrentMenuList = CurrentMenu.parentElement
+            .parentElement as HTMLElement;
+        const CurrentMenuBox = CurrentMenuList.parentElement as HTMLElement;
 
         if (CurrentMenu.parentElement.classList.contains('sidebar-item')) {
             // treeview가 아닌 메뉴
             CurrentMenu.parentElement.classList.add('active');
         } else {
             // treeview 메뉴
-            Parent.classList.add('open');
-            CurrentMenuParent.classList.add('open');
+            CurrentMenuList.classList.add('open');
+            CurrentMenuBox.classList.add('open');
+            CurrentMenuItem.classList.add('open');
         }
 
-        this.HeightAnimation(Parent);
+        this.HeightAnimation(CurrentMenuList);
     }
 
     private HeightAnimation(Target: HTMLElement): void {
@@ -146,7 +166,8 @@ export default class Aside extends ContentComponent {
             const TargetParent = Target.parentElement as HTMLElement;
             const IsCloseButton =
                 Target.classList.contains('close-btn') ||
-                TargetParent.classList.contains('close-btn');
+                TargetParent.classList.contains('close-btn') ||
+                TargetParent.parentElement.classList.contains('close-btn');
             const IsAnchorElement =
                 Target.tagName === 'A' || TargetParent.tagName === 'A';
 

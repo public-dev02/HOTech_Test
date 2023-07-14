@@ -69,10 +69,10 @@
 
                 &.open {
                     .item-toggle-btn {
-                        color: $primary;
+                        color: $black;
                         background-color: $gray-100;
                         &:hover {
-                            color: $primary;
+                            color: $black;
                             background-color: $gray-100;
                         }
 
@@ -117,7 +117,7 @@
                     }
 
                     &:hover {
-                        color: $primary;
+                        color: $black;
                         background-color: $gray-100;
                     }
                 }
@@ -127,7 +127,7 @@
                     flex-direction: column;
                     max-height: 0;
                     overflow: hidden;
-                    padding: 0;
+                    padding: 4px 0 8px;
                     transition: all 0.2s ease-in-out;
 
                     .item {
@@ -136,6 +136,15 @@
                             width: 100%;
                             color: #a9a9a9;
                             padding: 6px 6px 6px 46px;
+                            &:hover {
+                                color: $primary;
+                            }
+                        }
+                    }
+
+                    .item.open {
+                        a {
+                            color: $primary;
                             &:hover {
                                 color: $primary;
                             }

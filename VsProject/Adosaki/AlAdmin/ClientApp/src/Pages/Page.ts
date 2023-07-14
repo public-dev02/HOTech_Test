@@ -7,8 +7,13 @@ import ResizeObserver from 'resize-observer-polyfill';
 import Header from './PageLayout/Header/Header';
 import PageComponent from '@/Faculty/Base/PageComponent';
 import Aside from './PageLayout/Aside/Aside';
-import Cookies from 'js-cookie';
 import GlobalStatic from '@/Global/GlobalStatic';
+
+let TestUserInfo = {
+    name: '테스트',
+    id: 'test',
+    password: '1234',
+};
 
 /**
  * Page Component를 생성하는 Class
@@ -28,6 +33,8 @@ export default class Page extends PageComponent {
         if (!GlobalStatic.getUserSessionCookie()) {
             GlobalStatic.app.Router.navigate('/');
             return;
+        } else {
+            GlobalStatic.User = TestUserInfo;
         }
 
         /** this.PagePath를 통해서 렌더링 시작 */

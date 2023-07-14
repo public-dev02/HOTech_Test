@@ -31,6 +31,11 @@ export default class GlobalStatic {
         GlobalStatic.User = user;
     }
 
+    static userLogout() {
+        Cookies.remove(GlobalStatic.UserSessionCookieName);
+        GlobalStatic.User = null;
+    }
+
     /**
      * html 문자열을 인자로 받아서
      * DOM으로 생성해서 Return 해주는 함수이다.
