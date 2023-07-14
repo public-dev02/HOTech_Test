@@ -30,7 +30,9 @@ export default class Aside extends ContentComponent {
     }
 
     private InitializeSimpleBar(): void {
-        const ScrollTarget = this.DomThis.querySelector('nav.sidebar-nav') as HTMLElement;
+        const ScrollTarget = this.DomThis.querySelector(
+            'nav.sidebar-nav'
+        ) as HTMLElement;
         const simplebar = new SimpleBar(ScrollTarget);
     }
 
@@ -52,7 +54,9 @@ export default class Aside extends ContentComponent {
 
                 ToggleMenuList.forEach((menu) => {
                     menu.classList.remove('open');
-                    const list = menu.querySelector('ul.item-list') as HTMLElement;
+                    const list = menu.querySelector(
+                        'ul.item-list'
+                    ) as HTMLElement;
                     list.classList.remove('open');
                     list.style.maxHeight = null;
                 });
@@ -66,8 +70,12 @@ export default class Aside extends ContentComponent {
                 const EventTarget = event.target as HTMLElement;
 
                 const IsToggleMenu =
-                    EventTarget.parentElement.classList.contains('sidebar-item') ||
-                    EventTarget.parentElement.classList.contains('item-content') ||
+                    EventTarget.parentElement.classList.contains(
+                        'sidebar-item'
+                    ) ||
+                    EventTarget.parentElement.classList.contains(
+                        'item-content'
+                    ) ||
                     EventTarget.parentElement.classList.contains('arrow') ||
                     EventTarget.parentElement.tagName === 'svg';
 
@@ -79,7 +87,9 @@ export default class Aside extends ContentComponent {
                     ToggleMenuList.forEach((menu) => {
                         if (menu !== event.currentTarget) {
                             menu.classList.remove('open');
-                            const list = menu.querySelector('ul.item-list') as HTMLElement;
+                            const list = menu.querySelector(
+                                'ul.item-list'
+                            ) as HTMLElement;
                             list.classList.remove('open');
                             list.style.maxHeight = null;
                         }
@@ -100,7 +110,9 @@ export default class Aside extends ContentComponent {
 
     private LoadActiveMenu(): void {
         const CurrentUrl = GlobalStatic.app.Router.getCurrentLocation().url;
-        const CurrentMenu = this.DomThis.querySelector(`a[href="/${CurrentUrl}"]`) as HTMLElement;
+        const CurrentMenu = this.DomThis.querySelector(
+            `a[href="/${CurrentUrl}"]`
+        ) as HTMLElement;
         const Parent = CurrentMenu.parentElement.parentElement as HTMLElement;
         const CurrentMenuParent = Parent.parentElement as HTMLElement;
 
@@ -131,15 +143,15 @@ export default class Aside extends ContentComponent {
     private SetSideBarToggleEvent(): void {
         this.DomThis.addEventListener('click', (event) => {
             const Target = event.target as HTMLElement;
-            console.log(Target);
             const TargetParent = Target.parentElement as HTMLElement;
             const IsButtonAndAnchor =
-                Target.tagName === 'A' || TargetParent.tagName === 'A'
+                Target.tagName === 'A' || TargetParent.tagName === 'A';
 
             if (IsButtonAndAnchor) {
-                const SideBar: HTMLDivElement = GlobalStatic.PageLayout.DomThis.querySelector(
-                    '#divAside'
-                ) as HTMLDivElement;
+                const SideBar: HTMLDivElement =
+                    GlobalStatic.PageLayout.DomThis.querySelector(
+                        '#divAside'
+                    ) as HTMLDivElement;
                 SideBar.classList.toggle('show');
             }
         });

@@ -1,10 +1,10 @@
-import HeosabiComponent from "@/Faculty/Base/HeosabiComponent";
-import PageComponent from "@/Faculty/Base/PageComponent";
-import StartUp from "@/index";
+import HeosabiComponent from '@/Faculty/Base/HeosabiComponent';
+import PageComponent from '@/Faculty/Base/PageComponent';
+import StartUp from '@/index';
+import Cookies from 'js-cookie';
 
 /** 전역 변수 */
-export default class GlobalStatic
-{
+export default class GlobalStatic {
     /** 전역 변수 */
 
     /** root */
@@ -14,16 +14,30 @@ export default class GlobalStatic
     /** 지금 보고 있는 페이지 개체 */
     static PageNow: HeosabiComponent | null = null;
     /** 지금 보고 있는 페이지 주소 */
-    static PageNowUrl: string = "";
+    static PageNowUrl: string = '';
+
+    /** 유저 데이터 쿠키 이름 */
+    static UserSessionCookieName: string = 'USER_SESSION';
+    /** 로그인한 유저 정보 */
+    static User: any = null;
+
+    /** 전역 함수 */
+
+    static getUserSessionCookieName(): string {
+        return Cookies.get(GlobalStatic.UserSessionCookieName) || '';
+    }
+
+    static setUserInfo(user: { name: string; id: string; password: string }) {
+        GlobalStatic.User = user;
+    }
 
     /**
      * html 문자열을 인자로 받아서
      * DOM으로 생성해서 Return 해주는 함수이다.
-     * @param {string} sHtml 
+     * @param {string} sHtml
      * @returns {Element}
      */
-    static createDOMElement(sHtml: string): HTMLElement
-    {
+    static createDOMElement(sHtml: string): HTMLElement {
         const Template = document.createElement('template');
         Template.innerHTML = sHtml;
 

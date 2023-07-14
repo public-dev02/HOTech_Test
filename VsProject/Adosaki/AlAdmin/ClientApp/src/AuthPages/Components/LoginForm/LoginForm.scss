@@ -1,0 +1,9 @@
+@import '@/Styles/Default.scss';
+
+.login-form {
+    .error-msg-box {
+        p {
+            color: $danger;
+        }
+    }
+}

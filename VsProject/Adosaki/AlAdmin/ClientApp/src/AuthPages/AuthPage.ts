@@ -1,31 +1,24 @@
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
-import './Page.scss';
+import './AuthPage.scss';
 import '@/Styles/FullHeight.scss';
 
 import ResizeObserver from 'resize-observer-polyfill';
-import Header from './PageLayout/Header/Header';
 import PageComponent from '@/Faculty/Base/PageComponent';
-import Aside from './PageLayout/Aside/Aside';
-import Cookies from 'js-cookie';
 import GlobalStatic from '@/Global/GlobalStatic';
 
 /**
  * Page Component를 생성하는 Class
  */
-export default class Page extends PageComponent {
+export default class AuthPage extends PageComponent {
     /** Page Component의 html 파일 주소 */
-    private readonly PagePath: string = 'Pages/Page.html';
+    private readonly PagePath: string = 'AuthPages/AuthPage.html';
 
     constructor() {
         /** 베이스가 되는 부모 Class인 PageComponent 상속 */
-        super([
-            { position: 'divHeader', component: new Header() },
-            { position: 'divAside', component: new Aside() },
-        ]);
+        super([]);
 
-        if (!GlobalStatic.getUserSessionCookieName()) {
-            GlobalStatic.app.Router.navigate('/');
+        /** 로그인 되어있으면 메인 페이지로 이동 */
+        if (GlobalStatic.getUserSessionCookieName()) {
+            GlobalStatic.app.Router.navigate('/admin');
             return;
         }
 

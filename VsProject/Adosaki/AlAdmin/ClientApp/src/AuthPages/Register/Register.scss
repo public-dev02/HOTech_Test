@@ -1,0 +1,30 @@
+#divRegister {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 360px;
+
+    .auth-title {
+        p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    }
+
+    .actions-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .links-box {
+        text-align: end;
+        width: 100%;
+    }
+}

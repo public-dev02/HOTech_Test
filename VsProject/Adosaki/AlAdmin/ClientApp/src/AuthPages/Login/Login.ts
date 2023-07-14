@@ -1,0 +1,56 @@
+import ContentComponent from '@/Faculty/Base/ContentComponent';
+import './Login.scss';
+import {
+    OverwatchingOutputType,
+    OverwatchingType,
+} from '@/Utility/AxeView/OverwatchingType';
+import LoginForm from '../Components/LoginForm/LoginForm';
+import Cookies from 'js-cookie';
+import GlobalStatic from '@/Global/GlobalStatic';
+
+/**
+ * Home Component를 생성하는 Class
+ * Index가 되는 페이지이다.
+ */
+export default class Login extends ContentComponent {
+    /** Home Component의 html 파일 주소 */
+    private readonly PagePath: string = 'AuthPages/Login/Login.html';
+
+    constructor() {
+        /** 베이스가 되는 부모 Class인 ContentComponent 상속 */
+        super();
+
+        /** this.PagePath를 통해서 렌더링 시작 */
+        this.AddOverwatchState();
+        this.AddChildComponent([
+            { overwatchName: 'LoginFormComponent', component: LoginForm },
+        ]);
+        super.RenderingStart(this.PagePath);
+    }
+
+    private AddOverwatchState = (): void => {
+        this.AddComponents();
+    };
+
+    private AddComponents() {
+        this.UseOverwatchComponent(
+            'LoginFormComponent',
+            this.CreateLoadingDom('LoginForm')
+        );
+    }
+
+    private CreateLoadingDom = (sName: string): HTMLElement => {
+        const LoadingDom = document.createElement('div');
+        LoadingDom.innerHTML = `<h1>${sName} Component Loading...</h1>`;
+
+        return LoadingDom;
+    };
+
+    /**
+     * Dom이 생성되고 나서 실행되는 함수
+     * @returns {void}
+     */
+    public RenderingComplete(): void {
+        console.log('로그인 페이지 렌더링');
+    }
+}
