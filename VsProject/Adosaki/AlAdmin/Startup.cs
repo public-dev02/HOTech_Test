@@ -6,9 +6,18 @@ using DGAuthServer;
 using DGAuthServer.Models;
 using DGAuthServer_Cookie.Models;
 
+using Utility.ProjectXml;
+
 using Adosaki.DB;
 using ModelsDB;
 using AlAdmin.Global;
+using Utility.EnumToClass;
+using Utility.ModelToTypeScript;
+using Utility.FileAssist;
+using AlAdmin.Models;
+using AlAdmin.Models.Sign;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
 
 namespace AlAdmin;
 
@@ -86,6 +95,31 @@ public class Startup
         #endregion
 
 
+        //로컬 경로 저장
+        GlobalStatic.FileProc.ProjectRootDir = env.ContentRootPath;
+        GlobalStatic.FileProc.ClientAppSrcDir.Add(
+            string.Format(@"{0}\wwwroot\production"
+                            , GlobalStatic.FileProc.ProjectRootDir));
+        GlobalStatic.FileProc.ClientAppSrcDir.Add(
+            string.Format(@"{0}\ClientApp\src"
+                            , GlobalStatic.FileProc.ProjectRootDir));
+        GlobalStatic.FileProc.OutputFileDir
+            = string.Format(@"{0}\wwwroot\UploadFile"
+                            , GlobalStatic.FileProc.ProjectRootDir);
+        GlobalStatic.FileProc.ProjectXmlDir
+            = string.Format(@"{0}AlAdmin.xml"
+                            , System.AppDomain.CurrentDomain.BaseDirectory);
+        GlobalStatic.FileProc.ProjectXmlDir_Other
+            .Add(string.Format(@"{0}Adosaki.DB.xml"
+                            , System.AppDomain.CurrentDomain.BaseDirectory));
+
+        if (true == env.IsDevelopment())
+        {//디버그에서만 처리해야할 내용들
+
+            //스타트업 공통 처리사항 처리
+            this.FileOut();
+        }
+
     }
 
     /// <summary>
@@ -138,10 +172,34 @@ public class Startup
                 MemoryCacheIs = true,
 
                 //자동 사인인 쿠키 이름
-                AutoSigninCookieName = GlobalStatic.SigninAuto_CookieName
+                AutoSigninCookieName = GlobalStatic.SigninAuto_CookieName,
+
+                Cookie_HttpOnly = true,
+                Cookie_Secure = true,
             }
             , dbContextOptionsBuilder);
         #endregion
+
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+		services.AddEndpointsApiExplorer();
+
+		services.AddSwaggerGen(c=>
+		{
+			c.SwaggerDoc("v1"
+				, new OpenApiInfo
+				{
+					Title = "알어드민(AlAdmin) 프로젝트 Web API"
+                    , Description = "알어드민(AlAdmin) 프로젝트의 Web API"
+                    , Version = "v1"
+					, License = new OpenApiLicense 
+					{
+						Name = "MIT"
+						, Url= new Uri("https://opensource.org/licenses/MIT")
+					}
+				});
+			c.IncludeXmlComments(string.Format(@"{0}\AlAdmin.xml"
+                                , System.AppDomain.CurrentDomain.BaseDirectory));
+		});
     }
 
     /// <summary>
@@ -151,6 +209,77 @@ public class Startup
     /// <param name="env"></param>
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
+        // Configure the HTTP request pipeline.
+        if (env.IsDevelopment())
+        {//개발 버전에서만 스웨거 사용
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
-	}
+
+        //DGAuthServerService 빌더
+        app.UseDgAuthServerAppBuilder();
+
+
+        //https로 자동 리디렉션
+        app.UseHttpsRedirection();
+
+        //기본 페이지
+        app.UseDefaultFiles();
+
+        //wwwroot
+        app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions()
+        {
+            FileProvider = new PhysicalFileProvider(
+           Path.Combine(env.ContentRootPath
+                           , @"wwwroot\production")),
+            //RequestPath = new PathString("/home"),
+        });
+
+        //3.0 api 라우트
+        app.UseRouting();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapFallbackToFile("/production/index.html");
+        });
+    }
+
+    private void FileOut()
+    {
+        //프로젝트 xml 불러오기
+        ProjectXmlAssist xml = new ProjectXmlAssist(GlobalStatic.FileProc.ProjectXmlDir);
+        xml.Add(GlobalStatic.FileProc.ProjectXmlDir_Other.ToArray());
+
+        string sTemp = string.Empty;
+        //열거형을 모델로 바꾸기위한 개체
+        EnumToModel etmBP_Temp = new EnumToModel(xml);
+
+        //모델을 타입스크립트로 출력하기 위한 개체
+        ModelToTs tsModel_Temp = new ModelToTs(xml);
+
+        #region DB - 매장 관련
+        //사인인 성공시 전달되는 매장 정보
+        tsModel_Temp.TypeData_Set(new ShopInfo());
+        sTemp = tsModel_Temp.ToTypeScriptInterfaceString(
+            "");
+        GlobalStatic.FileProc
+            .FileSave(FileDirType.ClientAppSrcDir
+                        , @"Faculty\Backend\ModelsDB\ShopInfo.ts"
+                        , sTemp);
+        #endregion
+
+        #region 사인인 관련
+        //사인인 성공시 전달되는 매장 정보
+        tsModel_Temp.TypeData_Set(new SignInfoResultModel());
+        sTemp = tsModel_Temp.ToTypeScriptInterfaceString(
+            "import { ShopInfo } from '@/Faculty/Backend/ModelsDB/ShopInfo';");
+        GlobalStatic.FileProc
+            .FileSave(FileDirType.ClientAppSrcDir
+                        , @"Faculty\Backend\Models\Sign\SignInfoResultModel.ts"
+                        , sTemp);
+        #endregion
+    }
 }

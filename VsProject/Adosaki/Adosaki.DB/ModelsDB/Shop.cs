@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 namespace ModelsDB;
 
 /// <summary>
-/// 샆 계정
+/// 매장 계정
 /// </summary>
 public class Shop
 {
     /// <summary>
-    /// 샾 고유번키
+    /// 매장 고유키
     /// </summary>
     [Key]
     public int idShop { get; set; }

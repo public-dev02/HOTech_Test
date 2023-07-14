@@ -15,6 +15,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:AlAdmin.Controllers.SignController">
+            <summary>
+            사인, 회원 관리 관련 컨트롤러
+            </summary>
+        </member>
+        <member name="M:AlAdmin.Controllers.SignController.SignIn(System.String,System.String)">
+            <summary>
+            사인 인
+            </summary>
+            <param name="sSignName"></param>
+            <param name="sPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AlAdmin.Controllers.SignController.AccessToUserInfo">
+            <summary>
+            액세스 토큰으로 정보를 읽는다.
+            </summary>
+            <remarks>
+            액세스 토큰이 죽었다면 리플레시 토큰을 이용하여 갱신한다.
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="T:AlAdmin.Controllers.TestController">
             <summary>
             테스트용 API
@@ -53,6 +75,21 @@
             <remarks>
             프론트 엔드와 같은 문자열을 사용해야 한다.
             </remarks>
+        </member>
+        <member name="F:AlAdmin.Global.GlobalStatic.FileProc">
+            <summary>
+            파일 변환 관련
+            </summary>
+        </member>
+        <member name="T:AlAdmin.Models.Sign.SignInfoResultModel">
+            <summary>
+            사인인이 성공하였을때 전달되는 정보(자바스크립트 전달용)
+            </summary>
+        </member>
+        <member name="P:AlAdmin.Models.Sign.SignInfoResultModel.ShopInfo">
+            <summary>
+            검색된 매장 정보
+            </summary>
         </member>
         <member name="T:AlAdmin.Program">
             <summary>
@@ -101,6 +138,477 @@
             </summary>
             <param name="app"></param>
             <param name="env"></param>
+        </member>
+        <member name="T:Utility.EnumToClass.EnumMember">
+            <summary>
+            열거형 멤버의 정보를 검색하기 쉽게 저장합니다.
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumMember.Type">
+            <summary>
+            지정된 열겨헝 멤버
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumMember.Name">
+            <summary>
+            지정된 열겨헝 멤버의 이름
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumMember.Index">
+            <summary>
+            지정된 열겨헝 멤버의 인덱스
+            </summary>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumMember.#ctor(System.Object)">
+            <summary>
+            사용할 열거형 멤버를 오브젝트(object)형태로 처리합니다.
+            </summary>
+            <param name="objData"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumMember.#ctor(System.Enum)">
+            <summary>
+            사용할 열거형 멤버를 지정합니다.
+            </summary>
+            <param name="typeData"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumMember.SetData(System.Enum)">
+            <summary>
+            필요한 데이터를 기록 합니다.
+            </summary>
+            <param name="typeData"></param>
+        </member>
+        <member name="T:Utility.EnumToClass.EnumToModel">
+            <summary>
+            열거형의 멤버를 분해하여 배열형태로 관리 해주는 클래스.
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.EnumType">
+            <summary>
+            지정된 열거형
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.EnumName">
+            <summary>
+            지정된 열거형의 이름
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.EnumNamespace">
+            <summary>
+            지정된 열거형의 네임스페이스
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.EnumMember">
+            <summary>
+            분해한 열거형 멤버 데이터
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.Count">
+            <summary>
+            지정된 열거형의 멤버 갯수
+            </summary>
+        </member>
+        <member name="P:Utility.EnumToClass.EnumToModel.ProjectXml">
+            <summary>
+            사용할 프로젝트Xml
+            </summary>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.#ctor(Utility.ProjectXml.ProjectXmlAssist)">
+            <summary>
+            프로젝트 xml만 지정하여 초기화한다.
+            </summary>
+            <param name="projectXmlAssist"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.#ctor(System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="typeData"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.#ctor(System.Enum,Utility.ProjectXml.ProjectXmlAssist)">
+            <summary>
+            
+            </summary>
+            <param name="typeData"></param>
+            <param name="projectXmlAssist"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.TypeData_Set(System.Enum)">
+            <summary>
+            사용할 타입을 설정한다.
+            </summary>
+            <remarks>
+            ProjectXml은 가지고 있는 것을 쓴다.
+            </remarks>
+            <param name="typeData"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.Reset(System.Enum,Utility.ProjectXml.ProjectXmlAssist)">
+            <summary>
+            typeData와 projectXmlAssist를 저장하고 typeData의 맴버를 분해한다.
+            </summary>
+            <param name="typeData"></param>
+            <param name="projectXmlAssist"></param>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.FindEnumMember(System.String)">
+            <summary>
+            멤버중 지정한 이름이 있는지 찾습니다.
+            </summary>
+            <param name="sName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.ProjectXml_SummaryGet(System.String)">
+            <summary>
+            지정된 ProjectXml리스트에서 주석정보를 찾는다.
+            </summary>
+            <param name="sTarget"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.ToJavaScriptVarString">
+            <summary>
+            자바스크립트에서 사용하는 열거형 타입으로 선언하는 코드를 생성한다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.ToTypeScriptEnumString(System.Boolean)">
+            <summary>
+            타입 스크립트에서 사용하는 열거형 타입으로 선언하는 코드를 생성한다.
+            </summary>
+            <param name="bConst">
+            'const'로 선언할지 여부<br/>
+             Object.keys와 같이 열거형에 직접 접근하려면 const로 선언하면 안된다.<br/>
+             대신 const로 선언하면 성능이 향상된다.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.EnumToClass.EnumToModel.ToScriptString(System.String,System.String,System.String)">
+            <summary>
+            스크립트 형태의 문자열을 생성한다.
+            </summary>
+            <param name="sHead">첫 줄 열기로 사용할 문자열 포맷</param>
+            <param name="sItemBody">아이템 바디로 사용할 문자열 포맷</param>
+            <param name="sFooter">마지막 줄 닫기로 사용할 문자열 포맷</param>
+            <returns></returns>
+        </member>
+        <member name="T:Utility.FileAssist.FileDirType">
+            <summary>
+            파일 경로 타입
+            </summary>
+        </member>
+        <member name="F:Utility.FileAssist.FileDirType.None">
+            <summary>
+            설정없음.
+            </summary>
+            <remarks>
+            ProjectRootDir와 동일
+            </remarks>
+        </member>
+        <member name="F:Utility.FileAssist.FileDirType.ProjectRootDir">
+            <summary>
+            프로젝트 기준 루트 경로
+            </summary>
+        </member>
+        <member name="F:Utility.FileAssist.FileDirType.ClientAppSrcDir">
+            <summary>
+            프로젝트 밑의 ClientApp/src 폴더 경로
+            </summary>
+            <remarks>
+            이 프로젝트를 배포할때는 wwwroot아래의 배포 폴더를 지정된다.
+            </remarks>
+        </member>
+        <member name="F:Utility.FileAssist.FileDirType.OutputFileDir">
+            <summary>
+            파일을 저장하고 출력할 폴더
+            </summary>
+        </member>
+        <member name="T:Utility.FileAssist.FileProcess">
+            <summary>
+            파일 변환 관련
+            </summary>
+        </member>
+        <member name="P:Utility.FileAssist.FileProcess.ProjectRootDir">
+            <summary>
+            프로젝트 기준 루트 경로
+            </summary>
+        </member>
+        <member name="P:Utility.FileAssist.FileProcess.ClientAppSrcDir">
+            <summary>
+            프로젝트 밑의 ClientApp/src 폴더 경로
+            </summary>
+            <remarks>
+            플록시 프로젝트의 경우 플로시 프로젝트의 ClientApp 폴더를 지정한다.<br />
+            이 프로젝트를 배포할때는 wwwroot아래의 배포 폴더를 지정한다.<br />
+            여러폴더에 배포해야하는 경우(예> 홈과 어드민이 별도의 프론트엔드로 나눠있는 경우)
+            이 리스트에 지정된 폴더에 모두 배포된다.<br />
+            </remarks>
+        </member>
+        <member name="P:Utility.FileAssist.FileProcess.OutputFileDir">
+            <summary>
+            파일을 저장하고 출력할 폴더
+            </summary>
+            <remarks>
+            배포 버전과 상관없이 파일이 출력되는 위치이다.<br />
+            업로드된 파일과 같이 유저가 직접올린 파일이 있는 위치이다.
+            </remarks>
+        </member>
+        <member name="P:Utility.FileAssist.FileProcess.ProjectXmlDir">
+            <summary>
+            이 프로젝트의 프로젝트 Xml 파일 경로.
+            프로젝트 세팅에 xml 파일 출력경로와 일치시켜준다.
+            </summary>
+            <remarks>
+            플록시를 쓰는 경우 이 파일이 없어서 에러가 난다.<br />
+            api 프로젝트에서 복사해서 넣어주자.
+            </remarks>
+        </member>
+        <member name="P:Utility.FileAssist.FileProcess.ProjectXmlDir_Other">
+            <summary>
+            다른 프로젝트의 Xml 파일 경로.
+            </summary>
+            <remarks>
+            다른 프로젝트의 Xml 정보가 필요하다면 넣는다.
+            </remarks>
+        </member>
+        <member name="M:Utility.FileAssist.FileProcess.FileSave(Utility.FileAssist.FileDirType,System.String,System.String)">
+            <summary>
+            지정된 경로 타입 +  파일을 생성하고 내용을 저장한다.
+            </summary>
+            <param name="typeFileDir"></param>
+            <param name="sFilePath">파일 이름+확장자가 포함된 경로</param>
+            <param name="sContents"></param>
+        </member>
+        <member name="M:Utility.FileAssist.FileProcess.FileSave(System.String,System.String)">
+            <summary>
+            sFullDir 경로에 파일을 생성하고 내용을 저장한다.
+            </summary>
+            <param name="sFullFilePath"></param>
+            <param name="sContents"></param>
+        </member>
+        <member name="T:Utility.ModelToTypeScript.ModelMember">
+            <summary>
+            모델의 멤버 정보를 검색하기 쉽게 저장한다.
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelMember.Name">
+            <summary>
+            맴버 이름 
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelMember.Type">
+            <summary>
+            맴버의 타입
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelMember.ArrayType">
+            <summary>
+            맴버 타입이 배열타입일때 배열이 가지고 있는 타입
+            </summary>
+            <remarks>
+            1개만, 1댑스까지만 관리된다.
+            </remarks>
+        </member>
+        <member name="T:Utility.ModelToTypeScript.ModelToTs">
+            <summary>
+            모델을 타입스크립트용 파일로 변환하기위한 클래스
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.MyModel">
+            <summary>
+            지정된 모델
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.BaseNamespace">
+            <summary>
+            베이스가 있다면 베이스의 네임 스페이스
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.BaseName">
+            <summary>
+            베이스가 있다면 베이스의 이름
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.ModelNamespace">
+            <summary>
+            소속된 네임스페이스
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.ModelName">
+            <summary>
+            지정된 모델의 이름
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.ModelMember">
+            <summary>
+            분해한 맴버 데이터
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.ProjectXml">
+            <summary>
+            사용할 프로젝트Xml
+            </summary>
+        </member>
+        <member name="P:Utility.ModelToTypeScript.ModelToTs.ImportRootDir">
+            <summary>
+            임포트에 사용할 루트 경로 지정
+            </summary>
+            <remarks>
+            임포트 라인을 생성할때 맨 앞의 경로로 사용될 문자열이다.<br />
+            </remarks>
+        </member>
+        <member name="F:Utility.ModelToTypeScript.ModelToTs.ImportItem">
+            <summary>
+            임포트 라인을 생성할때 사용될 아이템 리스트
+            </summary>
+            <remarks>
+            외부에 표시될 이름, 임포트 경로(ImportRootDir에서 지정한 경로 제외한 경로)
+            </remarks>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.#ctor(Utility.ProjectXml.ProjectXmlAssist)">
+            <summary>
+            프로젝트 xml만 지정하여 초기화한다.
+            </summary>
+            <param name="projectXmlAssist"></param>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.TypeData_Set(System.Object)">
+            <summary>
+            사용할 모델을 설정한다.
+            </summary>
+            <remarks>
+            ProjectXml은 가지고 있는 것을 쓴다.
+            </remarks>
+            <param name="model"></param>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.Reset(System.Object,Utility.ProjectXml.ProjectXmlAssist)">
+            <summary>
+            model projectXmlAssist를 저장하고 model 맴버를 분해한다.
+            </summary>
+            <param name="model"></param>
+            <param name="projectXmlAssist"></param>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ProjectXml_SummaryGet(System.String)">
+            <summary>
+            지정된 ProjectXml리스트에서 주석정보를 찾는다.
+            </summary>
+            <param name="sTarget"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ImportClear">
+            <summary>
+            임포트 관련 정보를 초기화 한다.
+            </summary>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ToTypeScriptImportString">
+            <summary>
+            가지고 있는 임포트 아이템 정보를 가지고 임포트 문자열을 만든다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ToTypeScriptInterfaceString">
+            <summary>
+            가지고있는 임포트 정보로 타입스크립트를 생성한다.
+            </summary>
+            <remarks>
+            임포트 라인을 생성하지 않으려면 ImportClear();를 미리 호출하여 임포트 정보를 지우거나
+            ToTypeScriptInterfaceString("") 로 호출하면된다.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ToTypeScriptInterfaceString(System.String)">
+            <summary>
+            타입 스크립트에서 사용하는 인터페이스 타입으로 선언하는 코드를 생성한다.
+            </summary>
+            <param name="sImport">
+            임포트 영역에 출력할 내용.<br />
+            입력한 그대로 출력되므로 필요한 전체 내용을 넣는다.<br />
+            이 부분은 자동화할 방법이 없으므로 직접 입력해야 한다.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.ToScriptString(System.String,System.String,System.String,System.String)">
+            <summary>
+            스크립트 형태의 문자열을 생성한다.
+            </summary>
+            <param name="sImport">
+            임포트 영역에 출력할 내용.<br />
+            입력한 그대로 출력되므로 필요한 전체 내용을 넣는다.<br />
+            이 부분은 자동화할 방법이 없으므로 직접 입력해야 한다.
+            </param>
+            <param name="sHead">첫 줄 열기로 사용할 문자열 포맷</param>
+            <param name="sItemBody">아이템 바디로 사용할 문자열 포맷</param>
+            <param name="sFooter">마지막 줄 닫기로 사용할 문자열 포맷</param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.ModelToTypeScript.ModelToTs.TypeToTs(System.String)">
+            <summary>
+            .NET 타입을 타입스크립트 타입으로 변환한다.
+            </summary>
+            <remarks>
+            변환되지 않으면 그대로 출력된다.
+            </remarks>
+            <param name="sType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Utility.ProjectXml.ProjectXmlAssist">
+            <summary>
+            프로젝트의 XML 출력파일을 미리 읽어들이는 클래스
+            </summary>
+        </member>
+        <member name="P:Utility.ProjectXml.ProjectXmlAssist.ProjectXml">
+            <summary>
+            읽어들이 xml 내용
+            </summary>
+        </member>
+        <member name="P:Utility.ProjectXml.ProjectXmlAssist.Members">
+            <summary>
+            맴버 요소 미리 검색
+            </summary>
+        </member>
+        <member name="P:Utility.ProjectXml.ProjectXmlAssist.UseIs">
+            <summary>
+            xml을 사용할 수 있는지 여부
+            </summary>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.#ctor">
+            <summary>
+            내용물 없이 초기화
+            </summary>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sXmlPath">불러올 프로젝트 XML 파일 경로</param>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="sXmlPathList">불러올 프로젝트 XML 파일 경로 리스트</param>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.Add(System.String[])">
+            <summary>
+            지정된 결로 배열을 읽어서 리스트에 추가한다.
+            </summary>
+            <param name="sXmlPath">불러올 프로젝트 XML 파일 경로</param>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.Add(System.String)">
+            <summary>
+            지정된 한개의 xml을 읽어서 리스트에 추가한다.
+            </summary>
+            <param name="sXmlPathList">불러올 프로젝트 XML 파일 경로 리스트</param>
+        </member>
+        <member name="M:Utility.ProjectXml.ProjectXmlAssist.SummaryGet(System.String)">
+            <summary>
+            맴버이름으로 주석 내용을 받아온다.
+            </summary>
+            <remarks>
+            가지고있는 모든 리스트에서 검색한다.
+            </remarks>
+            <param name="sMemberName"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

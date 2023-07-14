@@ -1,4 +1,6 @@
-﻿namespace AlAdmin.Global;
+﻿using Utility.FileAssist;
+
+namespace AlAdmin.Global;
 
 /// <summary>
 /// 프로그램 전역 변수
@@ -14,4 +16,9 @@ public class GlobalStatic
     /// </remarks>
     public static readonly string SigninAuto_CookieName = "spa_AutoSignIn";
     #endregion
+
+    /// <summary>
+	/// 파일 변환 관련
+	/// </summary>
+	public static FileProcess FileProc = new FileProcess();
 }

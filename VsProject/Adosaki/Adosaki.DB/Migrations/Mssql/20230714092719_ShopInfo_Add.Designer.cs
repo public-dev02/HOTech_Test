@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModelsDB;
 
@@ -10,9 +11,10 @@ using ModelsDB;
 namespace Adosaki.DB.Migrations.Mssql
 {
     [DbContext(typeof(ModelsDbContext_Mssql))]
-    partial class ModelsDbContext_MssqlModelSnapshot : ModelSnapshot
+    [Migration("20230714092719_ShopInfo_Add")]
+    partial class ShopInfo_Add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

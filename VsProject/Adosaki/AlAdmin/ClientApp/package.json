@@ -10,8 +10,8 @@
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --progress --profile",
     "jsdoc": "jsdoc -c jsdoc.conf README.md",
-    "development": "webpack serve --env development",
-    "production": "webpack --progress --profile --mode production"
+    "dev": "webpack serve --env development",
+    "prod": "webpack --progress --profile --mode production"
   },
   "devDependencies": {
     "@types/node": "^14.14.7",
