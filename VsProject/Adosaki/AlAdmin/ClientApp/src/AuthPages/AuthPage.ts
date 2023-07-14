@@ -17,8 +17,8 @@ export default class AuthPage extends PageComponent {
         super([]);
 
         /** 로그인 되어있으면 메인 페이지로 이동 */
-        if (GlobalStatic.getUserSessionCookieName()) {
-            GlobalStatic.app.Router.navigate('/admin');
+        if (GlobalStatic.getUserSessionCookie()) {
+            GlobalStatic.app.Router.navigate('/dashboard');
             return;
         }
 

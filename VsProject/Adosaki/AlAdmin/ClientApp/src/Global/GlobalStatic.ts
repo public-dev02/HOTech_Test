@@ -23,7 +23,7 @@ export default class GlobalStatic {
 
     /** 전역 함수 */
 
-    static getUserSessionCookieName(): string {
+    static getUserSessionCookie(): string {
         return Cookies.get(GlobalStatic.UserSessionCookieName) || '';
     }
 

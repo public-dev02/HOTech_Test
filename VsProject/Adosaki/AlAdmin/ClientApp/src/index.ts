@@ -7,7 +7,8 @@ import Page from '@/Pages/Page';
 import AuthPage from './AuthPages/AuthPage';
 import Login from './AuthPages/Login/Login';
 import Register from './AuthPages/Register/Register';
-import Admin from './Pages/Admin/Admin';
+import DashBoard from './Pages/DashBoard/DashBoard';
+import NotFound from './Pages/NotFound/NotFound';
 
 export default class StartUp {
     public DomThis: Element;
@@ -45,10 +46,16 @@ export default class StartUp {
                 })
             )
             .on(
-                '/admin',
+                '/dashboard',
                 this.Router.ContentRender({
                     Page: Page,
-                    Component: Admin,
+                    Component: DashBoard,
+                })
+            )
+            .notFound(
+                this.Router.ContentRender({
+                    Page: Page,
+                    Component: NotFound,
                 })
             );
 

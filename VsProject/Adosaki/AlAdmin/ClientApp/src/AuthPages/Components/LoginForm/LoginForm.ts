@@ -88,7 +88,7 @@ export default class LoginForm extends ContentComponent {
                 'aweifjoi1j2o12ij12o3ij21dffadsdfasxcvx2213'
             );
             GlobalStatic.setUserInfo(TestUserInfo);
-            GlobalStatic.app.Router.navigate('/admin');
+            GlobalStatic.app.Router.navigate('/dashboard');
             LoginErrorMessage.data = '';
         } else {
             LoginErrorMessage.data = '아이디 또는 비밀번호를 확인해주세요';

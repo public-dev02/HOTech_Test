@@ -1,4 +1,4 @@
-@import "@/Styles/Default.scss";
+@import '@/Styles/Default.scss';
 
 #divAside {
     position: fixed;
@@ -17,7 +17,7 @@
     }
 
     @media (min-width: 1200px) {
-        left: 0
+        left: 0;
     }
 
     .brand-logo {
@@ -59,10 +59,9 @@
                 span {
                     font-size: 12px;
                     font-weight: 500;
-                    color: $gray-600;
+                    color: $gray-400;
                 }
             }
-
 
             .sidebar-item {
                 display: flex;
@@ -81,7 +80,6 @@
                             transform: rotate(0deg);
                         }
                     }
-
                 }
 
                 &.active {
@@ -136,7 +134,7 @@
                         display: flex;
                         a {
                             width: 100%;
-                            color: #A9A9A9;
+                            color: #a9a9a9;
                             padding: 6px 6px 6px 46px;
                             &:hover {
                                 color: $primary;

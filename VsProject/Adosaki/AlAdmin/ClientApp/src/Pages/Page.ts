@@ -24,7 +24,8 @@ export default class Page extends PageComponent {
             { position: 'divAside', component: new Aside() },
         ]);
 
-        if (!GlobalStatic.getUserSessionCookieName()) {
+        /** 로그인 되어있지 않으면 로그인 페이지로 이동 */
+        if (!GlobalStatic.getUserSessionCookie()) {
             GlobalStatic.app.Router.navigate('/');
             return;
         }

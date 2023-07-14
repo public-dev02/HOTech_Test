@@ -1,0 +1,28 @@
+@import '@/Styles/Default.scss';
+
+#divNotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 28px;
+    height: 100%;
+    padding: 85px 24px 24px;
+
+    img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .text-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+
+        p {
+            font-size: 16px;
+            color: $gray-400;
+        }
+    }
+}

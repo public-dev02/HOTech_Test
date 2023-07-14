@@ -1,61 +1,59 @@
-const path = require("path");
+const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 //소스 위치
 const RootPath = path.resolve(__dirname);
-const SrcPath = path.resolve(RootPath, "src");
+const SrcPath = path.resolve(RootPath, 'src');
 
 //웹서버가 사용하는 폴더 이름
-const WwwRoot = "build";
+const WwwRoot = 'build';
 //웹서버가 사용하는 폴더 위치
 const WwwRootPath = path.resolve(__dirname, WwwRoot);
 
 //템플릿 위치
-const IndexHtmlPath = path.resolve(SrcPath, "index.html");
+const IndexHtmlPath = path.resolve(SrcPath, 'index.html');
 //const IndexHtmlPath = path.resolve(SrcPath, "test01.html");
 //결과물 출력 폴더 이름
-let OutputFolder = "development";
+let OutputFolder = 'development';
 //결과물 출력 위치
 let OutputPath = path.resolve(WwwRootPath, OutputFolder);
 //결과물 출력 위치 - 상대 주소
-let OutputPath_relative = path.resolve("/", OutputFolder);
+let OutputPath_relative = path.resolve('/', OutputFolder);
 /** 서비스 주소 - 테스트할때는 루트, 실서비스때는 해당 경로를 적는다. */
-let OutputPath_PublicPath = "/";
+let OutputPath_PublicPath = '/';
 
-
-module.exports = (env, argv) =>
-{
+module.exports = (env, argv) => {
     //릴리즈(프로덕션)인지 여부
-    const EnvPrductionIs = argv.mode === "production";
-    if (true === EnvPrductionIs)
-    {
+    const EnvPrductionIs = argv.mode === 'production';
+    if (true === EnvPrductionIs) {
         //릴리즈 출력 폴더 변경
-        OutputFolder = "production";
+        OutputFolder = 'production';
         OutputPath = path.resolve(WwwRootPath, OutputFolder);
-        OutputPath_relative = path.resolve("/", OutputFolder);
+        OutputPath_relative = path.resolve('/', OutputFolder);
     }
 
     return {
         /** 서비스 모드 */
-        mode: EnvPrductionIs ? "production" : "development",
-        devtool: "inline-source-map",
+        mode: EnvPrductionIs ? 'production' : 'development',
+        devtool: 'inline-source-map',
         //devtool: "inline-source-map",
         resolve: {
-            extensions: [".js", ".ts"],
+            extensions: ['.js', '.ts'],
             alias: {
-                "@": SrcPath,
-                "@bootstrap": path.resolve(RootPath, "node_modules/bootstrap"),
-            }
+                '@': SrcPath,
+                '@bootstrap': path.resolve(RootPath, 'node_modules/bootstrap'),
+            },
         },
-        output: {// 최종적으로 만들어질 js
+        output: {
+            // 최종적으로 만들어질 js
             /** 빌드 위치 */
             path: OutputPath,
             /** 웹팩 빌드 후 최종적으로 만들어질 파일 */
-            filename: "app.js",
+            filename: 'app.js',
             publicPath: OutputPath_PublicPath,
         },
         module: {
@@ -65,26 +63,25 @@ module.exports = (env, argv) =>
                 {
                     test: /\.ts?$/i,
                     exclude: /node_modules/,
-                    use: ['ts-loader']
+                    use: ['ts-loader'],
                 },
                 {
                     test: /\.(sa|sc|c)ss$/i,
                     exclude: /node_modules/,
                     use: [
-                        EnvPrductionIs ? MiniCssExtractPlugin.loader : { loader: "style-loader" },
-                        { loader: "css-loader" },
-                        { loader: "sass-loader" },
-                        { loader: "postcss-loader" },
+                        EnvPrductionIs
+                            ? MiniCssExtractPlugin.loader
+                            : { loader: 'style-loader' },
+                        { loader: 'css-loader' },
+                        { loader: 'sass-loader' },
+                        { loader: 'postcss-loader' },
                     ],
                 },
                 {
                     test: /simplebar\.css$/,
-                    use: [
-                        { loader: "style-loader" },
-                        { loader: "css-loader" }
-                    ],
+                    use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
                 },
-            ]
+            ],
         },
         plugins: [
             //asp.net core와 중단점 연결을 위한 플러그인
@@ -95,9 +92,9 @@ module.exports = (env, argv) =>
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [
                     '**/*',
-                    "!robots.txt",
-                    "!Upload"
-                ]
+                    '!robots.txt',
+                    '!Upload',
+                ],
             }),
 
             //그대로 출력폴더에 복사할 파일 지정
@@ -105,18 +102,33 @@ module.exports = (env, argv) =>
                 patterns: [
                     {
                         //모든 html파일 복사
-                        from: "./src/**/*.html",
-                        to({ context, absoluteFilename })
-                        {
+                        from: './src/**/*.html',
+                        to({ context, absoluteFilename }) {
                             //'src/'를 제거
-                            let sOutDir = path.relative(context, absoluteFilename).substring(4);
+                            let sOutDir = path
+                                .relative(context, absoluteFilename)
+                                .substring(4);
                             //index.html은 리액트가 생성해주므로 여기선 스킵한다.
-                            if ("index.html" === sOutDir)
-                            {
+                            if ('index.html' === sOutDir) {
                                 //sOutDir = "index_Temp.html";
-                                sOutDir = "";
+                                sOutDir = '';
                             }
                             //console.log("sOutDir : " + sOutDir);
+                            return `${sOutDir}`;
+                        },
+                    },
+                    {
+                        //모든 이미지 파일
+                        from: './src/Assets/Image/**/*.(png|jpg|gif|svg|webp)',
+                        to({ context, absoluteFilename }) {
+                            //'src/'를 제거
+                            let sOutDir = path.relative(
+                                context,
+                                absoluteFilename
+                            );
+                            sOutDir = sOutDir.substring(4);
+
+                            console.log('sOutDir : ' + sOutDir);
                             return `${sOutDir}`;
                         },
                     },
@@ -128,19 +140,19 @@ module.exports = (env, argv) =>
 
             // CSS 파일 하나로
             new MiniCssExtractPlugin({
-                filename: "app.css",
+                filename: 'app.css',
             }),
         ],
 
         devServer: {
             /** 서비스 포트 */
-            port: "9500",
+            port: '9500',
             https: true,
             proxy: {
-                '/weatherforecast': 'https://localhost:7181'
+                '/weatherforecast': 'https://localhost:7181',
             },
             /** 출력파일의 위치 */
-            static: [path.resolve("./", "build/development/")],
+            static: [path.resolve('./', 'build/development/')],
             /** 브라우저 열지 여부 */
             open: false,
             /** 핫리로드 사용여부 */
@@ -150,4 +162,4 @@ module.exports = (env, argv) =>
             historyApiFallback: true,
         },
     };
-}
+};

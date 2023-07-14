@@ -28,10 +28,10 @@
     <nav class="sidebar-nav scroll-sidebar" data-simplebar="init">
         <ul class="sidebar-list">
             <li class="sidebar-list-title">
-                <span>HOME</span>
+                <span>홈</span>
             </li>
             <li class="sidebar-item normal">
-                <a class="sidebar-link" href="/admin">
+                <a class="sidebar-link" href="/dashboard">
                     <svg
                         width="24px"
                         height="24px"
@@ -59,13 +59,13 @@
                             stroke-width="2"
                             stroke-linecap="round" />
                     </svg>
-                    <span class="title">Dashboard</span>
+                    <span class="title">대시보드</span>
                 </a>
             </li>
         </ul>
         <ul class="sidebar-list">
             <li class="sidebar-list-title">
-                <span>UI COMPONENTS</span>
+                <span>관리</span>
             </li>
             <li class="sidebar-item toggle">
                 <button class="item-toggle-btn">
@@ -76,26 +76,121 @@
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <rect
-                                x="4"
-                                y="4"
-                                width="16"
-                                height="16"
-                                rx="3"
+                            <path
+                                d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M12 12H15"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M12 16H15"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <circle cx="9" cy="12" r="1" fill="currentColor" />
+                            <circle cx="9" cy="16" r="1" fill="currentColor" />
+                        </svg>
+                        <span class="item-name">전체 리스트</span>
+                    </div>
+                    <div class="arrow">
+                        <svg
+                            width="18px"
+                            height="18px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z"
+                                fill="#DDDDDD" />
+                        </svg>
+                    </div>
+                </button>
+                <ul class="item-list">
+                    <li class="item">
+                        <a href="/buttons"> 매장 </a>
+                    </li>
+                    <li class="item">
+                        <a href="/buttons"> 회원 </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-item toggle">
+                <button class="item-toggle-btn">
+                    <div class="item-content">
+                        <svg
+                            width="24px"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 11.6211V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V11.6211M7.5 9.75C7.5 10.9926 6.49264 12 5.25 12C4.09397 12 3.14157 11.1282 3.01442 10.0062C2.99524 9.83688 3.02176 9.66657 3.06477 9.50173L4.10996 5.49516C4.3397 4.6145 5.13506 4 6.04519 4H17.9548C18.8649 4 19.6603 4.6145 19.89 5.49516L20.9352 9.50173C20.9782 9.66657 21.0048 9.83688 20.9856 10.0062C20.8584 11.1282 19.906 12 18.75 12C17.5074 12 16.5 10.9926 16.5 9.75M7.5 9.75C7.5 10.9926 8.50736 12 9.75 12C10.9926 12 12 10.9926 12 9.75M7.5 9.75L8 4M12 9.75C12 10.9926 13.0074 12 14.25 12C15.4926 12 16.5 10.9926 16.5 9.75M12 9.75V4M16.5 9.75L16 4"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span class="item-name">매장 관리</span>
+                    </div>
+                    <div class="arrow">
+                        <svg
+                            width="18px"
+                            height="18px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z"
+                                fill="#DDDDDD" />
+                        </svg>
+                    </div>
+                </button>
+                <ul class="item-list">
+                    <li class="item">
+                        <a href="/alerts"> 매장 정보 </a>
+                    </li>
+                    <li class="item">
+                        <a href="/alerts"> 회원 리스트 </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-item toggle">
+                <button class="item-toggle-btn">
+                    <div class="item-content">
+                        <svg
+                            width="24px"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6H14C17.7712 6 19.6569 6 20.8284 7.17157C22 8.34315 22 10.2288 22 14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14Z"
                                 stroke="currentColor"
                                 stroke-width="2" />
                             <path
-                                d="M16 10L8 10"
+                                d="M16 6C16 4.11438 16 3.17157 15.4142 2.58579C14.8284 2 13.8856 2 12 2C10.1144 2 9.17157 2 8.58579 2.58579C8 3.17157 8 4.11438 8 6"
                                 stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round" />
+                                stroke-width="2" />
                             <path
-                                d="M16 14L8 14"
+                                d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333"
                                 stroke="currentColor"
                                 stroke-width="2"
                                 stroke-linecap="round" />
                         </svg>
-                        <span class="item-name">Buttons</span>
+                        <span class="item-name">충 · 환전</span>
                     </div>
                     <div class="arrow">
                         <svg
@@ -112,28 +207,10 @@
                 </button>
                 <ul class="item-list">
                     <li class="item">
-                        <a href="/buttons"> Primary </a>
+                        <a href="/card">충전</a>
                     </li>
                     <li class="item">
-                        <a href="/buttons"> Secondary </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Success </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Danger </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Warning </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Info </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Light </a>
-                    </li>
-                    <li class="item">
-                        <a href="/buttons"> Dark </a>
+                        <a href="/card">환전</a>
                     </li>
                 </ul>
             </li>
@@ -144,46 +221,58 @@
                             width="24px"
                             height="24px"
                             viewBox="0 0 24 24"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <g id="Complete">
-                                <g id="alert-circle">
-                                    <g>
-                                        <line
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.6"
-                                            x1="12"
-                                            x2="12"
-                                            y1="8"
-                                            y2="12" />
-                                        <line
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.6"
-                                            x1="12"
-                                            x2="12"
-                                            y1="16"
-                                            y2="16" />
-                                        <circle
-                                            cx="12"
-                                            cy="12"
-                                            data-name="--Circle"
-                                            fill="none"
-                                            id="_--Circle"
-                                            r="10"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2" />
-                                    </g>
+                            <g id="Iconly/Curved/Game">
+                                <g id="Game">
+                                    <path
+                                        id="Stroke 1"
+                                        d="M9.25467 12.0625V15.6377"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        id="Stroke 2"
+                                        d="M11.0791 13.8496H7.4314"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        id="Stroke 3"
+                                        d="M15.4774 12.1712H15.3752"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        id="Stroke 4"
+                                        d="M17.2081 15.5833H17.1059"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        id="Stroke 5"
+                                        d="M8.51392 2.21606V2.21606C8.5206 2.93015 9.1058 3.50295 9.81989 3.49626H10.828C11.9306 3.48767 12.8328 4.37169 12.8481 5.47432V6.48148"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        id="Stroke 7"
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M21.8121 13.8953C21.8121 8.33539 19.4255 6.48145 12.2646 6.48145C5.10271 6.48145 2.71606 8.33539 2.71606 13.8953C2.71606 19.4562 5.10271 21.3092 12.2646 21.3092C19.4255 21.3092 21.8121 19.4562 21.8121 13.8953Z"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </g>
                             </g>
                         </svg>
-                        <span class="item-name">Alerts</span>
+                        <span class="item-name">게임</span>
                     </div>
                     <div class="arrow">
                         <svg
@@ -200,10 +289,13 @@
                 </button>
                 <ul class="item-list">
                     <li class="item">
-                        <a href="/alerts"> Primary </a>
+                        <a href="/forms"> 게임 결과 </a>
                     </li>
                     <li class="item">
-                        <a href="/alerts"> Secondary </a>
+                        <a href="/forms"> 실시간 베팅 </a>
+                    </li>
+                    <li class="item">
+                        <a href="/forms"> 베팅 내역 </a>
                     </li>
                 </ul>
             </li>
@@ -213,24 +305,27 @@
                         <svg
                             width="24px"
                             height="24px"
-                            viewBox="0 0 21 21"
+                            viewBox="0 0 24 24"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <g
-                                fill="none"
-                                fill-rule="evenodd"
+                            <path
+                                d="M3 7C3 5.11438 3 4.17157 3.58579 3.58579C4.17157 3 5.11438 3 7 3H12H17C18.8856 3 19.8284 3 20.4142 3.58579C21 4.17157 21 5.11438 21 7V10V13C21 14.8856 21 15.8284 20.4142 16.4142C19.8284 17 18.8856 17 17 17H12H7C5.11438 17 4.17157 17 3.58579 16.4142C3 15.8284 3 14.8856 3 13V10V7Z"
                                 stroke="currentColor"
-                                stroke-width="1.6"
+                                stroke-width="2"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M7 21H17"
+                                stroke="currentColor"
+                                stroke-width="2"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                                transform="translate(2 3)">
-                                <path
-                                    d="m5.5.5h6c1.1045695 0 2 .8954305 2 2v10c0 1.1045695-.8954305 2-2 2h-6c-1.1045695 0-2-.8954305-2-2v-10c0-1.1045695.8954305-2 2-2zm8 2.5h1c1.1045695 0 2 .8954305 2 2v5c0 1.1045695-.8954305 2-2 2h-1z" />
-                                <path
-                                    d="m.5 3h1c1.1045695 0 2 .8954305 2 2v5c0 1.1045695-.8954305 2-2 2h-1z"
-                                    transform="matrix(-1 0 0 1 4 0)" />
-                            </g>
+                                stroke-linejoin="round" />
+                            <path
+                                d="M12 17V21"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round" />
                         </svg>
-                        <span class="item-name">Card</span>
+                        <span class="item-name">사이트 관리</span>
                     </div>
                     <div class="arrow">
                         <svg
@@ -247,56 +342,13 @@
                 </button>
                 <ul class="item-list">
                     <li class="item">
-                        <a href="/card"> Normal </a>
+                        <a href="/forms">공지사항 관리</a>
                     </li>
                     <li class="item">
-                        <a href="/card"> Header anbd footer </a>
+                        <a href="/forms">1:1 문의</a>
                     </li>
                     <li class="item">
-                        <a href="/card"> Titles, text, and links </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-item toggle">
-                <button class="item-toggle-btn">
-                    <div class="item-content">
-                        <svg
-                            width="24px"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="File / File_Document">
-                                <path
-                                    id="Vector"
-                                    d="M9 17H15M9 14H15M13.0004 3.00087C12.9048 3 12.7974 3 12.6747 3H8.2002C7.08009 3 6.51962 3 6.0918 3.21799C5.71547 3.40973 5.40973 3.71547 5.21799 4.0918C5 4.51962 5 5.08009 5 6.2002V17.8002C5 18.9203 5 19.4801 5.21799 19.9079C5.40973 20.2842 5.71547 20.5905 6.0918 20.7822C6.51921 21 7.079 21 8.19694 21L15.8031 21C16.921 21 17.48 21 17.9074 20.7822C18.2837 20.5905 18.5905 20.2842 18.7822 19.9079C19 19.4805 19 18.9215 19 17.8036V9.32568C19 9.20302 18.9999 9.09553 18.999 9M13.0004 3.00087C13.2858 3.00348 13.4657 3.01407 13.6382 3.05547C13.8423 3.10446 14.0379 3.18526 14.2168 3.29492C14.4186 3.41857 14.5918 3.59181 14.9375 3.9375L18.063 7.06298C18.4089 7.40889 18.5809 7.58136 18.7046 7.78319C18.8142 7.96214 18.8953 8.15726 18.9443 8.36133C18.9857 8.53379 18.9964 8.71454 18.999 9M13.0004 3.00087L13 5.80021C13 6.92031 13 7.48015 13.218 7.90797C13.4097 8.2843 13.7155 8.59048 14.0918 8.78223C14.5192 9 15.079 9 16.1969 9H18.999"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </g>
-                        </svg>
-                        <span class="item-name">Forms</span>
-                    </div>
-                    <div class="arrow">
-                        <svg
-                            width="18px"
-                            height="18px"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z"
-                                fill="#DDDDDD" />
-                        </svg>
-                    </div>
-                </button>
-                <ul class="item-list">
-                    <li class="item">
-                        <a href="/forms"> Forms </a>
-                    </li>
-                    <li class="item">
-                        <a href="/forms"> Disabled Forms </a>
+                        <a href="/forms">1:1 문의 리스트</a>
                     </li>
                 </ul>
             </li>

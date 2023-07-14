@@ -144,10 +144,13 @@ export default class Aside extends ContentComponent {
         this.DomThis.addEventListener('click', (event) => {
             const Target = event.target as HTMLElement;
             const TargetParent = Target.parentElement as HTMLElement;
-            const IsButtonAndAnchor =
+            const IsCloseButton =
+                Target.classList.contains('close-btn') ||
+                TargetParent.classList.contains('close-btn');
+            const IsAnchorElement =
                 Target.tagName === 'A' || TargetParent.tagName === 'A';
 
-            if (IsButtonAndAnchor) {
+            if (IsCloseButton || IsAnchorElement) {
                 const SideBar: HTMLDivElement =
                     GlobalStatic.PageLayout.DomThis.querySelector(
                         '#divAside'
